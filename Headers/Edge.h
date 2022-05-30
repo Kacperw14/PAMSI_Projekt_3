@@ -1,7 +1,7 @@
 #pragma once
 #include"Node.h"
 
-class Edge :Node
+class Edge : Node<Edge>
 {
 private:
 	int value;

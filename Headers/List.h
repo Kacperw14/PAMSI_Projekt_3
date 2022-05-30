@@ -1,11 +1,10 @@
 #pragma once
 #include "Node.h"
-#include "Incident.h"
 
 
 //Mozliwosc rozszerzenia struktury o nowe wezly dwukietrunkowe (template)
 template <typename T>
-class List: Incident
+class List
 {
 private:
 	T* header;
@@ -22,7 +21,7 @@ public:
 	// Podstaowe funkcje dla priorytetowej listy dwukierunkowej:
 	const bool IsEmpty() const;
 	int Size() const;
-	T* Last() const { return trailer->GetPrevious(); };
+	//T* Last() const { return trailer->GetPrevious(); };
 	//T* First() const { return header->GetNext(); };
 	
 	//Metody dodajace

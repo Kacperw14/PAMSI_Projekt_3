@@ -1,8 +1,7 @@
 #pragma once
 #include"Node.h"
-#include"Edge.h"
 
-class Incident : Node
+class Incident 
 {
 private:
 	Edge edge;

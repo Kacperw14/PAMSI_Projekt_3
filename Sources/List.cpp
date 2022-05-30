@@ -73,12 +73,10 @@ void List<T>::ClearList()
 {
 	while (!IsEmpty())
 	{
-		Remove(Last());
+		//Remove(Last());
 	}
 }
 //Przykladowy szablon wezla dwukierunkowego uzyty w projektcie
 template
-class List<Node>;
+class List<Node<Edge>>;
 
-template
-class List<Incident>;

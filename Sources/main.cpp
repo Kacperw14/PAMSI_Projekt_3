@@ -4,13 +4,13 @@
 using namespace std;
 int main()
 {
-    Graph G;
-    Edge E(5);
-    Incident I(E);
-    Incident I2(E);
-    List <Incident> L;
+    //Graph G;
+    //Edge E(5);
+    //Incident I(E);
+    //Incident I2(E);
+    //List <Incident> L;
    // cout << I << endl;
-    I.GetEdge();
+    //I.GetEdge();
     //L.AddAtEnd(&I2);
 
 
