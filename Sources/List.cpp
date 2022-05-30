@@ -4,8 +4,8 @@
 template <typename T>
 List<T>::List()
 {
-	header = new T("header", 0, 0,nullptr, nullptr);
-	trailer = new T("trailer", 0, 0,header, nullptr);
+	header = new T();
+	trailer = new T(header, nullptr);
 	header->SetNext(trailer);
 }
 
@@ -14,7 +14,7 @@ void List<T>::operator+(List<T>* _lista)
 {
 	for (T* head = _lista->First(); head != _lista->Last()->GetNext(); head = head->GetNext())
 	{
-		AddAtEnd(head); 
+		AddAtEnd(head);
 	}
 }
 
@@ -46,11 +46,14 @@ int List<T>::Size() const
 }
 
 template <typename T>
-void List<T>::AddAtEnd(const T* _node)
+void List<T>::AddAtEnd(T* _node)  //
 {
-	T* newNode = new T(_node->GetName(), _node->GetKey(), _node->GetRating(), trailer->GetPrevious(), trailer);
-	trailer->GetPrevious()->SetNext(newNode);
-	trailer->SetPrevious(newNode);
+	//T* newNode = new T(_node->GetName(), _node->GetKey(), _node->GetRating(), trailer->GetPrevious(), trailer);
+	_node->SetNext(trailer);
+	_node->SetPrevious(trailer->GetPrevious());
+
+	trailer->GetPrevious()->SetNext(_node);
+	trailer->SetPrevious(_node);
 }
 
 template<typename T>
@@ -73,22 +76,6 @@ void List<T>::ClearList()
 		Remove(Last());
 	}
 }
-//Metoda pomocnicza ulatwiajaca sledzenie atrybutow kazdego z wezlow, zarowno klucza jak i wiadomosci.
-template <typename T>
-void List<T>::PrintList() const
-{
-	if (IsEmpty()) std::cout << "Funkcja \"PrintList\": Lista jest pusta" << std::endl;
-	else
-	{
-		
-		for (T* head = header->GetNext(); head != trailer; head = head->GetNext())
-		{
-			std::cout << head->GetName() << " (nr wiadomosci: " << head->GetKey() << ")" 
-				<< " (rating: " << head->GetRating() << ")"<< std::endl;
-		}
-	}
-}
-
 //Przykladowy szablon wezla dwukierunkowego uzyty w projektcie
 template
-class List<MovieNode>;
+class List<Node>;

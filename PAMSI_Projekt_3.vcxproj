@@ -21,12 +21,13 @@
   <ItemGroup>
     <ClCompile Include="Sources\List.cpp" />
     <ClCompile Include="Sources\main.cpp" />
-    <ClCompile Include="Sources\MovieNode.cpp" />
+    <ClCompile Include="Sources\Node.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Graph.h" />
     <ClInclude Include="Headers\List.h" />
-    <ClInclude Include="Headers\MovieNode.h" />
+    <ClInclude Include="Headers\Node.h" />
+    <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

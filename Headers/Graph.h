@@ -5,9 +5,9 @@ class Graph
 {
 //private:
 public:
-	List<MovieNode> Edge;
-	List<MovieNode> Vertice;
-	
+	List<Node> Edge;
+	List<Node> Vertex;
+	//List<Incident> Incident;
 
 
 

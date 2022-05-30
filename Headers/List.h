@@ -1,10 +1,10 @@
 #pragma once
-#include "../Headers/MovieNode.h"
+#include "../Headers/Node.h"
 
 
 //Mozliwosc rozszerzenia struktury o nowe wezly dwukietrunkowe (template)
 template <typename T>
-class List : MovieNode
+class List : Node
 {
 private:
 	T* header;
@@ -25,7 +25,7 @@ public:
 	T* First() const { return header->GetNext(); };
 	
 	//Metody dodajace
-	void AddAtEnd(const T* _node);
+	void AddAtEnd(T* _node);
 	//
 
 	//Metody usuwajace
@@ -34,7 +34,7 @@ public:
 	//
 
 	//Dodatkowe przydatne metody
-	void PrintList() const;
+
 	//
 
 	//Metody umozliwiajace dostep do atrybutow. Dostep tylko do odczytu!
