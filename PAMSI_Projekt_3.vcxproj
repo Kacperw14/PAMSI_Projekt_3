@@ -24,9 +24,11 @@
     <ClCompile Include="Sources\Node.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Edge.h" />
     <ClInclude Include="Headers\Graph.h" />
     <ClInclude Include="Headers\List.h" />
     <ClInclude Include="Headers\Node.h" />
+    <ClInclude Include="Incident.h" />
     <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

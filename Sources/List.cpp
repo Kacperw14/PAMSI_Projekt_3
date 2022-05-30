@@ -79,3 +79,6 @@ void List<T>::ClearList()
 //Przykladowy szablon wezla dwukierunkowego uzyty w projektcie
 template
 class List<Node>;
+
+template
+class List<Incident>;

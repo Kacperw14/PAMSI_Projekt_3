@@ -4,7 +4,7 @@
 
 class Node
 {
-private:
+protected:
 
 	Node* previous;
 	Node* next;

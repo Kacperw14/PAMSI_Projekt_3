@@ -1,10 +1,11 @@
 #pragma once
-#include "../Headers/Node.h"
+#include "Node.h"
+#include "Incident.h"
 
 
 //Mozliwosc rozszerzenia struktury o nowe wezly dwukietrunkowe (template)
 template <typename T>
-class List : Node
+class List: Incident
 {
 private:
 	T* header;
@@ -22,7 +23,7 @@ public:
 	const bool IsEmpty() const;
 	int Size() const;
 	T* Last() const { return trailer->GetPrevious(); };
-	T* First() const { return header->GetNext(); };
+	//T* First() const { return header->GetNext(); };
 	
 	//Metody dodajace
 	void AddAtEnd(T* _node);

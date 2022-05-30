@@ -1,5 +1,8 @@
 #include <iostream>
 #include "List.h"
+#include"../Headers/Vertex.h"
+#include"../Headers/Incident.h"
+#include"../Headers/Edge.h"
 
 class Graph
 {
