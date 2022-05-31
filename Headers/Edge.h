@@ -3,7 +3,8 @@
 #include "Vertex.h"
 #include "Incident.h"
 
-//class Incident;
+class Incident;
+class Vertex;
 
 class Edge //: public Node
 {
@@ -18,24 +19,23 @@ private:
 	//Edge* next;
 
 public:
-	Edge() = default;//: value(0), beginning(nullptr), end(nullptr) {};//, previous(nullptr), next(nullptr) {};  //?
-	Edge(Vertex* _beginning, Vertex* _end, const int& _value) : beginning(_beginning), end(_end), value(_value) {};
-
+	Edge() = default;//: value(0), beginning(nullptr), end(nullptr), begIncident(nullptr), endIncident(nullptr) {};//, previous(nullptr), next(nullptr) {};  //?
+	Edge(Vertex* _beginning, Vertex* _end, const int& _value);
 	//Edge(Edge* _previous, Edge* _next) : value(0), previous(_previous), next(_next) {};
 	//konstruktor kopiujacy
 	//Edge(const Edge& _edge) : beginning(_edge.GetBeginning()), end(_edge.GetEnd()), value(_edge.GetValue()) {};//previous(_edge.GetNext()), next(_edge.GetPrevious()) {}; 
 
 
 
-	//const int& GetValue() const;
 	////Funkcje umozliwiajace dostep do atrybutow. Dostep tylko do odczytu!
 	//Edge* GetNext() const;
 	//Edge* GetPrevious() const;
 
-	//Vertex* GetBeginning() const { return beginning; };
-	//Vertex* GetEnd() const { return end; };
-	//Incident* GetIncBeg() const { return begIncident; };
-	//Incident* GetIncEnd() const { return endIncident; };
+	const int& GetValue() const;
+	const Vertex* GetBeginning() const { return beginning; };
+	const Vertex* GetEnd() const { return end; };
+	const Incident* GetIncBeg() const { return begIncident; };
+	const Incident* GetIncEnd() const { return endIncident; };
 
 	//Funkcje umozliwiajace zmiane atrybutow.
 	//void SetNext(Edge* newNode);
