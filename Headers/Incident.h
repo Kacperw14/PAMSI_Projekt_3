@@ -1,14 +1,27 @@
 #pragma once
-#include"Node.h"
+#include"Edge.h"
 
-class Incident 
+class Edge;  //definiuje klase aby preprocesor mogl zalaczyc plik Edge.h
+
+class Incident
 {
 private:
-	Edge edge;
-	
+	Edge* edge;
+	//Incident* previous;
+	//Incident* next;
+
 public:
-	Incident(Edge _edge) : edge(_edge) {};
-	const Edge& GetEdge() const {return edge; };
+	Incident() = default;
+	Incident(Edge* _edge) : edge(_edge) {}; //, previous(nullptr), next(nullptr) {};
 	
+
+	//Funkcje umozliwiajace dostep do atrybutow. Dostep tylko do odczytu!
+	const Edge* GetEdge() const { return edge; };
+	//Incident* GetNext() const;
+	//Incident* GetPrevious() const;
+
+	//Funkcje umozliwiajace zmiane atrybutow.
+	//void SetNext(Incident* newNode);
+	//void SetPrevious(Incident* newNode);
 
 }; //class

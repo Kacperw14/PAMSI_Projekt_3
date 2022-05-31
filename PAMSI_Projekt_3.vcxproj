@@ -19,17 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\Edge.cpp" />
+    <ClCompile Include="Sources\Incident.cpp" />
     <ClCompile Include="Sources\List.cpp" />
     <ClCompile Include="Sources\main.cpp" />
     <ClCompile Include="Sources\Node.cpp" />
+    <ClCompile Include="Sources\Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Edge.h" />
+    <ClInclude Include="Headers\Edge.h" />
     <ClInclude Include="Headers\Graph.h" />
+    <ClInclude Include="Headers\Incident.h" />
     <ClInclude Include="Headers\List.h" />
     <ClInclude Include="Headers\Node.h" />
-    <ClInclude Include="Incident.h" />
-    <ClInclude Include="Vertex.h" />
+    <ClInclude Include="Headers\Vertex.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

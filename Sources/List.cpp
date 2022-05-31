@@ -1,5 +1,6 @@
 #include "../Headers/List.h"
 
+
 //Konstruktor glowny inicjuje poczatek i koniec tablicy oraz polaczenie miedzy nimi.
 template <typename T>
 List<T>::List()
@@ -73,10 +74,13 @@ void List<T>::ClearList()
 {
 	while (!IsEmpty())
 	{
-		//Remove(Last());
+		Remove(Last());
 	}
 }
 //Przykladowy szablon wezla dwukierunkowego uzyty w projektcie
-template
-class List<Node<Edge>>;
 
+template
+class List<Node>;
+
+//template
+//class List<Edge>;

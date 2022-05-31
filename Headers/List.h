@@ -1,10 +1,10 @@
 #pragma once
 #include "Node.h"
-
+#include "Edge.h"
 
 //Mozliwosc rozszerzenia struktury o nowe wezly dwukietrunkowe (template)
 template <typename T>
-class List
+class List 
 {
 private:
 	T* header;
@@ -12,7 +12,7 @@ private:
 
 public:
 	//Konstruktory
-	List();
+	List();// { header->SetNext(trailer); trailer->SetPrevious(header); };
 	//Konstruktor kopiujacy
 	List(const List<T>& _lista) : header(_lista.header), trailer(_lista.trailer) {};
 
@@ -21,8 +21,8 @@ public:
 	// Podstaowe funkcje dla priorytetowej listy dwukierunkowej:
 	const bool IsEmpty() const;
 	int Size() const;
-	//T* Last() const { return trailer->GetPrevious(); };
-	//T* First() const { return header->GetNext(); };
+	T* Last() const { return trailer->GetPrevious(); };
+	T* First() const { return header->GetNext(); };
 	
 	//Metody dodajace
 	void AddAtEnd(T* _node);
