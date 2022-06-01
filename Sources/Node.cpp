@@ -1,41 +1,49 @@
 #include"../Headers/Node.h"
 
-Node::Node()
+template <typename T>
+Node<T>::Node()
 {
 	previous = nullptr;
 	next = nullptr;
 }
 
-Node::Node(Node* _previous, Node* _next)
+template <typename T>
+Node<T>::Node(Node<T>* _previous, Node<T>* _next)
 {
 	previous = _previous;
 	next = _next;
 }
 
-Node::Node(const Node& newNode)
+template <typename T>
+Node<T>::Node(const Node<T>& newNode)
 {
 	next = newNode.GetNext();
 	previous = newNode.GetPrevious();
 }
 
-Node* Node::GetNext() const
+template <typename T>
+Node<T>* Node<T>::GetNext() const
 {
 	if (this == nullptr) throw nullptr; //std::cout << "Funkcja \"GetNext:\": otrzymala nullptr" << std::endl;
 	else return next;
 }
 
-Node* Node::GetPrevious() const
+template <typename T>
+Node<T>* Node<T>::GetPrevious() const
 {
 	if (this == nullptr) throw nullptr; //std::cout << "Funkcja \"GetPrevious:\": otrzymala nullptr" << std::endl;
 	else return previous;
 }
 
-void Node::SetNext(Node* newNode)
+template <typename T>
+void Node<T>::SetNext(Node<T>* newNode)
 {
 	if (this == nullptr)  std::cout << "Funkcja \"SetNext:\": otrzymala nullptr" << std::endl;
 	else next = newNode;
 }
-void Node::SetPrevious(Node* newNode)
+
+template <typename T>
+void Node<T>::SetPrevious(Node<T>* newNode)
 {
 	if (this == nullptr)  std::cout << "Funkcja \"SetPrevious:\": otrzymala nullptr" << std::endl;
 	else previous = newNode;

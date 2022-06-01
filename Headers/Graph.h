@@ -1,19 +1,22 @@
 //#include <iostream>
 #pragma once
-//#include "List.h"
-//#include "Incident.h"
-//#include "Vertex.h"
+#include "List.h"
+#include "Incident.h"
+#include "Vertex.h"
 #include "Edge.h"
+
+//class Incident;
 
 class Graph
 {
 private:
+	List<Edge> Edge;
+	//List<Vertex> Vertex;
+	//List<Incident> Incident;
 
 public:
-	//List<Node> Edge;
-	//List<Node> Vertex;
-	//List<Incident> Incident;
-	//Vertex V;
+	Graph() = default;
+	//Graph(Edge _) : Edge(), Vertex(), Incident() {};
 
 
 

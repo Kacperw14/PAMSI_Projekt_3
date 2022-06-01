@@ -2,27 +2,28 @@
 #include <iostream>
 #include <string>
 
-class Node
+template <typename T>
+class Node : T
 {
 protected:
 
-	Node* previous;
-	Node* next;
+	Node<T>* previous;
+	Node<T>* next;
 
 public:
 
 	//Konstruktory
 	Node();
-	Node(Node* _previous, Node* _next);
-	Node(const Node& newNode); 	//Konstruktor kopiuj¹cy
+	Node(Node<T>* _previous, Node<T>* _next);
+	Node(const Node<T>& newNode); 	//Konstruktor kopiuj¹cy
 
 	//Funkcje umozliwiajace dostep do atrybutow.
-	Node* GetNext() const;
-	Node* GetPrevious() const;
+	Node<T>* GetNext() const;
+	Node<T>* GetPrevious() const;
 
 	//Funkcje umozliwiajace zmiane atrybutow.
-	void SetNext(Node* newNode);
-	void SetPrevious(Node* newNode);
+	void SetNext(Node<T>* newNode);
+	void SetPrevious(Node<T>* newNode);
 
 
 }; //CLASS

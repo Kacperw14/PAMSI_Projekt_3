@@ -4,7 +4,7 @@
 using namespace std;
 int main()
 {
-    //Graph G;
+    Graph G;
     Vertex* V1 = new Vertex("a");
     Vertex* V2 = new Vertex("b");
     Edge E(V1,V2,5);
