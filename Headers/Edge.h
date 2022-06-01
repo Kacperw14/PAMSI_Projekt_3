@@ -19,7 +19,7 @@ protected:
 	//Edge* next;
 
 public:
-	Edge() = default;//: value(0), beginning(nullptr), end(nullptr), begIncident(nullptr), endIncident(nullptr) {};//, previous(nullptr), next(nullptr) {};  //?
+	Edge() : value(0), beginning(nullptr), end(nullptr), begIncident(nullptr), endIncident(nullptr) {};//, previous(nullptr), next(nullptr) {};  //?
 	Edge(Vertex* _beginning, Vertex* _end, const int& _value);
 	//Edge(Edge* _previous, Edge* _next) : value(0), previous(_previous), next(_next) {};
 	//konstruktor kopiujacy

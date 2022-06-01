@@ -3,12 +3,13 @@
 #include "Edge.h"
 
 //Mozliwosc rozszerzenia struktury o nowe wezly dwukietrunkowe (template)
+
 template <typename T>
 class List 
 {
 private:
-	T* header;
-	T* trailer;
+	Node<T>* header;
+	Node<T>* trailer;
 
 public:
 	//Konstruktory
@@ -16,21 +17,21 @@ public:
 	//Konstruktor kopiujacy
 	List(const List<T>& _lista) : header(_lista.header), trailer(_lista.trailer) {};
 
-	void operator+ (List<T>* _lista);
+	//void operator+ (List<T>* _lista);
 	
 	// Podstaowe funkcje dla priorytetowej listy dwukierunkowej:
 	const bool IsEmpty() const;
 	int Size() const;
-	T* Last() { return trailer->GetPrevious(); };
-	T* First() { return header->GetNext(); };
+	Node<T>* Last() { return trailer->GetPrevious(); };
+	Node<T>* First() { return header->GetNext(); };
 	
 	//Metody dodajace
 	void AddAtEnd(T* _node);
 	//
 
 	//Metody usuwajace
-	void Remove(T* _node);
-	void ClearList();
+	//void Remove(Node<T>* _node);
+	//void ClearList();
 	//
 
 	//Dodatkowe przydatne metody
@@ -38,8 +39,8 @@ public:
 	//
 
 	//Metody umozliwiajace dostep do atrybutow. Dostep tylko do odczytu!
-	const T* GetHeader() const { return header; };
-	const T* GetTrailer() const { return trailer; };
+	const Node<T>* GetHeader() const { return header; };
+	const Node<T>* GetTrailer() const { return trailer; };
 	//
 }; //CLASS
 

@@ -1,8 +1,8 @@
 ﻿#include <iostream>
 //#include"../Headers/Graph.h"  //!!!
-#include "../Headers/Edge.h"
-#include "../Headers/Node.h"
-
+//#include "../Headers/Edge.h"
+//#include "../Headers/Node.h"
+#include "../Headers/List.h"
 using namespace std;
 int main()
 {
@@ -12,11 +12,14 @@ int main()
     Edge E1(V1,V2,5);
     Edge E2(V1,V2,4);
     Edge E3(V1,V2,6);
-    Node<Edge> Ne(&E1, &E2, &E3);
-    //Node<Edge> Ne(&E,&E);
-    //Ve = E;
-    //cout << Ne;
-    cout << Ne.GetPrevious()->GetValue();
+    Node<Edge> Ne1(E1);
+    Node<Edge> Ne2(E2);
+   List<Edge> Le;
+   Le.AddAtEnd(&E1);
+   Le.AddAtEnd(&E2);
+
+    cout << Le.Last()->GetValue();
+    //cout << Ne.GetPrevious()->GetValue();
     //Incident I(&E);
     ////Incident I2(E);
     //List<Edge> L;

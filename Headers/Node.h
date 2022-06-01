@@ -8,24 +8,25 @@ class Node : public T
 {
 private:
 	//T* current;
-	T* previous;
-	T* next;
+	Node<T>* previous;
+	Node<T>* next;
 
 public:
 
 	//Konstruktory
-	Node() = delete;
+	Node(); //= default;//delete;
 	Node(T* _current, T* _previous, T* _next);
-	Node(const T& _current) : T(_current) {};//current(_current) {};
+	//Node(T* _current, Node<T>* _previous, Node<T>* _next);
+	Node(const T& _current) : T(_current), previous(nullptr), next(nullptr) {};//current(_current) {};
 	Node(const Node<T>& newNode); 	//Konstruktor kopiuj¹cy
 
 	//Funkcje umozliwiajace dostep do atrybutow.
-	T* GetNext() const;
-	T* GetPrevious() const;
+	Node<T>* GetNext() const;
+	Node<T>* GetPrevious() const;
 
 	//Funkcje umozliwiajace zmiane atrybutow.
-	void SetNext(T* newNode);
-	void SetPrevious(T* newNode);
+	void SetNext(Node<T>* newNode);
+	void SetPrevious(Node<T>* newNode);
 
 
 }; //CLASS
