@@ -10,9 +10,11 @@ int main()
     Vertex* V1 = new Vertex("a");
     Vertex* V2 = new Vertex("b");
     Edge E(V1,V2,5);
-    Node<Edge> Ne(&E,&E);
+    Node<Edge> Ne(E);
+   // Node<Edge> Ne(&E,&E);
     //Ve = E;
-    cout << Ne.GetNext()->GetValue();
+   cout << Ne.GetValue();
+    //cout << Ne.GetNext()->GetValue();
     //Incident I(&E);
     ////Incident I2(E);
     //List<Edge> L;

@@ -3,11 +3,11 @@
 #include <string>
 #include"Edge.h"
 
-template <class T>
+template <typename T>
 class Node : public T
 {
 private:
-
+	//T* current;
 	T* previous;
 	T* next;
 
@@ -16,6 +16,7 @@ public:
 	//Konstruktory
 	Node();
 	Node(T* _previous, T* _next);
+	Node(const T& _current) : T(_current) {};//current(_current) {};
 	Node(const Node<T>& newNode); 	//Konstruktor kopiuj¹cy
 
 	//Funkcje umozliwiajace dostep do atrybutow.
