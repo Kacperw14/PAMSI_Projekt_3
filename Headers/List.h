@@ -1,6 +1,6 @@
 #pragma once
 #include "Node.h"
-//#include "Edge.h"
+#include "Edge.h"
 
 //Mozliwosc rozszerzenia struktury o nowe wezly dwukietrunkowe (template)
 template <typename T>
@@ -21,8 +21,8 @@ public:
 	// Podstaowe funkcje dla priorytetowej listy dwukierunkowej:
 	const bool IsEmpty() const;
 	int Size() const;
-	T* Last() const { return trailer->GetPrevious(); };
-	T* First() const { return header->GetNext(); };
+	T* Last() { return trailer->GetPrevious(); };
+	T* First() { return header->GetNext(); };
 	
 	//Metody dodajace
 	void AddAtEnd(T* _node);

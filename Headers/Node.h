@@ -14,8 +14,8 @@ private:
 public:
 
 	//Konstruktory
-	Node();
-	Node(T* _previous, T* _next);
+	Node() = delete;
+	Node(T* _current, T* _previous, T* _next);
 	Node(const T& _current) : T(_current) {};//current(_current) {};
 	Node(const Node<T>& newNode); 	//Konstruktor kopiuj¹cy
 

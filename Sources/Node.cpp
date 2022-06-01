@@ -1,14 +1,14 @@
 #include"../Headers/Node.h"
 
-template <typename T>
-Node<T>::Node()
-{
-	previous = nullptr;
-	next = nullptr;
-}
+//template <typename T>
+//Node<T>::Node()
+//{
+//	previous = nullptr;
+//	next = nullptr;
+//}
 
 template <typename T>
-Node<T>::Node(T* _previous, T* _next)
+Node<T>::Node(T* _current, T* _previous, T* _next) : T(*_current)
 {
 	previous = _previous;
 	next = _next;
