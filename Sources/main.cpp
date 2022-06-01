@@ -6,12 +6,13 @@
 using namespace std;
 int main()
 {
-    Node<Edge> Ve;
-
     //Graph G;
-    //Vertex* V1 = new Vertex("a");
-    //Vertex* V2 = new Vertex("b");
-    //Edge E(V1,V2,5);
+    Vertex* V1 = new Vertex("a");
+    Vertex* V2 = new Vertex("b");
+    Edge E(V1,V2,5);
+    //Node<Edge> Ve(E,E);
+    //Ve = E;
+  // cout<< Ve.GetValue();
     //Incident I(&E);
     ////Incident I2(E);
     //List<Edge> L;

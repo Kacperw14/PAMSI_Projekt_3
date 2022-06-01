@@ -3,8 +3,8 @@
 #include <string>
 #include"Edge.h"
 
-template <typename T>
-class Node : T
+template <class T>
+class Node : public T
 {
 private:
 
@@ -16,6 +16,7 @@ public:
 	//Konstruktory
 	Node();
 	Node(Node<T>* _previous, Node<T>* _next);
+
 	Node(const Node<T>& newNode); 	//Konstruktor kopiuj¹cy
 
 	//Funkcje umozliwiajace dostep do atrybutow.

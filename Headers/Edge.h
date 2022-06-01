@@ -8,6 +8,7 @@ class Vertex;
 
 class Edge //: public Node
 {
+
 protected:
 	int value;
 	Vertex* beginning;
