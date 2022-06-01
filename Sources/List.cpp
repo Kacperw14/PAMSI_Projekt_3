@@ -82,5 +82,5 @@ void List<T>::ClearList()
 //template
 //class List<Node<Edge>>;
 
-template
-class List<Edge>;
+//template
+//class List<Edge>;

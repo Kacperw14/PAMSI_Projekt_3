@@ -49,6 +49,6 @@ void Node<T>::SetPrevious(Node<T>* newNode)
 	else previous = newNode;
 }
 
-
-
+template
+class  Node<Edge>;
 

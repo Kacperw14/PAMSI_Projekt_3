@@ -1,11 +1,12 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include"Edge.h"
 
 template <typename T>
 class Node : T
 {
-protected:
+private:
 
 	Node<T>* previous;
 	Node<T>* next;

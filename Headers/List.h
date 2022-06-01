@@ -1,6 +1,6 @@
 #pragma once
-//#include "Node.h"
-#include "Edge.h"
+#include "Node.h"
+//#include "Edge.h"
 
 //Mozliwosc rozszerzenia struktury o nowe wezly dwukietrunkowe (template)
 template <typename T>
