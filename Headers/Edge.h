@@ -15,33 +15,26 @@ protected:
 	Incident* begIncident;
 	Incident* endIncident;
 
-	//Edge* previous;
-	//Edge* next;
-
 public:
 	Edge() : value(0), beginning(nullptr), end(nullptr), begIncident(nullptr), endIncident(nullptr) {};//, previous(nullptr), next(nullptr) {};  //?
 	Edge(Vertex* _beginning, Vertex* _end, const int& _value);
-	//Edge(Edge* _previous, Edge* _next) : value(0), previous(_previous), next(_next) {};
 	//konstruktor kopiujacy
 	//Edge(const Edge& _edge) : beginning(_edge.GetBeginning()), end(_edge.GetEnd()), value(_edge.GetValue()) {};//previous(_edge.GetNext()), next(_edge.GetPrevious()) {}; 
 
 
 
 	////Funkcje umozliwiajace dostep do atrybutow. Dostep tylko do odczytu!
-	/*Edge* GetNext() const;
-	Edge* GetPrevious() const;*/
-
 	const int& GetValue() const;
 	const Vertex* GetBeginning() const { return beginning; };
 	const Vertex* GetEnd() const { return end; };
-	const Incident* GetIncBeg() const { return begIncident; };
-	const Incident* GetIncEnd() const { return endIncident; };
+	const Incident* GetBegInc() const { return begIncident; };
+	const Incident* GetEndInc() const { return endIncident; };
 
 	//Funkcje umozliwiajace zmiane atrybutow.
-	//void SetNext(Edge* newNode);
-	//void SetPrevious(Edge* newNode);
-
-	//Edge* GetNext() const override;
-	//Edge* GetPrevious() const override;
+	void SetValue(const int& _value) { value = _value; };
+	void SetBeginning(Vertex* _beginning) { beginning = _beginning; };
+	void SetEnd(Vertex* _end) { end = _end; };
+	void SetBegInc(Incident* _begIncident) { begIncident = _begIncident; };
+	void SetEndInc(Incident* _endIncident) { endIncident = _endIncident; };
 
 }; //class

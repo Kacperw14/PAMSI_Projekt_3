@@ -81,5 +81,5 @@ void List<T>::ClearList()
 template
 class List<Edge>;
 
-//template
-//class List<Edge>;
+template
+class List<Vertex>;

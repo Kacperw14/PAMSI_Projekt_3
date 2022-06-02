@@ -61,3 +61,5 @@ void Node<T>::SetPrevious(Node<T>* newNode)
 template
 class  Node<Edge>;
 
+template
+class  Node<Vertex>;

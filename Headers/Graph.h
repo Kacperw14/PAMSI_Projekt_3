@@ -18,12 +18,12 @@ private:
 public:
 	Graph() = default;
 	//Graph(Edge _) : Edge(), Vertex(), Incident() {};
-	void InsertEdge(Edge* _edge)
+	void InsertEdge(Edge* _edge)  //!!!! Vertex* _beginning, Vertex* _end,
 	{
 		edgeList.AddAtEnd(_edge);
 	}
+
 	List<Edge> GetEdgeList() const { return edgeList;};
-
-
+	const int& Edges() { return edgeList.Size(); };
 
 }; //class

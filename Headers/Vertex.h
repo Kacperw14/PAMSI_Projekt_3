@@ -13,8 +13,8 @@ private:
 
 public:
 
-	//Vertex() = default;//: value(0), incident(nullptr){};  //?
-	Vertex(std::string _value);
+	Vertex() = default; //?
+	Vertex(const std::string& _name) : name(_name), incident(nullptr) {};
 	//Vertex(incident)
 
 	//Funkcje umozliwiajace dostep do atrybutow. Dostep tylko do odczytu!
@@ -22,7 +22,7 @@ public:
 	const Incident* GetIncident() const { return incident; };
 
 	//Funkcje umozliwiajace zmiane atrybutow.
-	void SetName(std::string _name) { name = _name; };
+	void SetName(const std::string& _name) { name = _name; };
 	void SetIncident(Incident* _incident) { incident = _incident; };
 
 }; //class

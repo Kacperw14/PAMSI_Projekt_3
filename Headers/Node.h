@@ -2,12 +2,12 @@
 #include <iostream>
 #include <string>
 #include"Edge.h"
+#include"Vertex.h"
 
 template <typename T>
 class Node : public T
 {
 private:
-	//T* current;
 	Node<T>* previous;
 	Node<T>* next;
 
