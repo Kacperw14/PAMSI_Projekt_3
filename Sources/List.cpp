@@ -83,3 +83,6 @@ class List<Edge>;
 
 template
 class List<Vertex>;
+
+template
+class List<Incident>;

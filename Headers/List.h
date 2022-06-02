@@ -1,7 +1,7 @@
 #pragma once
 #include "Node.h"
-#include "Edge.h"
-#include "Vertex.h"
+//#include "Edge.h"
+//#include "Vertex.h"
 
 //Mozliwosc rozszerzenia struktury o nowe wezly dwukietrunkowe (template)
 

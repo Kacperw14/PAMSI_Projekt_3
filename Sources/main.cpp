@@ -13,21 +13,13 @@ int main()
     //Node<Edge> Ne1(E1);
     //Node<Edge> Ne2(E2); 
     //Node<Edge> Ne3(E3);
-
-
-    Node<Vertex> Nv1(*V1);
-    Node<Vertex> Nv2(*V2);
-    
-    List<Vertex> LV;
-    LV.AddAtEnd(V1);
-    LV.AddAtEnd(V2);
-    //G.InsertEdge(&E1);
-    //G.InsertEdge(&E2);
-    //G.InsertEdge(&E3);
-    
-    //cout << G.GetEdgeList().First()->GetNext()->GetValue();
-    //cout << Nv1.GetIncident();
-    cout << LV.Last()->GetName();
-
+    Incident I1("a");
+    Incident I2("b");
+    Incident I3("c");
+    List<Incident> Li;
+    Li.AddAtEnd(&I1);
+    Li.AddAtEnd(&I2);
+    Li.AddAtEnd(&I3);
+    cout << Li.Size() << endl << Li.Last()->GetName();
 } //main
 

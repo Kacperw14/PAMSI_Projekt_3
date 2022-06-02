@@ -13,7 +13,8 @@ private:
 
 public:
 	Incident() = default;
-	Incident(Edge* _edge) : edge(_edge) {}; //, previous(nullptr), next(nullptr) {};
+	Incident(Edge* _edge) : name("0"), edge(_edge) {}; // ?
+	Incident(const std::string& _name) : name(_name), edge(nullptr) {}; // ?
 	Incident(const std::string& _name, Edge* _edge) : name(_name), edge(_edge) {};
 
 	//Funkcje umozliwiajace dostep do atrybutow. Dostep tylko do odczytu!

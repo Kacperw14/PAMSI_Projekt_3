@@ -3,6 +3,7 @@
 #include <string>
 #include"Edge.h"
 #include"Vertex.h"
+#include"Incident.h"
 
 template <typename T>
 class Node : public T

@@ -12,18 +12,22 @@ class Graph
 {
 private:
 	List<Edge> edgeList;
-	//List<Vertex> vertex;
-	//List<Incident> incident;
+	List<Vertex> vertexList;
+	List<Incident> incidentList;
 
 public:
 	Graph() = default;
 	//Graph(Edge _) : Edge(), Vertex(), Incident() {};
-	void InsertEdge(Edge* _edge)  //!!!! Vertex* _beginning, Vertex* _end,
+	void InsertEdge(Vertex* _beginning, Vertex* _end, Edge* _edge)  //!!!!
 	{
 		edgeList.AddAtEnd(_edge);
 	}
 
 	List<Edge> GetEdgeList() const { return edgeList;};
+	List<Vertex> GetVertexList() const { return vertexList;};
+	List<Incident> GetIncidentList() const { return incidentList;};
+
 	const int& Edges() { return edgeList.Size(); };
+	const int& Vertices() { return vertexList.Size(); };
 
 }; //class

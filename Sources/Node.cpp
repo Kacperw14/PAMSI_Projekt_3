@@ -63,3 +63,6 @@ class  Node<Edge>;
 
 template
 class  Node<Vertex>;
+
+template
+class  Node<Incident>;
