@@ -13,9 +13,9 @@ private:
 
 public:
 	Incident() = default;
-	Incident(Edge* _edge) : name("0"), edge(_edge) {}; // ?
-	Incident(const std::string& _name) : name(_name), edge(nullptr) {}; // ?
-	Incident(const std::string& _name, Edge* _edge) : name(_name), edge(_edge) {};
+	Incident(Edge* _edge) : name("I"), edge(_edge) {}; // ?
+	Incident(const std::string& _name) : name("I"+_name), edge(nullptr) {}; // ?
+	Incident(const std::string& _name, Edge* _edge) : name("I" + _name), edge(_edge) {};
 
 	//Funkcje umozliwiajace dostep do atrybutow. Dostep tylko do odczytu!
 	const Edge* GetEdge() const { return edge; };
