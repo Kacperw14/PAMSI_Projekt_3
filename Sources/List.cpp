@@ -37,11 +37,11 @@ int List<T>::Size() const
 	else
 	{
 		int size = 0;
-		Node<T>* head = header->GetNext();			//Nie liczymy header'a, jesli IsEmpty != true to header->GetNext() istnieje.
-		while (head != trailer)
+		//Node<T>* head = header->GetNext();	//Nie liczymy header'a, jesli IsEmpty != true to header->GetNext() istnieje.
+		//while (head != trailer)
+		for (Node<T>* head = header->GetNext(); head != trailer; head = head->GetNext())
 		{
 			size++;
-			head = head->GetNext();
 		}
 		return size;
 	}
@@ -50,35 +50,35 @@ int List<T>::Size() const
 template <typename T>
 void List<T>::AddAtEnd(T* _node)  //
 {	
-	Node<T>* two = new Node<T>(_node, trailer->GetPrevious(), trailer);
+	Node<T>* _tNode = new Node<T>(_node, trailer->GetPrevious(), trailer);
 	//T* newNode = new T(_node->GetName(), _node->GetKey(), _node->GetRating(), trailer->GetPrevious(), trailer);
-	//_node->SetNext(trailer);
-	//_node->SetPrevious(trailer->GetPrevious());
+	//_tNode->SetNext(trailer);
+	//_tNode->SetPrevious(trailer->GetPrevious());
 
-	trailer->GetPrevious()->SetNext(two);
-	trailer->SetPrevious(two);
+	trailer->GetPrevious()->SetNext(_tNode);
+	trailer->SetPrevious(_tNode);
 }
 
-//template<typename T>
-//void List<T>::Remove(T* _node)
-//{
-//	if (_node != nullptr && _node != header && _node != trailer)
-//	{
-//		_node->GetNext()->SetPrevious(_node->GetPrevious());	 //Aby nie doszlo do wyciekow pamieci ustalane sa nowe wezly.
-//		_node->GetPrevious()->SetNext(_node->GetNext());
-//		delete _node;                                            //Zwolnienie pamieci komputera.
-//	}
-//	else std::cout << "Funkcja \"Remove\": Nie mozna usunac nullptr, header ani trailer" << std::endl; //Informacja o nieprawidlowych dzialaniach
-//}
+template<typename T>
+void List<T>::Remove(Node<T>* _node)
+{
+	if (_node != nullptr && _node != header && _node != trailer)
+	{
+		_node->GetNext()->SetPrevious(_node->GetPrevious());	 //Aby nie doszlo do wyciekow pamieci ustalane sa nowe wezly.
+		_node->GetPrevious()->SetNext(_node->GetNext());
+		delete _node;                                            //Zwolnienie pamieci komputera.
+	}
+	else std::cout << "Funkcja \"Remove\": Nie mozna usunac nullptr, header ani trailer" << std::endl; //Informacja o nieprawidlowych dzialaniach
+}
 
-//template<typename T>
-//void List<T>::ClearList()
-//{
-//	while (!IsEmpty())
-//	{
-//		Remove(Last());
-//	}
-//}
+template<typename T>
+void List<T>::ClearList()
+{
+	while (!IsEmpty())
+	{
+		Remove(Last());
+	}
+}
 
 
 //Przykladowy szablon wezla dwukierunkowego uzyty w projektcie

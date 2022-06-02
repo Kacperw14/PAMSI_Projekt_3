@@ -7,21 +7,21 @@ Node<T>::Node() : T()
 	next = nullptr;
 }
 
-template <typename T>
-Node<T>::Node(T* _current, T* _previous, T* _next) : T(*_current)
-{
-	previous = new Node<T>(*_previous);
-	next = new Node<T>(*_next);
-	//previous = _previous;
-	//next = _next;
-}
-
 //template <typename T>
-//Node<T>::Node(T* _current, Node<T>* _previous, Node<T>* _next) : T(*_current)
+//Node<T>::Node(const T& _current, const T& _previous, const T& _next) : T(_current)
 //{
-//	previous = _previous;
-//	next = _next;
+//	previous = new Node<T>(_previous, NULL, this);
+//	next = new Node<T>(_next, this, NULL);
+//	//previous = _previous;
+//	//next = _next;
 //}
+
+template <typename T>
+Node<T>::Node(T* _current, Node<T>* _previous, Node<T>* _next) : T(*_current)
+{
+	previous = _previous;
+	next = _next;
+}
 
 template <typename T>
 Node<T>::Node(const Node<T>& newNode)

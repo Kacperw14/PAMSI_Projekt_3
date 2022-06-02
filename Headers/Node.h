@@ -15,8 +15,8 @@ public:
 
 	//Konstruktory
 	Node(); //= default;//delete;
-	Node(T* _current, T* _previous, T* _next);
-	//Node(T* _current, Node<T>* _previous, Node<T>* _next);
+	//Node(const T& _current, const T& _previous, const T& _next);
+	Node(T* _current, Node<T>* _previous, Node<T>* _next);
 	Node(const T& _current) : T(_current), previous(nullptr), next(nullptr) {};//current(_current) {};
 	Node(const Node<T>& newNode); 	//Konstruktor kopiuj¹cy
 

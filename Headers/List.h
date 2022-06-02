@@ -13,7 +13,7 @@ private:
 
 public:
 	//Konstruktory
-	List();// { header->SetNext(trailer); trailer->SetPrevious(header); };
+	List();
 	//Konstruktor kopiujacy
 	List(const List<T>& _lista) : header(_lista.header), trailer(_lista.trailer) {};
 
@@ -30,8 +30,8 @@ public:
 	//
 
 	//Metody usuwajace
-	//void Remove(Node<T>* _node);
-	//void ClearList();
+	void Remove(Node<T>* _node);
+	void ClearList();
 	//
 
 	//Dodatkowe przydatne metody
