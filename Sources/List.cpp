@@ -51,10 +51,6 @@ template <typename T>
 void List<T>::AddAtEnd(T* _node)  //
 {	
 	Node<T>* _tNode = new Node<T>(_node, trailer->GetPrevious(), trailer);
-	//T* newNode = new T(_node->GetName(), _node->GetKey(), _node->GetRating(), trailer->GetPrevious(), trailer);
-	//_tNode->SetNext(trailer);
-	//_tNode->SetPrevious(trailer->GetPrevious());
-
 	trailer->GetPrevious()->SetNext(_tNode);
 	trailer->SetPrevious(_tNode);
 }

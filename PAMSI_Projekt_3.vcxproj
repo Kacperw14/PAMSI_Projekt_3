@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Edge.cpp" />
+    <ClCompile Include="Sources\Graph.cpp" />
     <ClCompile Include="Sources\Incident.cpp" />
     <ClCompile Include="Sources\List.cpp" />
     <ClCompile Include="Sources\main.cpp" />
