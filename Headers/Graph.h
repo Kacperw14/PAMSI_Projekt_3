@@ -88,4 +88,29 @@ public:
 		else if (_vertexBeg->GetIncident()->GetEdge()->GetEnd() == _vertexEnd) return true;	
 		else return false;
 	}
+
+	Vertex* operator[] (int _number)
+	{
+		Node<Vertex>* help = vertexList.First();
+		if (_number > Vertices()) return nullptr;
+		for (int i = 0; i <= _number; i++)
+		{
+			help = help->GetNext();
+		}
+		return help;
+	}
+
+	void MinMax()
+	{
+		
+	}
+	void Print()
+	{
+		for (int i = 0; i < Vertices(); i++)
+		{
+			std::cout << this->operator[](i)->GetName() << " ";
+		}
+	//std::cout<<
+	}
+
 }; //class

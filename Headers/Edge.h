@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include "Vertex.h"
 #include "Incident.h"
 
