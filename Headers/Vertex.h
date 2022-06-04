@@ -19,7 +19,7 @@ public:
 
 	//Funkcje umozliwiajace dostep do atrybutow. Dostep tylko do odczytu!
 	const std::string& GetName() const { return name; };
-	const Incident* GetIncident() const { return incident; };
+	Incident* GetIncident() const { return incident; };
 
 	//Funkcje umozliwiajace zmiane atrybutow.
 	void SetName(const std::string& _name) { name = _name; };

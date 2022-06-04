@@ -25,10 +25,10 @@ public:
 
 	////Funkcje umozliwiajace dostep do atrybutow. Dostep tylko do odczytu!
 	const int& GetValue() const;
-	const Vertex* GetBeginning() const { return beginning; };
-	const Vertex* GetEnd() const { return end; };
-	const Incident* GetBegInc() const { return begIncident; };
-	const Incident* GetEndInc() const { return endIncident; };
+	 Vertex* GetBeginning() const { return beginning; };
+	 Vertex* GetEnd() const { return end; };
+	 Incident* GetBegInc() const { return begIncident; };
+	 Incident* GetEndInc() const { return endIncident; };
 
 	//Funkcje umozliwiajace zmiane atrybutow.
 	void SetValue(const int& _value) { value = _value; };

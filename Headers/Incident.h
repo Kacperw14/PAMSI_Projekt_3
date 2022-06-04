@@ -12,13 +12,13 @@ private:
 	Edge* edge;
 
 public:
-	Incident() = default;
+	Incident() : name("I"), edge(nullptr) {};// = default;
 	Incident(Edge* _edge) : name("I"), edge(_edge) {}; // ?
 	Incident(const std::string& _name) : name("I"+_name), edge(nullptr) {}; // ?
 	Incident(const std::string& _name, Edge* _edge) : name("I" + _name), edge(_edge) {};
 
 	//Funkcje umozliwiajace dostep do atrybutow. Dostep tylko do odczytu!
-	const Edge* GetEdge() const { return edge; };
+	Edge* GetEdge() const { return edge; };
 	const std::string& GetName() const { return name; };
 
 	//Funkcje umozliwiajace zmiane atrybutow.
