@@ -24,9 +24,26 @@ int main()
 
 	for (int i = 0; i < 9; i++)
 	{
-		G.InsertEdge(new Vertex(to_string(i)), new Vertex(to_string(i+1)), new Edge());
+		//G.InsertEdge(new Vertex(to_string(i)), new Vertex(to_string(i + 1)), new Edge());
 	}
-	//cout << G[1]->GetName();
+	Vertex* V1 = new Vertex(to_string(1));
+	Vertex* V2 = new Vertex(to_string(2));
+	Vertex* V3 = new Vertex(to_string(3));
+	Vertex* V4 = new Vertex(to_string(4));
+	Edge* E1= new Edge(1);
+	Edge* E2= new Edge(2);
+	G.InsertEdge(V1, V2, E1);
+	G.InsertEdge(V1, V3, E1);
+	G.InsertEdge(V3, V4, E1);
+
+	//G.InsertEdge(V1, V4, E1);
+	//G.InsertEdge(V1, V2, E1);
+
+	//cout << G.AreAdjacent(G[0],G[1]);
+	//cout << G[2]->GetName();
+	//cout << G[1]->GetIncident()->GetEdge()->GetEnd()->GetName();
+	
+	//cout<<G.Edges()<<endl;
 	G.Print();
 	/*
 	cout <<

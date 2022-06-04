@@ -17,6 +17,7 @@ protected:
 public:
 	Edge() : value(0), beginning(nullptr), end(nullptr), begIncident(nullptr), endIncident(nullptr) {};//, previous(nullptr), next(nullptr) {};  //?
 	Edge(Vertex* _beginning, Vertex* _end, const int& _value);
+	Edge(const int& _value) : value(_value), beginning(nullptr), end(nullptr), begIncident(nullptr), endIncident(nullptr) {};
 	//konstruktor kopiujacy
 	//Edge(const Edge& _edge) : beginning(_edge.GetBeginning()), end(_edge.GetEnd()), value(_edge.GetValue()) {};//previous(_edge.GetNext()), next(_edge.GetPrevious()) {}; 
 
