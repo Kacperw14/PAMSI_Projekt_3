@@ -124,18 +124,18 @@ public:
 	{
 		//std::cout << _vertexBeg->GetIncident()->GetEdge()<<std::endl;
 		//std::cout << _vertexEnd->GetIncident()->GetEdge();
-		if (_vertexBeg->GetIncident() == nullptr || _vertexBeg == _vertexEnd) return false;
+		if (_vertexBeg->GetIncident() == nullptr || _vertexEnd->GetIncident() == nullptr || _vertexBeg == _vertexEnd) return false;
 		//else if (_vertexBeg->GetIncident()->GetEdge() == _vertexEnd->GetIncident()->GetEdge()) return true;
 		else if (_vertexBeg->GetIncident()->GetEdge()->GetEndInc()->GetName().compare(_vertexEnd->GetIncident()->GetEdge()->GetBegInc()->GetName()) == 0) return true;
 		else if (_vertexBeg->GetIncident()->GetEdge()->GetBegInc()->GetName().compare(_vertexEnd->GetIncident()->GetEdge()->GetEndInc()->GetName()) == 0) return true;
 		//else if (_vertexBeg->GetIncident()->GetEdge()->GetEndInc() == _vertexEnd->GetIncident()->GetEdge()->GetBegInc()) return true;
 		//else if (_vertexBeg->GetIncident()->GetEdge()->GetBegInc() == _vertexEnd->GetIncident()) return true;
 		
-		else if (_vertexEnd->GetIncident() == nullptr) return false;
-		else if (_vertexEnd->GetIncident()->GetEdge()->GetBeginning() == _vertexBeg) return true;
-		else if (_vertexEnd->GetIncident()->GetEdge()->GetEnd() == _vertexBeg) return true;
+		//else if (_vertexEnd->GetIncident() == nullptr) return false;
+		//else if (_vertexEnd->GetIncident()->GetEdge()->GetBeginning() == _vertexBeg) return true;
+		//else if (_vertexEnd->GetIncident()->GetEdge()->GetEnd() == _vertexBeg) return true;
 
-		else if (_vertexBeg->GetIncident()->GetEdge() == _vertexEnd->GetIncident()->GetEdge()) return true;
+		else if (_vertexBeg->GetIncident()->GetEdge() == _vertexEnd->GetIncident()->GetEdge()) return true; //dla pierwszego elementu
 		else return false;
 	}
 

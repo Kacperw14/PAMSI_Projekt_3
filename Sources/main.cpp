@@ -44,11 +44,11 @@ int main()
 	G.Print();
 	//cout << G.Vertices()<< endl;
 	cout << endl;
-	cout << G[4]->GetIncident()->GetEdge()->GetEndInc()->GetName()<< endl;
-	cout << G[5]->GetIncident()->GetEdge()->GetBegInc()->GetName()<< endl;
+	cout << G[0]->GetIncident()->GetEdge()->GetBegInc()->GetName()<< endl;
+	//cout << G[1]->GetIncident()->GetEdge()->GetEndInc()->GetName()<< endl;
 	//cout << G.GetVertexList().First()->GetIncident()<< endl;
 	//cout << G[2]->GetIncident()<< endl;
-	cout << G.AreAdjacent(G[3], G[4]);
+	cout << G.AreAdjacent(G[0], G[1]);
 	/*
 	cout <<
 		"_ _|_ _|_ _" << endl <<
