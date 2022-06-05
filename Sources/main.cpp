@@ -38,17 +38,23 @@ int main()
 	}
 	G.InsertVertex(new Vertex(to_string(1)));
 	G.InsertEdge(new Vertex(to_string(1)), new Vertex(to_string(2)), new Edge(1));
-	G.InsertEdge(new Vertex(to_string(3)), new Vertex(to_string(4)), new Edge(2));
+	G.InsertVertex(new Vertex(to_string(1)));
+	G.InsertEdge(new Vertex(to_string(2)), new Vertex(to_string(3)), new Edge(2));
+	G.InsertEdge(new Vertex(to_string(3)), new Vertex(to_string(4)), new Edge(3));
 
 	
 	G.Print();
 
-	cout << endl << G[0]->GetIncident()->GetName()<< endl;
+	//cout << endl << G[0]->GetIncident()->GetName()<< endl;
 	//cout << G[0]->GetName()<<endl;
-	//cout << G[1]->GetIncident();//GetIncident()->GetEdge()->GetEnd()->GetName()<<endl;
-	//cout << G[1]->GetIncident()->GetEdge()->GetEnd()->GetName();//->GetIncident()->GetEdge()->GetEnd()->GetName() << endl;
 	cout << endl;
-	//cout << G.AreAdjacent(G[0], G[1]);
+	//cout << G[0]->GetIncident()->GetName();//GetEdge()->GetEndInc()->GetName()<<endl;//GetIncident()->GetEdge()->GetEnd()->GetName()<<endl;
+	//cout << G[1]->GetName();//GetEdge()->GetEndInc()->GetName()<<endl;//GetIncident()->GetEdge()->GetEnd()->GetName()<<endl;
+	cout << endl;
+	//cout << G[2]->GetIncident()->GetEdge()->GetBeginning()->GetName() << endl;
+	//cout << G.GetIncidentList().Last()->GetEdge()->GetEnd()->GetName();
+	cout << endl;
+	cout << G.AreAdjacent(G[1], G[2]);
 	//Vertex* V1 = new Vertex(to_string(1));
 	//Vertex* V2 = new Vertex(to_string(2));
 	//Vertex* V3 = new Vertex(to_string(3));
