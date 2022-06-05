@@ -22,57 +22,24 @@ int main()
 	//cin >> number;
 
 
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 4; i++)
 	{
-		//G.InsertVertex(new Vertex(to_string(i+1)));
+		G.InsertVertex(new Vertex(to_string(i+1)));
 
-		for (int j = 0; j < 1; j++)
+		for (int j = 0; j < 3; j++)
 		{
-			//G.InsertEdge(G[i], new Vertex(to_string(10*(i+1) + j)), new Edge(10 * (i + 1) + j));
-			for (int k = 0; k < 1; k++)
+			G.InsertEdge(G[i], new Vertex(to_string(10*(i+1) + j+1)), new Edge(10 * (i + 1) + j));
+			for (int k = 0; k < 2; k++)
 			{
-				//G.InsertEdge(G[i+k+1], new Vertex(to_string(100 * (i + 1) + 10*j+k)), new Edge(100 * (i + 1) + 10 * j + k));
+				G.InsertEdge(G[i+k+1], new Vertex(to_string(100 * (i + 1) + (10*(j+1))+k+1)), new Edge(100 * (i + 1) + 10 * j + k));
+				//cout << (100 * (i + 1) + 10 * j + k)<<endl;
 			}
 		}
 		//G.InsertEdge(new Vertex(to_string(i)), new Vertex(to_string(i + 1)), new Edge());
 	}
-	G.InsertVertex(new Vertex(to_string(1)));
-	G.InsertEdge(new Vertex(to_string(1)), new Vertex(to_string(2)), new Edge(1));
-	G.InsertVertex(new Vertex(to_string(1)));
-	G.InsertEdge(new Vertex(to_string(2)), new Vertex(to_string(3)), new Edge(2));
-	G.InsertEdge(new Vertex(to_string(3)), new Vertex(to_string(4)), new Edge(3));
-
-	
 	G.Print();
-
-	//cout << endl << G[0]->GetIncident()->GetName()<< endl;
-	//cout << G[0]->GetName()<<endl;
-	cout << endl;
-	//cout << G[0]->GetIncident()->GetName();//GetEdge()->GetEndInc()->GetName()<<endl;//GetIncident()->GetEdge()->GetEnd()->GetName()<<endl;
-	//cout << G[1]->GetName();//GetEdge()->GetEndInc()->GetName()<<endl;//GetIncident()->GetEdge()->GetEnd()->GetName()<<endl;
-	cout << endl;
-	//cout << G[2]->GetIncident()->GetEdge()->GetBeginning()->GetName() << endl;
-	//cout << G.GetIncidentList().Last()->GetEdge()->GetEnd()->GetName();
-	cout << endl;
-	cout << G.AreAdjacent(G[1], G[2]);
-	//Vertex* V1 = new Vertex(to_string(1));
-	//Vertex* V2 = new Vertex(to_string(2));
-	//Vertex* V3 = new Vertex(to_string(3));
-	//Vertex* V4 = new Vertex(to_string(4));
-	//Edge* E1= new Edge(1);
-	//Edge* E2= new Edge(2);
-	//G.InsertEdge(V1, V2, E1);
-	//G.InsertEdge(V1, V3, E1);
-	//G.InsertEdge(V3, V4, E1);
-
-	//G.InsertEdge(V1, V4, E1);
-	//G.InsertEdge(V1, V2, E1);
-
-	//cout << G.AreAdjacent(G[0],G[1]);
-	//cout << G[2]->GetName();
-	//cout << G[1]->GetIncident()->GetEdge()->GetEnd()->GetName();
+	cout << G.Vertices()<< endl;
 	
-	//cout<<G.Edges()<<endl;
 	/*
 	cout <<
 		"_ _|_ _|_ _" << endl <<
@@ -100,6 +67,7 @@ int main()
 
 	}
 	*/
+	
 
 } //main
 
