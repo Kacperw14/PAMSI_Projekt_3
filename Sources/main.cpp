@@ -22,19 +22,42 @@ int main()
 	//cin >> number;
 
 
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < 1; i++)
 	{
+		//G.InsertVertex(new Vertex(to_string(i+1)));
+
+		for (int j = 0; j < 1; j++)
+		{
+			//G.InsertEdge(G[i], new Vertex(to_string(10*(i+1) + j)), new Edge(10 * (i + 1) + j));
+			for (int k = 0; k < 1; k++)
+			{
+				//G.InsertEdge(G[i+k+1], new Vertex(to_string(100 * (i + 1) + 10*j+k)), new Edge(100 * (i + 1) + 10 * j + k));
+			}
+		}
 		//G.InsertEdge(new Vertex(to_string(i)), new Vertex(to_string(i + 1)), new Edge());
 	}
-	Vertex* V1 = new Vertex(to_string(1));
-	Vertex* V2 = new Vertex(to_string(2));
-	Vertex* V3 = new Vertex(to_string(3));
-	Vertex* V4 = new Vertex(to_string(4));
-	Edge* E1= new Edge(1);
-	Edge* E2= new Edge(2);
-	G.InsertEdge(V1, V2, E1);
-	G.InsertEdge(V1, V3, E1);
-	G.InsertEdge(V3, V4, E1);
+	G.InsertVertex(new Vertex(to_string(1)));
+	G.InsertEdge(new Vertex(to_string(1)), new Vertex(to_string(2)), new Edge(1));
+	G.InsertEdge(new Vertex(to_string(3)), new Vertex(to_string(4)), new Edge(2));
+
+	
+	G.Print();
+
+	cout << endl << G[0]->GetIncident()->GetName()<< endl;
+	//cout << G[0]->GetName()<<endl;
+	//cout << G[1]->GetIncident();//GetIncident()->GetEdge()->GetEnd()->GetName()<<endl;
+	//cout << G[1]->GetIncident()->GetEdge()->GetEnd()->GetName();//->GetIncident()->GetEdge()->GetEnd()->GetName() << endl;
+	cout << endl;
+	//cout << G.AreAdjacent(G[0], G[1]);
+	//Vertex* V1 = new Vertex(to_string(1));
+	//Vertex* V2 = new Vertex(to_string(2));
+	//Vertex* V3 = new Vertex(to_string(3));
+	//Vertex* V4 = new Vertex(to_string(4));
+	//Edge* E1= new Edge(1);
+	//Edge* E2= new Edge(2);
+	//G.InsertEdge(V1, V2, E1);
+	//G.InsertEdge(V1, V3, E1);
+	//G.InsertEdge(V3, V4, E1);
 
 	//G.InsertEdge(V1, V4, E1);
 	//G.InsertEdge(V1, V2, E1);
@@ -44,7 +67,6 @@ int main()
 	//cout << G[1]->GetIncident()->GetEdge()->GetEnd()->GetName();
 	
 	//cout<<G.Edges()<<endl;
-	G.Print();
 	/*
 	cout <<
 		"_ _|_ _|_ _" << endl <<

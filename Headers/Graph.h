@@ -21,51 +21,96 @@ public:
 	//Graph(Edge _) : Edge(), Vertex(), Incident() {};
 	void InsertEdge(Vertex* _beginning, Vertex* _end, Edge* _edge)  //!!!! privtave aby nie bylo duplikatow
 	{
-		bool isInTheListBeg = false;
-		bool isInTheListEnd = false;
-
-		//inicjuje krawedz incydentna
-		Incident* _begIncident = new Incident(_beginning->GetName(), _edge);
-		Incident* _endIncident = new Incident(_end->GetName(), _edge);
-
-		_edge->SetBegInc(_begIncident);
-		_edge->SetEndInc(_endIncident);
-		_beginning->SetIncident(_begIncident);
-		_end->SetIncident(_endIncident);
-
-		//ustalam polaczenie krawedzi
-		_edge->SetBeginning(_beginning);
-		_edge->SetEnd(_end);
-
-		//dodaje elementy do atrybutow grafu
-
+		bool isNotInTheListBeg = true;
+		bool isNotInTheListEnd = true;
 
 		//duplikaty vertex
 		for (Node<Vertex>* _start = vertexList.First(); _start != vertexList.GetTrailer(); _start = _start->GetNext())
 		{
 			//std::cout << _start << std::endl;
-			std::cout << _end->GetName() << std::endl;
-			std::cout << _start->GetName() << std::endl;
-			std::cout << std::endl;
-			if (_beginning->GetName().compare(_start->GetName()) == 0) isInTheListBeg = true;
-			if (_end->GetName().compare(_start->GetName()) == 0) isInTheListEnd = true;
+			//std::cout << _end->GetName() << std::endl;
+			//std::cout << _start->GetName() << std::endl;
+			//std::cout << std::endl;
+			if (_beginning->GetName().compare(_start->GetName()) == 0)
+			{
+				_beginning = _start;
+				isNotInTheListBeg = false;
+			}
+			if (_end->GetName().compare(_start->GetName()) == 0)
+			{
+				_end = _start;
+				isNotInTheListEnd = false;
+			}
 		}
 
-		//std::cout << !isInTheListBeg << std::endl;
-		if (!isInTheListBeg) vertexList.AddAtEnd(_beginning);
-		if (!isInTheListEnd) vertexList.AddAtEnd(_end);
+		if (!isNotInTheListBeg && !isNotInTheListEnd)return;    //nie ma dwoch tych samych krawedzi
 
-		//dodaj vertex do listy
+		Incident* _begIncident = new Incident(_beginning->GetName(), _edge);
+		incidentList.AddAtEnd(_begIncident);
 
-		if (!isInTheListBeg || !isInTheListEnd)
+		_edge->SetBegInc(_begIncident);
+		_edge->SetBeginning(_beginning);
+		_beginning->SetIncident(_edge->GetBegInc());
+
+		if (isNotInTheListBeg)
 		{
-			edgeList.AddAtEnd(_edge);
-			incidentList.AddAtEnd(_begIncident);
-			incidentList.AddAtEnd(_endIncident);
+			//inicjuje krawedz incydentna
+		//dodaj vertex do listy
+			//ustalam polaczenie krawedzi
+			//ustalenie incydentnej dla vertex
+			//dodaje elementy do atrybutow grafu
+			//_beginning->SetIncident(_begIncident); 
+			vertexList.AddAtEnd(_beginning);
 		}
+		else
+		{
+			//_edge->SetBeginning(_beginning);
+			//_beginning->SetIncident(_edge->GetBegInc());
+		}
+
+
+		Incident* _endIncident = new Incident(_end->GetName(), _edge);
+		incidentList.AddAtEnd(_endIncident);
+
+		_edge->SetEndInc(_endIncident);
+		_edge->SetEnd(_end);
+		_end->SetIncident(_edge->GetEndInc());
+
+		if (isNotInTheListEnd)
+		{
+			//_end->SetIncident(_endIncident);  //to samo
+			vertexList.AddAtEnd(_end);
+		}
+		/*else
+		{
+			_edge->SetEnd(_end);
+			_end->SetIncident(_edge->GetEndInc());
+		}*/
+
+		edgeList.AddAtEnd(_edge);
+
+		if (isNotInTheListBeg || isNotInTheListEnd)
+		{
+			//_endIncident->SetEdge(_edge);
+			//_begIncident->SetEdge(_edge);
+			//edgeList.AddAtEnd(_edge);
+
+
+		}
+
+
 	}
 
-	void InsertVertex(Vertex* _vertex) { vertexList.AddAtEnd(_vertex); }
+	void InsertVertex(Vertex* _vertex)
+	{
+		bool isNotInTheList = true;
+		for (Node<Vertex>* _start = vertexList.First(); _start != vertexList.GetTrailer(); _start = _start->GetNext())
+		{
+			//std::cout << _start->GetName() << std::endl;
+			if (_vertex->GetName().compare(_start->GetName()) == 0) isNotInTheList = false;
+		}
+		if (isNotInTheList) vertexList.AddAtEnd(_vertex);
+	}
 
 	List<Edge> GetEdgeList() const { return edgeList; };
 	List<Vertex> GetVertexList() const { return vertexList; };
@@ -95,8 +140,9 @@ public:
 		//std::cout << _vertexBeg->GetIncident()->GetEdge()<<std::endl;
 		//std::cout << _vertexEnd->GetIncident()->GetEdge();
 		if (_vertexBeg->GetIncident() == nullptr) return false;
-		else if (_vertexBeg->GetIncident()->GetEdge() == _vertexEnd->GetIncident()->GetEdge()) return true;
-		//else if (_vertexBeg->GetIncident()->GetEdge()->GetEnd() == _vertexEnd) return true;
+		//else if (_vertexBeg->GetIncident()->GetEdge() == _vertexEnd->GetIncident()->GetEdge()) return true;
+		else if (_vertexBeg->GetIncident()->GetEdge()->GetBeginning() == _vertexEnd) return true;
+		else if (_vertexBeg->GetIncident()->GetEdge()->GetEnd() == _vertexEnd) return true;
 		else return false;
 	}
 
@@ -126,24 +172,29 @@ public:
 		{
 			std::cout << _start->GetValue() << " ";
 		}
-			//for (int j = 0; j < Vertices(); j++)
-
-			/*
-			if (AreAdjacent(this->operator[](i), this->operator[](i + 1)))
-		{
-			std::cout << this->operator[](i)->GetName() << " ";
-		}
-	}
 		std::cout << std::endl;
-	for (int i = 0; i < Vertices(); i++)
-	{
-
-		if (!AreAdjacent(this->operator[](i), this->operator[](i + 1)))
+		for (Node<Incident>* _start = incidentList.First(); _start != incidentList.GetTrailer(); _start = _start->GetNext())
 		{
-			std::cout << this->operator[](i)->GetName() << " ";
+			std::cout << _start->GetName() << " ";
 		}
-	*/
-	
+		//for (int j = 0; j < Vertices(); j++)
+
+		/*
+		if (AreAdjacent(this->operator[](i), this->operator[](i + 1)))
+	{
+		std::cout << this->operator[](i)->GetName() << " ";
+	}
+}
+	std::cout << std::endl;
+for (int i = 0; i < Vertices(); i++)
+{
+
+	if (!AreAdjacent(this->operator[](i), this->operator[](i + 1)))
+	{
+		std::cout << this->operator[](i)->GetName() << " ";
+	}
+*/
+
 	}
 
 }; //class
