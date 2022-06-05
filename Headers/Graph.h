@@ -25,6 +25,47 @@ public:
 		bool isNotInTheListBeg = true;
 		bool isNotInTheListEnd = true;
 
+		Incident* _begIncident = new Incident(_beginning->GetName(), _edge);
+		Incident* _endIncident = new Incident(_end->GetName(), _edge);
+		//for (Node<Incident>* _start = incidentList.First(); _start != incidentList.GetTrailer(); _start = _start->GetNext())
+		//{
+		//	if (_begIncident->GetName().compare(_start->GetName()) == 0 && _beginning->GetIncident() == nullptr)
+		//	{
+		//		_begIncident = _start;
+		//		isNotInTheListBeg = false;
+		//	}
+
+		//	if (_endIncident->GetName().compare(_start->GetName()) == 0 )//&& _end->GetIncident() != nullptr)
+		//	{
+		//		_endIncident = _start;
+		//		isNotInTheListEnd = false;
+		//	}
+		//}
+
+		if (isNotInTheListBeg)
+		{
+			incidentList.AddAtEnd(_begIncident);
+			_beginning->SetIncident(_begIncident);
+		}
+		if (isNotInTheListEnd)
+		{
+			incidentList.AddAtEnd(_endIncident);
+			_end->SetIncident(_endIncident);
+		}
+
+		_edge->SetBegInc(_begIncident);
+		_edge->SetBeginning(_beginning);
+		//_beginning->SetIncident(_edge->GetBegInc());
+
+
+		_edge->SetEndInc(_endIncident);
+		_edge->SetEnd(_end);
+
+
+		edgeList.AddAtEnd(_edge);
+
+		isNotInTheListBeg = true;
+		isNotInTheListEnd = true;
 		//duplikaty vertex
 		for (Node<Vertex>* _start = vertexList.First(); _start != vertexList.GetTrailer(); _start = _start->GetNext())
 		{
@@ -42,37 +83,7 @@ public:
 		if (!isNotInTheListBeg && !isNotInTheListEnd)return;    //nie ma dwoch tych samych krawedzi
 		if (isNotInTheListBeg) { vertexList.AddAtEnd(_beginning); }
 		if (isNotInTheListEnd) { vertexList.AddAtEnd(_end); }
-		isNotInTheListBeg = true;
-		isNotInTheListEnd = true;
 
-		Incident* _begIncident = new Incident(_beginning->GetName(), _edge);
-		Incident* _endIncident = new Incident(_end->GetName(), _edge);
-		for (Node<Incident>* _start = incidentList.First(); _start != incidentList.GetTrailer(); _start = _start->GetNext())
-		{
-			if (_begIncident->GetName().compare(_start->GetName()) == 0 && _beginning->GetIncident() == nullptr)
-			{
-				_begIncident = _start;
-				isNotInTheListBeg = false;
-			}
-
-			if (_endIncident->GetName().compare(_start->GetName()) == 0)
-			{
-				_endIncident = _start;
-				isNotInTheListEnd = false;
-			}
-		}
-		if (isNotInTheListBeg) { incidentList.AddAtEnd(_begIncident); }
-		if (isNotInTheListEnd) { incidentList.AddAtEnd(_endIncident); }
-
-		_edge->SetBegInc(_begIncident);
-		_edge->SetBeginning(_beginning);
-		_beginning->SetIncident(_edge->GetBegInc());
-
-		_edge->SetEndInc(_endIncident);
-		_edge->SetEnd(_end);
-		_end->SetIncident(_edge->GetEndInc());
-
-		edgeList.AddAtEnd(_edge);
 	}
 
 	void InsertVertex(Vertex* _vertex)
@@ -113,13 +124,18 @@ public:
 	{
 		//std::cout << _vertexBeg->GetIncident()->GetEdge()<<std::endl;
 		//std::cout << _vertexEnd->GetIncident()->GetEdge();
-		if (_vertexBeg->GetIncident() == nullptr || _vertexEnd->GetIncident() == nullptr ||_vertexBeg == _vertexEnd) return false;
+		if (_vertexBeg->GetIncident() == nullptr || _vertexBeg == _vertexEnd) return false;
 		//else if (_vertexBeg->GetIncident()->GetEdge() == _vertexEnd->GetIncident()->GetEdge()) return true;
-		else if (_vertexBeg->GetIncident()->GetEdge() == _vertexEnd->GetIncident()->GetEdge()) return true;
-		else if (_vertexBeg->GetIncident()->GetEdge()->GetBeginning() == _vertexEnd) return true;
-		else if (_vertexBeg->GetIncident()->GetEdge()->GetEnd() == _vertexEnd) return true;
+		else if (_vertexBeg->GetIncident()->GetEdge()->GetEndInc()->GetName().compare(_vertexEnd->GetIncident()->GetEdge()->GetBegInc()->GetName()) == 0) return true;
+		else if (_vertexBeg->GetIncident()->GetEdge()->GetBegInc()->GetName().compare(_vertexEnd->GetIncident()->GetEdge()->GetEndInc()->GetName()) == 0) return true;
+		//else if (_vertexBeg->GetIncident()->GetEdge()->GetEndInc() == _vertexEnd->GetIncident()->GetEdge()->GetBegInc()) return true;
+		//else if (_vertexBeg->GetIncident()->GetEdge()->GetBegInc() == _vertexEnd->GetIncident()) return true;
+		
+		else if (_vertexEnd->GetIncident() == nullptr) return false;
 		else if (_vertexEnd->GetIncident()->GetEdge()->GetBeginning() == _vertexBeg) return true;
 		else if (_vertexEnd->GetIncident()->GetEdge()->GetEnd() == _vertexBeg) return true;
+
+		else if (_vertexBeg->GetIncident()->GetEdge() == _vertexEnd->GetIncident()->GetEdge()) return true;
 		else return false;
 	}
 

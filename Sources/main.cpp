@@ -15,31 +15,40 @@ int main()
 	cout << (int)h1;
 	*/
 	Graph G;
-	int number = 0;
+	int number = 2;
 	string s = "         ";
 	int cell = 0;
-	int n = 0;
-	//cin >> number;
+	int n = 0, iter = 0;
+	//cin >> number
 
 
-	for (int i = 0; i < 4; i++)
+		
+
+	for (int i = 0; i < number; i++)
 	{
-		G.InsertVertex(new Vertex(to_string(i+1)));
+		//G.InsertVertex(new Vertex(to_string(i+1)));
+		//iter++;
+		G.InsertEdge(new Vertex(to_string(i+1)), new Vertex(to_string(10 * (i + 1) + i+1)), new Edge(i+1));
 
-		for (int j = 0; j < 3; j++)
+		for (int j = 0; j < number-1; j++)
 		{
-			G.InsertEdge(G[i], new Vertex(to_string(10*(i+1) + j+1)), new Edge(10 * (i + 1) + j));
-			for (int k = 0; k < 2; k++)
-			{
-				G.InsertEdge(G[i+k+1], new Vertex(to_string(100 * (i + 1) + (10*(j+1))+k+1)), new Edge(100 * (i + 1) + 10 * j + k));
-				//cout << (100 * (i + 1) + 10 * j + k)<<endl;
-			}
+			G.InsertEdge(new Vertex(to_string(10 * (i + 1) + i + 1)), new Vertex(to_string(100*(i+1) + 10*(i+1)+j+1)), new Edge(10 * (i + 1)+ i+1));
+			//for (int k = 0; k < number-1; k++)
+			//{
+			//	G.InsertEdge(G[iter++], new Vertex(to_string(100 * (i + 1) + (10*(j+1))+k+1)), new Edge(100 * (i + 1) + 10 * j + k));
+			//	//cout << iter++ <<endl;
+			//}
 		}
 		//G.InsertEdge(new Vertex(to_string(i)), new Vertex(to_string(i + 1)), new Edge());
 	}
 	G.Print();
-	cout << G.Vertices()<< endl;
-	
+	//cout << G.Vertices()<< endl;
+	cout << endl;
+	cout << G[4]->GetIncident()->GetEdge()->GetEndInc()->GetName()<< endl;
+	cout << G[5]->GetIncident()->GetEdge()->GetBegInc()->GetName()<< endl;
+	//cout << G.GetVertexList().First()->GetIncident()<< endl;
+	//cout << G[2]->GetIncident()<< endl;
+	cout << G.AreAdjacent(G[3], G[4]);
 	/*
 	cout <<
 		"_ _|_ _|_ _" << endl <<
