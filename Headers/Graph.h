@@ -184,20 +184,15 @@ public:
 					{
 						if ((_row + i) >= 0 && (_row + i) < (int)_board->size() && (_column + j) >= 0 && (_column + j) < (int)_board->size())
 						{
-							std::cout << std::endl << i << " " << j << " " << flag[_row + i][_column + j] << std::endl;
+							//std::cout << std::endl << i << " " << j << " " << flag[_row + i][_column + j] << std::endl;
 							if (flag[_row + i][_column + j])
 							{
-								//if ((_row - i) >= 0 && (_row - i) < (int)_board->size() && (_column - j) >= 0 && (_column - j) < (int)_board->size())
-								//{
 								if (_row + (2 * i) >= 0 && _row + (2 * i) < (int)_board->size() && _column + (2 * j) >= 0 && _column + (2 * j) < (int)_board->size())
 								{
 									if (flag[_row + 2 * i][_column + 2 * j] == 1) power += 10;
 									else power += 1;
 								}
 								else if (flag[_row + i][_column + j] == 1) power += 1;
-								//else power += 1;
-							//}
-							//else power += 1;
 							}
 						}
 					}

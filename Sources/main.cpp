@@ -80,11 +80,27 @@ int main()
 		if (n++ % 2) s[row][column] = 'x';
 		else s[row][column] = 'x';             //o!!!!
 		system("CLS");
-		cout <<
+		for (int i = 0; i < s->size() - 1; i++)
+		{
+			cout << "_";
+			for (int j = 0; j < s->size() - 1; j++)
+			{
+				cout << s[i][j] << "_|_";
+			}
+			cout << s[i][s->size() - 1] << "_" << endl;
+		}
+		cout << " ";
+		for (int j = 0; j < s->size() - 1; j++)
+		{
+			cout << s[s->size() - 1][j] << " | ";
+		}
+		cout << s[s->size() - 1][s->size() - 1] << endl << " ";
+
+		/*cout <<
 			"_" << s[0][0] << "_|_" << s[0][1] << "_|_" << s[0][2] << "_" << endl <<
 			"_" << s[1][0] << "_|_" << s[1][1] << "_|_" << s[1][2] << "_" << endl <<
-			" " << s[2][0] << " | " << s[2][1] << " | " << s[2][2] << " " << endl;
-		
+			" " << s[2][0] << " | " << s[2][1] << " | " << s[2][2] << " " << endl;*/
+
 		Graph* G1 = new Graph();
 		//G1->Power(s, row, column);
 		cout << endl << endl << G1->Power(s, row, column)->GetValue() << endl;
