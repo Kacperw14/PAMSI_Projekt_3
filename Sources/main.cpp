@@ -20,16 +20,7 @@ int main()
 	int number = 4;
 	//string s = "         ";
 	string* s = new string[size];
-	for (int i = 0; i < size; i++)
-	{
-		s[i] = string("   ");
-		/*for (int j = 0; j < rows; j++)
-		{
-			s[i][j] = ' ';
-		}*/
-	}
-	//cout << *s <<endl;
-	//*s[0] = ' '; //= {{' ',' '}, {' ', ' '}};
+	for (int i = 0; i < size; i++)	s[i] = string("   ");
 	int row = 0;
 	int column = 0;
 	int n = 0, iter = 0;
@@ -74,7 +65,8 @@ int main()
 
 		do
 		{
-			cin >> row >> column;
+			cin >> row;
+			cin >> column;
 			if (!cin.good())
 			{
 				cin.clear();
@@ -86,15 +78,16 @@ int main()
 		} while (row >= size || column >= size || s[row][column] != ' ');
 
 		if (n++ % 2) s[row][column] = 'x';
-		else s[row][column] = 'o';
+		else s[row][column] = 'x';             //o!!!!
 		system("CLS");
 		cout <<
 			"_" << s[0][0] << "_|_" << s[0][1] << "_|_" << s[0][2] << "_" << endl <<
 			"_" << s[1][0] << "_|_" << s[1][1] << "_|_" << s[1][2] << "_" << endl <<
 			" " << s[2][0] << " | " << s[2][1] << " | " << s[2][2] << " " << endl;
-
-		//cout << pow(s->size(), 2) <<endl;
-		cout << G.Power(s, row, column)->GetValue() << endl;
+		
+		Graph* G1 = new Graph();
+		//G1->Power(s, row, column);
+		cout << endl << endl << G1->Power(s, row, column)->GetValue() << endl;
 	}
 
 
