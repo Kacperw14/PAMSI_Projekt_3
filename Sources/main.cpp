@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <cmath>
 #include "../Headers/Graph.h"
 
 using namespace std;
@@ -15,24 +16,37 @@ int main()
 	cout << (int)h1;
 	*/
 	Graph G;
-	int number = 2;
-	string s = "         ";
-	int cell = 0;
+	int size = 3;
+	int number = 4;
+	//string s = "         ";
+	string* s = new string[size];
+	for (int i = 0; i < size; i++)
+	{
+		s[i] = string("   ");
+		/*for (int j = 0; j < rows; j++)
+		{
+			s[i][j] = ' ';
+		}*/
+	}
+	//cout << *s <<endl;
+	//*s[0] = ' '; //= {{' ',' '}, {' ', ' '}};
+	int row = 0;
+	int column = 0;
 	int n = 0, iter = 0;
 	//cin >> number
 
 
-		
+
 
 	for (int i = 0; i < number; i++)
 	{
 		//G.InsertVertex(new Vertex(to_string(i+1)));
 		//iter++;
-		G.InsertEdge(new Vertex(to_string(i+1)), new Vertex(to_string(10 * (i + 1) + i+1)), new Edge(i+1));
+		G.InsertEdge(new Vertex(to_string(i + 1)), new Vertex(to_string(10 * (i + 1) + i + 1)), new Edge(i + 1));
 
-		for (int j = 0; j < number-1; j++)
+		for (int j = 0; j < number - 1; j++)
 		{
-			G.InsertEdge(new Vertex(to_string(10 * (i + 1) + i + 1)), new Vertex(to_string(100*(i+1) + 10*(i+1)+j+1)), new Edge(10 * (i + 1)+ i+1));
+			G.InsertEdge(new Vertex(to_string(10 * (i + 1) + i + 1)), new Vertex(to_string(100 * (i + 1) + 10 * (i + 1) + j + 1)), new Edge(10 * (i + 1) + i + 1));
 			//for (int k = 0; k < number-1; k++)
 			//{
 			//	G.InsertEdge(G[iter++], new Vertex(to_string(100 * (i + 1) + (10*(j+1))+k+1)), new Edge(100 * (i + 1) + 10 * j + k));
@@ -44,13 +58,13 @@ int main()
 	G.Print();
 	//cout << G.Vertices()<< endl;
 	cout << endl;
-	cout << G[0]->GetIncident()->GetEdge()->GetBegInc()->GetName()<< endl;
+	cout << G[0]->GetIncident()->GetEdge()->GetBegInc()->GetName() << endl;
 	//cout << G[1]->GetIncident()->GetEdge()->GetEndInc()->GetName()<< endl;
 	//cout << G.GetVertexList().First()->GetIncident()<< endl;
 	//cout << G[2]->GetIncident()<< endl;
 	cout << G.AreAdjacent(G[0], G[1]);
-	/*
-	cout <<
+
+	cout << endl <<
 		"_ _|_ _|_ _" << endl <<
 		"_ _|_ _|_ _" << endl <<
 		"   |   |   " << endl;
@@ -60,23 +74,30 @@ int main()
 
 		do
 		{
-			//cin.clear();
-			//cell = cin.get();
-			cin >> cell;
-		} while (s[cell] != ' ');
+			cin >> row >> column;
+			if (!cin.good())
+			{
+				cin.clear();
+				//cin.unget();
+				cin.ignore(100, '\n');
+				cout << "bad" << endl;
+				row = 1000;  //zamkniecie petli
+			}
+		} while (row >= size || column >= size || s[row][column] != ' ');
 
-
-		if (n++ % 2) s[cell] = 'x';
-		else s[cell] = 'o';
+		if (n++ % 2) s[row][column] = 'x';
+		else s[row][column] = 'o';
 		system("CLS");
 		cout <<
-			"_" << s[1] << "_|_" << s[2] << "_|_" << s[3] << "_" << endl <<
-			"_" << s[4] << "_|_" << s[5] << "_|_" << s[6] << "_" << endl <<
-			" " << s[7] << " | " << s[8] << " | " << s[9] << " " << endl;
+			"_" << s[0][0] << "_|_" << s[0][1] << "_|_" << s[0][2] << "_" << endl <<
+			"_" << s[1][0] << "_|_" << s[1][1] << "_|_" << s[1][2] << "_" << endl <<
+			" " << s[2][0] << " | " << s[2][1] << " | " << s[2][2] << " " << endl;
 
+		//cout << pow(s->size(), 2) <<endl;
+		cout << G.Power(s, row, column)->GetValue() << endl;
 	}
-	*/
-	
+
+
 
 } //main
 

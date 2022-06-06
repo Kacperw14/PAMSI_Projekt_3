@@ -2,6 +2,7 @@
 #pragma once
 #include "List.h"
 #include <string>
+#include <cmath>
 //#include "Incident.h"
 //#include "Vertex.h"
 //#include "Edge.h"
@@ -130,7 +131,7 @@ public:
 		else if (_vertexBeg->GetIncident()->GetEdge()->GetBegInc()->GetName().compare(_vertexEnd->GetIncident()->GetEdge()->GetEndInc()->GetName()) == 0) return true;
 		//else if (_vertexBeg->GetIncident()->GetEdge()->GetEndInc() == _vertexEnd->GetIncident()->GetEdge()->GetBegInc()) return true;
 		//else if (_vertexBeg->GetIncident()->GetEdge()->GetBegInc() == _vertexEnd->GetIncident()) return true;
-		
+
 		//else if (_vertexEnd->GetIncident() == nullptr) return false;
 		//else if (_vertexEnd->GetIncident()->GetEdge()->GetBeginning() == _vertexBeg) return true;
 		//else if (_vertexEnd->GetIncident()->GetEdge()->GetEnd() == _vertexBeg) return true;
@@ -154,6 +155,63 @@ public:
 	{
 
 	}
+
+	Edge* Power(std::string* _board, int _row, int _column)
+	{
+		int power = 0;
+		//for (int i = 0; i < pow(_board->size(), 2); i++)
+		//{
+		//std::cout << power << std::endl;
+			//if (_board[_row][_column] != ' ') power += 5;
+		if (_row != 0)
+		{
+			if (_board[(_row - 1)][(_column)] == 'x')
+			{
+				//if (_row != (_board->size() - 1) && _board[(_row + 1)][(_column)] == 'x') power += 10;
+				//else power += 1;
+				power += 1;
+			}
+
+			if (_column != 0)
+			{
+				if (_board[(_row - 1)][(_column - 1)] == 'x')
+				{
+					//if (_column != (_board->size() - 1) && _row != (_board->size() - 1) && _board[(_row + 1)][(_column + 1)] == 'x') power += 10;
+					//else power += 1;
+					power += 1;
+				}
+			}
+			if (_column != _board->size())
+			{
+				if (_board[(_row - 1)][(_column + 1)] == 'x') power += 1;
+			}
+		}
+
+		if (_column != 0)
+		{
+			if (_board[(_row)][(_column - 1)] == 'x') power += 1;
+		}
+		if (_column != _board->size() - 1)
+		{
+			if (_board[(_row)][(_column + 1)] == 'x') power += 1;
+		}
+
+		if (_row != _board->size() - 1)
+		{
+			if (_board[(_row + 1)][(_column)] == 'x') power += 1;
+
+			if (_column != 0)
+			{
+				if (_board[(_row + 1)][(_column - 1)] == 'x') power += 1;
+			}
+			if (_column != _board->size() - 1)
+			{
+				if (_board[(_row + 1)][(_column + 1)] == 'x') power += 1;
+			}
+		}
+		return new Edge(power);
+	}
+
 	void Print()
 	{
 		for (int i = 0; i < Vertices(); i++)
