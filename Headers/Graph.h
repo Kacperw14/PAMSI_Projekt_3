@@ -156,17 +156,19 @@ public:
 
 	}
 
-	Edge* Power(std::string* _board, int _row, int _column)
+	Edge* Power(std::string* _board, int _row, int _column, int _size)
 	{
 		int power = 0;
+		//std::cout << _size << std::endl;
+		//--_size;
 
-		if (_board->size() > 0) //
+		if (_size > 2) //
 		{
-			int** flag = new int* [_board->size()];
-			for (int i = 0; i < _board->size(); i++)
+			int** flag = new int* [_size];
+			for (int i = 0; i < _size; i++)
 			{
 				flag[i] = new int;//[_board->size()];
-				for (int j = 0; j < _board->size(); j++)
+				for (int j = 0; j < _size; j++)
 				{
 					//flag[i] = new int;
 					flag[i][j] = 0;
@@ -182,12 +184,12 @@ public:
 					if (i == 0 && j == 0);
 					else
 					{
-						if ((_row + i) >= 0 && (_row + i) < (int)_board->size() && (_column + j) >= 0 && (_column + j) < (int)_board->size())
+						if ((_row + i) >= 0 && (_row + i) < _size && (_column + j) >= 0 && (_column + j) < _size)
 						{
 							//std::cout << std::endl << i << " " << j << " " << flag[_row + i][_column + j] << std::endl;
 							if (flag[_row + i][_column + j])
 							{
-								if (_row + (2 * i) >= 0 && _row + (2 * i) < (int)_board->size() && _column + (2 * j) >= 0 && _column + (2 * j) < (int)_board->size())
+								if (_row + (2 * i) >= 0 && _row + (2 * i) < _size && _column + (2 * j) >= 0 && _column + (2 * j) < _size)
 								{
 									if (flag[_row + 2 * i][_column + 2 * j] == 1) power += 10;
 									else power += 1;
@@ -201,63 +203,64 @@ public:
 			delete[] flag;
 			//flag[0];
 		}
+		return new Edge(power);
+	}
 
-		/*
-		//for (int i = 0; i < pow(_board->size(), 2); i++)
-		//{
-		//std::cout << power << std::endl;
-			//if (_board[_row][_column] != ' ') power += 5;  //srodek
-		if (_row != 0)
+	/*
+	//for (int i = 0; i < pow(_board->size(), 2); i++)
+	//{
+	//std::cout << power << std::endl;
+		//if (_board[_row][_column] != ' ') power += 5;  //srodek
+	if (_row != 0)
+	{
+		if (_board[(_row - 1)][(_column)] == 'x')
 		{
-			if (_board[(_row - 1)][(_column)] == 'x')
-			{
-				//if (_row != (_board->size() - 1) && _board[(_row + 1)][(_column)] == 'x') power += 10;
-				//else power += 1;
-				power += 1;
-			}
-
-			if (_column != 0)
-			{
-				if (_board[(_row - 1)][(_column - 1)] == 'x')
-				{
-					//if (_column != (_board->size() - 1) && _row != (_board->size() - 1) && _board[(_row + 1)][(_column + 1)] == 'x') power += 10;
-					//else power += 1;
-					power += 1;
-				}
-			}
-			if (_column != _board->size())
-			{
-				if (_board[(_row - 1)][(_column + 1)] == 'x') power += 1;
-			}
+			//if (_row != (_board->size() - 1) && _board[(_row + 1)][(_column)] == 'x') power += 10;
+			//else power += 1;
+			power += 1;
 		}
 
 		if (_column != 0)
 		{
-			if (_board[(_row)][(_column - 1)] == 'x') power += 1;
+			if (_board[(_row - 1)][(_column - 1)] == 'x')
+			{
+				//if (_column != (_board->size() - 1) && _row != (_board->size() - 1) && _board[(_row + 1)][(_column + 1)] == 'x') power += 10;
+				//else power += 1;
+				power += 1;
+			}
+		}
+		if (_column != _board->size())
+		{
+			if (_board[(_row - 1)][(_column + 1)] == 'x') power += 1;
+		}
+	}
+
+	if (_column != 0)
+	{
+		if (_board[(_row)][(_column - 1)] == 'x') power += 1;
+	}
+	if (_column != _board->size() - 1)
+	{
+		if (_board[(_row)][(_column + 1)] == 'x') power += 1;
+	}
+
+	if (_row != _board->size() - 1)
+	{
+		if (_board[(_row + 1)][(_column)] == 'x') power += 1;
+
+		if (_column != 0)
+		{
+			if (_board[(_row + 1)][(_column - 1)] == 'x') power += 1;
 		}
 		if (_column != _board->size() - 1)
 		{
-			if (_board[(_row)][(_column + 1)] == 'x') power += 1;
+			if (_board[(_row + 1)][(_column + 1)] == 'x') power += 1;
 		}
-
-		if (_row != _board->size() - 1)
-		{
-			if (_board[(_row + 1)][(_column)] == 'x') power += 1;
-
-			if (_column != 0)
-			{
-				if (_board[(_row + 1)][(_column - 1)] == 'x') power += 1;
-			}
-			if (_column != _board->size() - 1)
-			{
-				if (_board[(_row + 1)][(_column + 1)] == 'x') power += 1;
-			}
-		}
-		*/
-
-
-		return new Edge(power);
 	}
+	*/
+
+
+
 
 	void Print()
 	{
