@@ -81,10 +81,11 @@ public:
 				isNotInTheListEnd = false;
 			}
 		}
-		if (!isNotInTheListBeg && !isNotInTheListEnd)return;    //nie ma dwoch tych samych krawedzi
-		if (isNotInTheListBeg) { vertexList.AddAtEnd(_beginning); }
-		if (isNotInTheListEnd) { vertexList.AddAtEnd(_end); }
-
+		if (!isNotInTheListBeg && !isNotInTheListEnd)return;    //nie dodaje dwoch tych samych krawedzi
+		//if (isNotInTheListBeg) { vertexList.AddAtEnd(_beginning); }
+		//if (isNotInTheListEnd) { vertexList.AddAtEnd(_end); }
+		vertexList.AddAtEnd(_beginning);
+		vertexList.AddAtEnd(_end);
 	}
 
 	void InsertVertex(Vertex* _vertex)
@@ -156,7 +157,7 @@ public:
 
 	}
 
-	Edge* Power(std::string* _board, int _row, int _column, int _size)
+	inline static Edge* Power(std::string* _board, int _row, int _column, int _size)      //bez flagi; Srodek nie daje 10
 	{
 		int power = 0;
 		//std::cout << _size << std::endl;
@@ -206,65 +207,18 @@ public:
 		return new Edge(power);
 	}
 
-	/*
-	//for (int i = 0; i < pow(_board->size(), 2); i++)
-	//{
-	//std::cout << power << std::endl;
-		//if (_board[_row][_column] != ' ') power += 5;  //srodek
-	if (_row != 0)
-	{
-		if (_board[(_row - 1)][(_column)] == 'x')
-		{
-			//if (_row != (_board->size() - 1) && _board[(_row + 1)][(_column)] == 'x') power += 10;
-			//else power += 1;
-			power += 1;
-		}
-
-		if (_column != 0)
-		{
-			if (_board[(_row - 1)][(_column - 1)] == 'x')
-			{
-				//if (_column != (_board->size() - 1) && _row != (_board->size() - 1) && _board[(_row + 1)][(_column + 1)] == 'x') power += 10;
-				//else power += 1;
-				power += 1;
-			}
-		}
-		if (_column != _board->size())
-		{
-			if (_board[(_row - 1)][(_column + 1)] == 'x') power += 1;
-		}
-	}
-
-	if (_column != 0)
-	{
-		if (_board[(_row)][(_column - 1)] == 'x') power += 1;
-	}
-	if (_column != _board->size() - 1)
-	{
-		if (_board[(_row)][(_column + 1)] == 'x') power += 1;
-	}
-
-	if (_row != _board->size() - 1)
-	{
-		if (_board[(_row + 1)][(_column)] == 'x') power += 1;
-
-		if (_column != 0)
-		{
-			if (_board[(_row + 1)][(_column - 1)] == 'x') power += 1;
-		}
-		if (_column != _board->size() - 1)
-		{
-			if (_board[(_row + 1)][(_column + 1)] == 'x') power += 1;
-		}
-	}
-	*/
-
-
-
 
 	void Print()
 	{
-		for (int i = 0; i < Vertices(); i++)
+		for (Node<Edge>* _start = edgeList.First(); _start != edgeList.GetTrailer(); _start = _start->GetNext())
+		{
+			std::cout <<_start->GetBeginning()->GetName() << " ";
+			std::cout <<"E" << _start->GetValue() << " ";
+			std::cout << _start->GetEnd()->GetName() << " ";
+		}
+		std::cout << std::endl;
+
+		/*for (int i = 0; i < Vertices(); i++)
 		{
 			std::cout << this->operator[](i)->GetName() << " ";
 		}
@@ -273,11 +227,14 @@ public:
 		{
 			std::cout << _start->GetValue() << " ";
 		}
-		std::cout << std::endl;
+		std::cout << std::endl;*/
+		/*
 		for (Node<Incident>* _start = incidentList.First(); _start != incidentList.GetTrailer(); _start = _start->GetNext())
 		{
 			std::cout << _start->GetName() << " ";
 		}
+		std::cout << std::endl;*/
+
 		//for (int j = 0; j < Vertices(); j++)
 
 		/*
