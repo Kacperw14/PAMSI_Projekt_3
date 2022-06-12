@@ -20,7 +20,7 @@ using namespace std; //////////////!!
 void Create(string* s, Graph* _G, int _size, int _row, int _column) {
 
 	//int i = 0;
-	while (_row < _size && _column < _size)
+	while (_row < _size-1 || _column < _size-1)
 	{
 
 		s[_row][_column] = 'x';
@@ -41,42 +41,43 @@ void Create(string* s, Graph* _G, int _size, int _row, int _column) {
 		cout << s[_size - 1][_size - 1] << endl;// << " ";
 
 
-		if (_row < _size - 1)
-		{
-			if (_column < _size-1)
+		//if (_row < (_size - 1) || _column < (_size - 1))
+		//{
+			if (_column < _size - 1)
 			{
-				if (_column == 0 && _row - 1 >= 0)
+				if (_column == 0 && _row > 0)     // czy przeskoczyl do nastepnego wiersza
 				{
-					cout << (10 * (_row + 1) + _column + 1) << endl;
+					//cout << ((10 * _row) + _size) << endl;
+					//cout << (10 * (_row + 1) + _column + 1) << endl;
 					_G->InsertEdge(new Vertex(std::to_string(10 * (_row)+_size)),
 						new Vertex(std::to_string(10 * (_row + 1) + _column + 1)), new Edge(10 * (_row)+_size));//_G->Power(s,_row,_column,_size));
-
 				}
 				else
 				{
-					cout << (10 * (_row + 1) + _column + 1) << endl;
+					//cout << (10 * (_row + 1) + _column + 1) << endl;
 					_G->InsertEdge(new Vertex(std::to_string(10 * (_row + 1) + _column + 1)),
 						new Vertex(std::to_string(10 * (_row + 1) + _column + 2)), new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
 				}
+
 				_column++;
-				//s[_row][_column] = 'x';
 			}
 			else
 			{
+
+				//cout << (10 * (_row + 1) + _column + 1) << endl;
+				_G->InsertEdge(new Vertex(std::to_string(10 * (_row + 1) + _size)),
+					new Vertex(std::to_string(10 * (_row + 2) + 1)), new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
+
 				_column = 0;
 				_row++;
-
-				_G->InsertEdge(new Vertex(std::to_string(10 * (_row + 1) + _column + 1)),
-					new Vertex(std::to_string(10 * (_row + 1) + _column + 2)), new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
-
-
 				//s[_row][_column] = 'x';
 			}
-		}
 
-		_row++;
-		_G->InsertEdge(new Vertex(std::to_string(10 * (_row) + _column + 1)),
-			new Vertex(std::to_string(10 * (_size) + _column + 1)), new Edge(10 * (_size)+_column + 1));//_G->Power(s,_row,_column,_size));
+			//_row++;
+		//}
+
+		//_G->InsertEdge(new Vertex(std::to_string(10 * (_row)+_column + 1)),
+			//new Vertex(std::to_string(10 * (_size)+_column + 1)), new Edge(10 * (_size)+_column + 1));//_G->Power(s,_row,_column,_size));
 
 		//_G->InsertEdge(new Vertex(std::to_string(10 * _row + _column)),
 			//new Vertex(std::to_string(10*(_row+=1) + _column)), new Edge(i++));
