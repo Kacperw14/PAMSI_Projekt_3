@@ -45,19 +45,19 @@ void Create(string* s, Graph* _G, int _size, int _row, int _column) {
 		//{
 			if (_column < _size - 1)
 			{
-				if (_column == 0 && _row > 0)     // czy przeskoczyl do nastepnego wiersza
-				{
-					//cout << ((10 * _row) + _size) << endl;
-					//cout << (10 * (_row + 1) + _column + 1) << endl;
-					_G->InsertEdge(new Vertex(std::to_string(10 * (_row)+_size)),
-						new Vertex(std::to_string(10 * (_row + 1) + _column + 1)), new Edge(10 * (_row)+_size));//_G->Power(s,_row,_column,_size));
-				}
-				else
-				{
+				//if (_column == 0 && _row > 0)     // czy przeskoczyl do nastepnego wiersza
+				//{
+				//	//cout << ((10 * _row) + _size) << endl;
+				//	//cout << (10 * (_row + 1) + _column + 1) << endl;
+				//	_G->InsertEdge(new Vertex(std::to_string(10 * (_row)+_size)),
+				//		new Vertex(std::to_string(10 * (_row + 1) + _column + 1)), new Edge(10 * (_row)+_size));//_G->Power(s,_row,_column,_size));
+				//}
+				//else
+				//{
 					//cout << (10 * (_row + 1) + _column + 1) << endl;
 					_G->InsertEdge(new Vertex(std::to_string(10 * (_row + 1) + _column + 1)),
 						new Vertex(std::to_string(10 * (_row + 1) + _column + 2)), new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
-				}
+				//}
 
 				_column++;
 			}
