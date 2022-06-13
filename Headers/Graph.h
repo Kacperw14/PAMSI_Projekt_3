@@ -3,6 +3,7 @@
 #include "List.h"
 #include <string>
 #include <cmath>
+#include <vector>
 //#include "Incident.h"
 //#include "Vertex.h"
 //#include "Edge.h"
@@ -14,7 +15,7 @@ class Graph
 {
 private:
 	List<Edge> edgeList;
-	List<Vertex> vertexList;
+	std::vector<List<Vertex>> vertexList;
 	List<Incident> incidentList;
 
 public:
@@ -68,43 +69,43 @@ public:
 		isNotInTheListBeg = true;
 		isNotInTheListEnd = true;
 		//duplikaty vertex
-		for (Node<Vertex>* _start = vertexList.First(); _start != vertexList.GetTrailer(); _start = _start->GetNext())
-		{
-			if (_beginning->GetName().compare(_start->GetName()) == 0)
-			{
-				_beginning = _start;
-				isNotInTheListBeg = false;
-			}
-			if (_end->GetName().compare(_start->GetName()) == 0)
-			{
-				_end = _start;
-				isNotInTheListEnd = false;
-			}
-		}
-		if (!isNotInTheListBeg && !isNotInTheListEnd)return;    //nie dodaje dwoch tych samych krawedzi
-		//if (isNotInTheListBeg) { vertexList.AddAtEnd(_beginning); }
-		//if (isNotInTheListEnd) { vertexList.AddAtEnd(_end); }
-		vertexList.AddAtEnd(_beginning);
-		vertexList.AddAtEnd(_end);
+		//for (Node<Vertex>* _start = vertexList.First(); _start != vertexList.GetTrailer(); _start = _start->GetNext())
+		//{
+		//	if (_beginning->GetName().compare(_start->GetName()) == 0)
+		//	{
+		//		_beginning = _start;
+		//		isNotInTheListBeg = false;
+		//	}
+		//	if (_end->GetName().compare(_start->GetName()) == 0)
+		//	{
+		//		_end = _start;
+		//		isNotInTheListEnd = false;
+		//	}
+		//}
+		//if (!isNotInTheListBeg && !isNotInTheListEnd)return;    //nie dodaje dwoch tych samych krawedzi
+		////if (isNotInTheListBeg) { vertexList.AddAtEnd(_beginning); }
+		////if (isNotInTheListEnd) { vertexList.AddAtEnd(_end); }
+		//vertexList.AddAtEnd(_beginning);
+		//vertexList.AddAtEnd(_end);
 	}
 
 	void InsertVertex(Vertex* _vertex)
 	{
 		bool isNotInTheList = true;
-		for (Node<Vertex>* _start = vertexList.First(); _start != vertexList.GetTrailer(); _start = _start->GetNext())
-		{
-			//std::cout << _start->GetName() << std::endl;
-			if (_vertex->GetName().compare(_start->GetName()) == 0) isNotInTheList = false;
-		}
-		if (isNotInTheList) vertexList.AddAtEnd(_vertex);
+		//for (Node<Vertex>* _start = vertexList.First(); _start != vertexList.GetTrailer(); _start = _start->GetNext())
+		//{
+		//	//std::cout << _start->GetName() << std::endl;
+		//	if (_vertex->GetName().compare(_start->GetName()) == 0) isNotInTheList = false;
+		//}
+		//if (isNotInTheList) vertexList.AddAtEnd(_vertex);
 	}
 
 	List<Edge> GetEdgeList() const { return edgeList; };
-	List<Vertex> GetVertexList() const { return vertexList; };
+	//List<Vertex> GetVertexList() const { return vertexList; };
 	List<Incident> GetIncidentList() const { return incidentList; };
 
 	const int& Edges() { return edgeList.Size(); };
-	const int& Vertices() { return vertexList.Size(); };
+	//const int& Vertices() { return vertexList.Size(); };
 	const int& Incidents() { return incidentList.Size(); };
 
 	Incident* IncidentEdges(Vertex* _vertex) { return _vertex->GetIncident(); }
@@ -143,12 +144,12 @@ public:
 
 	Vertex* operator[] (int _number)
 	{
-		int n = 0;
+		/*int n = 0;
 		if (_number > Vertices()) return nullptr;
 		for (Node<Vertex>* _start = vertexList.First(); _start != vertexList.GetTrailer(); _start = _start->GetNext())
 		{
 			if (n++ == _number) return _start;
-		}
+		}*/
 
 	}
 

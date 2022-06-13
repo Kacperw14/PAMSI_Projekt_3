@@ -58,6 +58,12 @@ void Node<T>::SetPrevious(Node<T>* newNode)
 	else previous = newNode;
 }
 
+
+//class Branch;
+
+//template
+//class  Node<Branch>;
+
 template
 class  Node<Edge>;
 
@@ -66,3 +72,4 @@ class  Node<Vertex>;
 
 template
 class  Node<Incident>;
+

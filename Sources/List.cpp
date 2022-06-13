@@ -86,3 +86,6 @@ class List<Vertex>;
 
 template
 class List<Incident>;
+
+//template
+//class List<Branch>;
