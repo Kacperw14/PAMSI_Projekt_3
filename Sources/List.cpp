@@ -23,7 +23,7 @@ List<T>::List()
 template <typename T>
 const bool List<T>::IsEmpty() const
 {
-	if (header->GetNext() == trailer)
+	if (First() == trailer)
 	{
 		return true;
 	}
@@ -50,7 +50,7 @@ int List<T>::Size() const
 template <typename T>
 void List<T>::AddAtEnd(T* _node)  //
 {	
-	Node<T>* _tNode = new Node<T>(_node, trailer->GetPrevious(), trailer);
+	Node<T>* _tNode = new Node<T>(_node, Last(), trailer);
 	trailer->GetPrevious()->SetNext(_tNode);
 	trailer->SetPrevious(_tNode);
 }

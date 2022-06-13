@@ -22,8 +22,8 @@ public:
 	// Podstaowe funkcje dla priorytetowej listy dwukierunkowej:
 	const bool IsEmpty() const;
 	int Size() const;
-	Node<T>* Last() { return trailer->GetPrevious(); };
-	Node<T>* First() { return header->GetNext(); };
+	Node<T>* Last() const { return trailer->GetPrevious(); };
+	Node<T>* First() const { return header->GetNext(); };
 	
 	//Metody dodajace
 	void AddAtEnd(T* _node);
@@ -35,7 +35,16 @@ public:
 	//
 
 	//Dodatkowe przydatne metody
-
+	Node<T>* operator[](const int& _number)
+	{
+		int j = 0;
+		if (_number > Size()) throw "Index za duzy";
+		for (Node<T>* i = First(); i != GetTrailer(); i = i->GetNext())
+		{
+			if(j++ == _number) return i;
+		}
+		throw "Nie ma takiego indexu";//nullptr; 
+	};
 	//
 
 	//Metody umozliwiajace dostep do atrybutow. Dostep tylko do odczytu!

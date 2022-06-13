@@ -31,14 +31,14 @@ public:
 		Incident* _endIncident = new Incident(_end->GetName(), _edge);
 
 
-			//incidentList.AddAtEnd(_begIncident);
-			_beginning->AddIncident(_begIncident);
-			//incidentList.AddAtEnd(_endIncident);
-			_end->AddIncident(_endIncident);
+		//incidentList.AddAtEnd(_begIncident);
+		_beginning->AddIncident(_begIncident);
+		//incidentList.AddAtEnd(_endIncident);
+		_end->AddIncident(_endIncident);
 
 		_edge->SetBegInc(_begIncident);
 		_edge->SetBeginning(_beginning);
-	
+
 		_edge->SetEndInc(_endIncident);
 		_edge->SetEnd(_end);
 
@@ -59,16 +59,17 @@ public:
 		}
 		return nullptr;
 
-	}
+	};
 
 	void InsertVertex(Vertex* _vertex)
 	{
 		//bool isNotInTheList = true;
-		//for (Node<Vertex>* _start = vertexList.First(); _start != vertexList.GetTrailer(); _start = _start->GetNext())
-		//{
-		//	//std::cout << _start->GetName() << std::endl;
-		//	if (_vertex->GetName().compare(_start->GetName()) == 0) isNotInTheList = false;
-		//}
+		for (Node<Vertex>* _start = vertexList.First(); _start != vertexList.GetTrailer(); _start = _start->GetNext())
+		{
+			//std::cout << _start->GetName() << std::endl;
+			//if (_vertex->GetName().compare(_start->GetName()) == 0) isNotInTheList = false;
+			if (_start == _vertex) return;
+		}
 		//if (isNotInTheList) 
 		vertexList.AddAtEnd(_vertex);
 	}
@@ -79,18 +80,23 @@ public:
 
 	const int& Edges() { return edgeList.Size(); };
 	const int& Vertices() { return vertexList.Size(); };
-	List<Edge> IncidentEdges(Vertex* _vertex) 
+	List<Edge>* IncidentEdges(Vertex* _vertex)
 	{
 		//if (_vertex->GetFirstIncident() != nullptr)
 
-		List<Edge> L;
-		for (Incident* i = _vertex->GetFirstIncident(); i != _vertex->GetEndIncident(); i++)
+		List<Edge>* L = new List<Edge>();
+		/*for (int i = 0; i < _vertex->IncidentsSize(); i++)
 		{
-			//std::cout << "hej" << std::endl;
-			if (i->GetEdge() != nullptr) L.AddAtEnd(i->GetEdge());
+			std::cout << _vertex->GetIncident(i)->GetEdge()->GetValue() << std::endl;
+			if (_vertex->GetIncident(i)->GetEdge() != nullptr) L->AddAtEnd(_vertex->GetIncident(i)->GetEdge());
+		}*/
+		for (Incident* i = _vertex->GetFirstIncident(); i != _vertex->GetEndIncident(); i = std::next(i))
+		{
+			//std::cout << i->GetName()<< std::endl;
+			if (i->GetEdge() != nullptr) L->AddAtEnd(i->GetEdge());
 		}
 		//if (_vertex->GetLastIncident()->GetEdge() != nullptr) L.AddAtEnd(_vertex->GetLastIncident()->GetEdge());   // sprawdzenie elementu LastIncident
-		return L; 
+		return L;
 	};
 
 	//Metody dostepu
@@ -103,13 +109,25 @@ public:
 
 	bool AreAdjacent(Vertex* _vertexBeg, Vertex* _vertexEnd)
 	{
-		for (Incident* i = _vertexBeg->GetFirstIncident(); i != _vertexBeg->GetEndIncident(); i++)
-		{
-			for (Incident* j = _vertexEnd->GetFirstIncident(); j != _vertexEnd->GetEndIncident(); j++)
-			{
-				if (i->GetEdge() == j->GetEdge()) return true;
-			}
-		}
+		/*List<Edge> L(IncidentEdges(_vertexEnd));
+		if (_vertexBeg == nullptr || _vertexEnd == nullptr) return false;*/
+		//for (Incident* i = _vertexBeg->GetFirstIncident(); i != _vertexBeg->GetEndIncident();  i = std::next(i))
+		//{
+		//	for (int j = 0; j < L.Size(); j++)
+		//	{
+		//		if (i->GetEdge() == L[j]) return true;
+		//	} 
+		//	//return false;
+		//}
+		//	//std::cout << "i " << i->GetEdge()->GetValue() << std::endl;
+		//	for (Incident* j = _vertexEnd->GetFirstIncident(); j != _vertexEnd->GetEndIncident() ; j++)
+		//	{
+		//		//std::cout <<"i " << i->GetEdge()->GetValue() << std::endl;
+		//		std::cout << "i " << i->GetEdge()->GetValue() << std::endl;
+		//		std::cout << j->GetEdge() << std::endl;
+		//		if (i->GetEdge() == j->GetEdge()) return true;
+		//	}
+		//}
 		return false;
 	}
 
@@ -174,8 +192,8 @@ public:
 	{
 		for (Node<Edge>* _start = edgeList.First(); _start != edgeList.GetTrailer(); _start = _start->GetNext())
 		{
-			std::cout <<_start->GetBeginning()->GetName() << " ";
-			std::cout <<"E" << _start->GetValue() << " ";
+			std::cout << _start->GetBeginning()->GetName() << " ";
+			std::cout << "E" << _start->GetValue() << " ";
 			std::cout << _start->GetBegInc()->GetName() << " ";
 			std::cout << _start->GetEndInc()->GetName() << " ";
 			std::cout << _start->GetEnd()->GetName() << " ";

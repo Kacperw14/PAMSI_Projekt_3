@@ -1,6 +1,7 @@
 #pragma once
 //#include "List.h"
 #include "Incident.h"
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -23,18 +24,41 @@ public:
 
 	//Funkcje umozliwiajace dostep do atrybutow. Dostep tylko do odczytu!
 	const std::string& GetName() const { return name; };
-	Incident* GetFirstIncident() const 
+
+	//Incident* GetIncident(const int& _number) const
+	//{
+	//	//if (incident.empty())  throw "Empty";
+
+	//	//for (int i = 0; i < incident.size(); i++)
+	//	//{
+	//	//	//std::cout << incident.at(i)->GetName() << " ";
+	//	//	if (i == _number) return incident[i];
+	//	//}
+	//	
+	//	//return nullptr
+	//	throw "Zly indeks";
+	//};
+
+	Incident* GetFirstIncident() const
 	{
-		if (incident.empty())  return nullptr;
-		else return incident.front(); 
+		if (incident.empty())  throw "Empty";
+		else return incident.front();
 	};
 	Incident* GetEndIncident() const
 	{
-		if (incident.empty())  return nullptr;
-		else return std::next(incident.back());
+		if (incident.empty())  throw "Empty";
+		else return incident.back(); //std::next(
 	};
 	//Funkcje umozliwiajace zmiane atrybutow.
 	void SetName(const std::string& _name) { name = _name; };
 	void AddIncident(Incident* _incident) { incident.push_back(_incident); };          ////number!!!
-	
+	const int& IncidentsSize() const { return incident.size(); };
+/*void Incidents()
+	{
+		for (int i = 0; i < incident.size(); i++)
+		{
+			std::cout << incident.at(i)->GetName() << " ";
+		}
+		std::cout << std::endl;
+	}*/
 }; //class

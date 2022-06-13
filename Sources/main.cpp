@@ -43,6 +43,17 @@ void Create(string* s, Graph* _G, int _size, int _row, int _column) {
 
 		//if (_row < (_size - 1) || _column < (_size - 1))
 		//{
+		if (_row == 0 && _column == 0)
+		{
+			
+			//_G->InsertVertex(new Vertex(std::to_string(10 * (_row + 1) + _column + 1)));
+			_G->InsertEdge(new Vertex(std::to_string(10 * (_row + 1) + _column + 1)),
+				new Vertex(std::to_string(10 * (_row + 1) + _column + 2)), new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
+			_column++;
+		}
+		else
+		{
+
 			if (_column < _size - 1)
 			{
 				//if (_column == 0 && _row > 0)     // czy przeskoczyl do nastepnego wiersza
@@ -55,7 +66,7 @@ void Create(string* s, Graph* _G, int _size, int _row, int _column) {
 				//else
 				//{
 					//cout << (10 * (_row + 1) + _column + 1) << endl;
-					_G->InsertEdge(new Vertex(std::to_string(10 * (_row + 1) + _column + 1)),
+					_G->InsertEdge(_G->GetVertexList().Last(),
 						new Vertex(std::to_string(10 * (_row + 1) + _column + 2)), new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
 				//}
 
@@ -65,13 +76,14 @@ void Create(string* s, Graph* _G, int _size, int _row, int _column) {
 			{
 
 				//cout << (10 * (_row + 1) + _column + 1) << endl;
-				_G->InsertEdge(new Vertex(std::to_string(10 * (_row + 1) + _size)),
+				_G->InsertEdge(_G->GetVertexList().Last(),
 					new Vertex(std::to_string(10 * (_row + 2) + 1)), new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
 
 				_column = 0;
 				_row++;
 				//s[_row][_column] = 'x';
 			}
+		}
 	}
 
 	return;
@@ -95,39 +107,15 @@ int main()
 	Create(s, G, size, row, column);
 	cout << "koniec" << endl;
 
-	cout<< G->IncidentEdges(G->GetVertexList().First()).First()->GetValue()<<endl;
-	cout << G->operator[](2)->GetName() << endl;
-	cout << G->operator[](3)->GetName() << endl;
-	cout<< G->AreAdjacent(G->operator[](2), G->operator[](3))<<endl;
+	cout << G->GetVertexList().First()->GetNext()->GetNext()->GetFirstIncident()->GetName()<< endl;
+	cout << G->GetVertexList().First()->GetNext()->GetNext()->GetFirstIncident()->GetEdge()->GetValue()<< endl;
+	//cout << G->Vertices() << endl;
+	//cout << G->GetVertexList().First()->GetEndIncident() << endl;
+
+	//cout << G->IncidentEdges(G[0])<< endl;
+	//cout<< G->AreAdjacent(G->GetVertexList().First(), G->GetVertexList().First()->GetNext()->GetNext())<<endl;
+
 	G->Print();
-	//cout << G->Vertices()<<endl;
-	//for (int i = 0; i < size; i++)
-	//{
-	//	//G.InsertVertex(new Vertex(to_string(i+1)));
-	//	//iter++;
-	//	//G.InsertEdge(new Vertex(to_string(i + 1)), new Vertex(to_string(10 * (i + 1) + i + 1)), G.Power(s,i,i,size));
-	//	G.InsertEdge(new Vertex(to_string(i + 1)), new Vertex(to_string(10 * (i + 1) + i + 1)), new Edge(i));
-
-	//	for (int j = 0; j < size - 1; j++)
-	//	{
-	//		G.InsertEdge(new Vertex(to_string(10 * (i + 1) + i + 1)), new Vertex(to_string(100 * (i + 1) + 10 * (i + 1) + j + 1)), new Edge(10 * (i + 1) + i + 1));
-	//		//for (int k = 0; k < number-1; k++)
-	//		//{
-	//		//	G.InsertEdge(G[iter++], new Vertex(to_string(100 * (i + 1) + (10*(j+1))+k+1)), new Edge(100 * (i + 1) + 10 * j + k));
-	//		//	//cout << iter++ <<endl;
-	//		//}
-	//	}
-	//	//G.InsertEdge(new Vertex(to_string(i)), new Vertex(to_string(i + 1)), new Edge());
-	//}
-
-
-	//cout << G.Vertices()<< endl;
-	//cout << endl;
-	//cout << G[0]->GetIncident()->GetEdge()->GetBegInc()->GetName() << endl;
-	//cout << G[1]->GetIncident()->GetEdge()->GetEndInc()->GetName()<< endl;
-	//cout << G.GetVertexList().First()->GetIncident()<< endl;
-	//cout << G[2]->GetIncident()<< endl;
-	//cout << G.AreAdjacent(G[0], G[1]);
 
 	for (int i = 0; i < size - 1; i++)
 	{
