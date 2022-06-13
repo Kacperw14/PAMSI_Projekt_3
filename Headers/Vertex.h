@@ -25,19 +25,21 @@ public:
 	//Funkcje umozliwiajace dostep do atrybutow. Dostep tylko do odczytu!
 	const std::string& GetName() const { return name; };
 
-	//Incident* GetIncident(const int& _number) const
-	//{
-	//	//if (incident.empty())  throw "Empty";
-
-	//	//for (int i = 0; i < incident.size(); i++)
-	//	//{
-	//	//	//std::cout << incident.at(i)->GetName() << " ";
-	//	//	if (i == _number) return incident[i];
-	//	//}
-	//	
-	//	//return nullptr
-	//	throw "Zly indeks";
-	//};
+	Incident* GetIncident(const int& _number) const
+	{
+		if (incident.empty())  throw "Empty";
+		for (int i = 0; i < incident.size(); i++)
+		{
+			//std::cout << incident.at(i)->GetName() << " ";
+			if (i == _number) return incident[i];
+		}
+		//return nullptr
+		throw "Zly indeks";
+	};
+	std::vector<Incident*> GetIncidentList() const
+	{
+		return incident;
+	};
 
 	Incident* GetFirstIncident() const
 	{
@@ -52,7 +54,7 @@ public:
 	//Funkcje umozliwiajace zmiane atrybutow.
 	void SetName(const std::string& _name) { name = _name; };
 	void AddIncident(Incident* _incident) { incident.push_back(_incident); };          ////number!!!
-	const int& IncidentsSize() const { return incident.size(); };
+	size_t IncidentsSize() const { return incident.size(); };
 /*void Incidents()
 	{
 		for (int i = 0; i < incident.size(); i++)

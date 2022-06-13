@@ -63,14 +63,12 @@ public:
 
 	void InsertVertex(Vertex* _vertex)
 	{
-		//bool isNotInTheList = true;
 		for (Node<Vertex>* _start = vertexList.First(); _start != vertexList.GetTrailer(); _start = _start->GetNext())
 		{
 			//std::cout << _start->GetName() << std::endl;
 			//if (_vertex->GetName().compare(_start->GetName()) == 0) isNotInTheList = false;
 			if (_start == _vertex) return;
 		}
-		//if (isNotInTheList) 
 		vertexList.AddAtEnd(_vertex);
 	}
 
@@ -83,19 +81,20 @@ public:
 	List<Edge>* IncidentEdges(Vertex* _vertex)
 	{
 		//if (_vertex->GetFirstIncident() != nullptr)
-
 		List<Edge>* L = new List<Edge>();
 		/*for (int i = 0; i < _vertex->IncidentsSize(); i++)
 		{
 			std::cout << _vertex->GetIncident(i)->GetEdge()->GetValue() << std::endl;
 			if (_vertex->GetIncident(i)->GetEdge() != nullptr) L->AddAtEnd(_vertex->GetIncident(i)->GetEdge());
 		}*/
-		for (Incident* i = _vertex->GetFirstIncident(); i != _vertex->GetEndIncident(); i = std::next(i))
+		//for (std::vector<Incident*>::iterator i = _vertex->GetIncidentList().begin(); i != _vertex->GetIncidentList().end(); i++)
+		for (int i = 0; i < _vertex->IncidentsSize(); i++)
 		{
 			//std::cout << i->GetName()<< std::endl;
-			if (i->GetEdge() != nullptr) L->AddAtEnd(i->GetEdge());
+			//if ( ->GetEdge()) != nullptr) L->AddAtEnd(i->GetEdge());
+			if (_vertex->GetIncident(i)->GetEdge() != nullptr) L->AddAtEnd(_vertex->GetIncident(i)->GetEdge());
 		}
-		//if (_vertex->GetLastIncident()->GetEdge() != nullptr) L.AddAtEnd(_vertex->GetLastIncident()->GetEdge());   // sprawdzenie elementu LastIncident
+		//if (_vertex->GetEndIncident()->GetEdge() != nullptr) L->AddAtEnd(_vertex->GetEndIncident()->GetEdge());   // sprawdzenie elementu LastIncident
 		return L;
 	};
 
@@ -109,25 +108,26 @@ public:
 
 	bool AreAdjacent(Vertex* _vertexBeg, Vertex* _vertexEnd)
 	{
-		/*List<Edge> L(IncidentEdges(_vertexEnd));
-		if (_vertexBeg == nullptr || _vertexEnd == nullptr) return false;*/
-		//for (Incident* i = _vertexBeg->GetFirstIncident(); i != _vertexBeg->GetEndIncident();  i = std::next(i))
-		//{
-		//	for (int j = 0; j < L.Size(); j++)
-		//	{
-		//		if (i->GetEdge() == L[j]) return true;
-		//	} 
-		//	//return false;
-		//}
-		//	//std::cout << "i " << i->GetEdge()->GetValue() << std::endl;
-		//	for (Incident* j = _vertexEnd->GetFirstIncident(); j != _vertexEnd->GetEndIncident() ; j++)
-		//	{
-		//		//std::cout <<"i " << i->GetEdge()->GetValue() << std::endl;
-		//		std::cout << "i " << i->GetEdge()->GetValue() << std::endl;
-		//		std::cout << j->GetEdge() << std::endl;
-		//		if (i->GetEdge() == j->GetEdge()) return true;
-		//	}
-		//}
+		//List<Edge> L(IncidentEdges(_vertexEnd));
+		if (_vertexBeg == nullptr || _vertexEnd == nullptr) return false;
+		for (Incident* i = _vertexBeg->GetFirstIncident(); i != _vertexBeg->GetEndIncident();  i = std::next(i))
+		{
+			for (Incident* j = _vertexEnd->GetFirstIncident(); j != _vertexEnd->GetEndIncident() ; j++)
+			{
+				//std::cout <<"i " << i->GetEdge()->GetValue() << std::endl;
+				std::cout << "i " << i->GetEdge()->GetValue() << std::endl;
+				std::cout << j->GetEdge()->GetValue() << std::endl;
+				if (i->GetEdge() == j->GetEdge()) return true;
+			}
+			if (i->GetEdge() == _vertexEnd->GetEndIncident()->GetEdge()) return true;
+		}
+		for (Incident* j = _vertexEnd->GetFirstIncident(); j != _vertexEnd->GetEndIncident(); j++)
+		{
+			if (_vertexBeg->GetEndIncident()->GetEdge() == j->GetEdge()) return true;
+		}
+		if (_vertexBeg->GetEndIncident()->GetEdge() == _vertexEnd->GetEndIncident()->GetEdge()) return true;
+		
+		
 		return false;
 	}
 

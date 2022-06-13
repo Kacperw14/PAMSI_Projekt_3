@@ -107,13 +107,13 @@ int main()
 	Create(s, G, size, row, column);
 	cout << "koniec" << endl;
 
-	cout << G->GetVertexList().First()->GetNext()->GetNext()->GetFirstIncident()->GetName()<< endl;
-	cout << G->GetVertexList().First()->GetNext()->GetNext()->GetFirstIncident()->GetEdge()->GetValue()<< endl;
+	//cout << G->GetVertexList().First()->GetNext()->GetNext()->GetFirstIncident()->GetName()<< endl;
+	//cout << G->GetVertexList().First()->GetNext()->GetNext()->GetFirstIncident()->GetEdge()->GetValue()<< endl;
 	//cout << G->Vertices() << endl;
 	//cout << G->GetVertexList().First()->GetEndIncident() << endl;
-
-	//cout << G->IncidentEdges(G[0])<< endl;
-	//cout<< G->AreAdjacent(G->GetVertexList().First(), G->GetVertexList().First()->GetNext()->GetNext())<<endl;
+	//G->InsertEdge(G->GetVertexList().First(), new Vertex("lol"), new Edge(100));
+	//cout << G->IncidentEdges(G->GetVertexList().First())->First()->GetNext()->GetValue()<< endl;
+	//cout<< G->AreAdjacent(G->GetVertexList().First()->GetNext(), G->GetVertexList().First()->GetNext()->GetNext())<<endl;
 
 	G->Print();
 
