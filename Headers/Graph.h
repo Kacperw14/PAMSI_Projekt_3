@@ -80,21 +80,11 @@ public:
 	const int& Vertices() { return vertexList.Size(); };
 	List<Edge>* IncidentEdges(Vertex* _vertex)
 	{
-		//if (_vertex->GetFirstIncident() != nullptr)
-		List<Edge>* L = new List<Edge>();
-		/*for (int i = 0; i < _vertex->IncidentsSize(); i++)
-		{
-			std::cout << _vertex->GetIncident(i)->GetEdge()->GetValue() << std::endl;
-			if (_vertex->GetIncident(i)->GetEdge() != nullptr) L->AddAtEnd(_vertex->GetIncident(i)->GetEdge());
-		}*/
-		//for (std::vector<Incident*>::iterator i = _vertex->GetIncidentList().begin(); i != _vertex->GetIncidentList().end(); i++)
+		List<Edge>* L = new List<Edge>();           //new?
 		for (int i = 0; i < _vertex->IncidentsSize(); i++)
 		{
-			//std::cout << i->GetName()<< std::endl;
-			//if ( ->GetEdge()) != nullptr) L->AddAtEnd(i->GetEdge());
 			if (_vertex->GetIncident(i)->GetEdge() != nullptr) L->AddAtEnd(_vertex->GetIncident(i)->GetEdge());
 		}
-		//if (_vertex->GetEndIncident()->GetEdge() != nullptr) L->AddAtEnd(_vertex->GetEndIncident()->GetEdge());   // sprawdzenie elementu LastIncident
 		return L;
 	};
 
@@ -108,7 +98,6 @@ public:
 
 	bool AreAdjacent(Vertex* _vertexBeg, Vertex* _vertexEnd)
 	{
-		//List<Edge> L(IncidentEdges(_vertexEnd));
 		if (_vertexBeg == nullptr || _vertexEnd == nullptr) return false;
 		
 		for (int i = 0; i < _vertexBeg->IncidentsSize(); i++)
@@ -186,8 +175,8 @@ public:
 		{
 			std::cout << _start->GetBeginning()->GetName() << " ";
 			std::cout << "E" << _start->GetValue() << " ";
-			std::cout << _start->GetBegInc()->GetName() << " ";
-			std::cout << _start->GetEndInc()->GetName() << " ";
+			//std::cout << _start->GetBegInc()->GetName() << " ";
+			//std::cout << _start->GetEndInc()->GetName() << " ";
 			std::cout << _start->GetEnd()->GetName() << " ";
 		}
 		std::cout << std::endl;

@@ -20,10 +20,65 @@ using namespace std; //////////////!!
 void Create(string* s, Graph* _G, int _size, int _row, int _column) {
 
 	//int i = 0;
-	while (_row < _size-1 || _column < _size-1)
+	while (s[_row][_column] != 'x')//(_row < _size-1 || _column < _size-1)
 	{
+		//if () 
+		//if (_row < (_size - 1) || _column < (_size - 1))
+		//{
+		if (_row == 0 && _column == 0)
+		{
+			s[_row][_column] = 'x';
 
-		s[_row][_column] = 'x';
+			//_G->InsertVertex(new Vertex(std::to_string(10 * (_row + 1) + _column + 1)));
+			_G->InsertEdge(new Vertex(std::to_string(10 * (_row + 1) + _column + 1)),
+				new Vertex(std::to_string(10 * (_row + 1) + _column + 2)), new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
+			_column++;
+
+			//s[_row][_column] = 'x';
+		}
+		else
+		{
+
+			if (_column < _size - 1)
+			{
+
+				s[_row][_column] = 'x';
+				
+				_G->InsertEdge(_G->GetVertexList().Last(),
+					new Vertex(std::to_string(10 * (_row + 1) + _column + 2)), new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
+				_column++;
+
+				
+			}
+			else
+			{
+				if (_row < _size - 1)
+				{
+
+				
+				s[_row][_column] = 'x';
+				//cout << (10 * (_row + 1) + _column + 1) << endl;
+				_G->InsertEdge(_G->GetVertexList().Last(),
+					new Vertex(std::to_string(10 * (_row + 2) + 1)), new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
+
+				_column = 0;
+				_row++;
+
+				}
+				else
+				{
+					s[_row][_column] = 'x';
+					_column = 0;
+					_row = 0;
+				}
+			}
+
+			
+
+
+		}
+		
+		//s[_row][_column] = 'x';
 		for (int i = 0; i < _size - 1; i++)
 		{
 			cout << "_";
@@ -41,49 +96,6 @@ void Create(string* s, Graph* _G, int _size, int _row, int _column) {
 		cout << s[_size - 1][_size - 1] << endl;// << " ";
 
 
-		//if (_row < (_size - 1) || _column < (_size - 1))
-		//{
-		if (_row == 0 && _column == 0)
-		{
-			
-			//_G->InsertVertex(new Vertex(std::to_string(10 * (_row + 1) + _column + 1)));
-			_G->InsertEdge(new Vertex(std::to_string(10 * (_row + 1) + _column + 1)),
-				new Vertex(std::to_string(10 * (_row + 1) + _column + 2)), new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
-			_column++;
-		}
-		else
-		{
-
-			if (_column < _size - 1)
-			{
-				//if (_column == 0 && _row > 0)     // czy przeskoczyl do nastepnego wiersza
-				//{
-				//	//cout << ((10 * _row) + _size) << endl;
-				//	//cout << (10 * (_row + 1) + _column + 1) << endl;
-				//	_G->InsertEdge(new Vertex(std::to_string(10 * (_row)+_size)),
-				//		new Vertex(std::to_string(10 * (_row + 1) + _column + 1)), new Edge(10 * (_row)+_size));//_G->Power(s,_row,_column,_size));
-				//}
-				//else
-				//{
-					//cout << (10 * (_row + 1) + _column + 1) << endl;
-					_G->InsertEdge(_G->GetVertexList().Last(),
-						new Vertex(std::to_string(10 * (_row + 1) + _column + 2)), new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
-				//}
-
-				_column++;
-			}
-			else
-			{
-
-				//cout << (10 * (_row + 1) + _column + 1) << endl;
-				_G->InsertEdge(_G->GetVertexList().Last(),
-					new Vertex(std::to_string(10 * (_row + 2) + 1)), new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
-
-				_column = 0;
-				_row++;
-				//s[_row][_column] = 'x';
-			}
-		}
 	}
 
 	return;
@@ -111,9 +123,9 @@ int main()
 	//cout << G->GetVertexList().First()->GetNext()->GetNext()->GetFirstIncident()->GetEdge()->GetValue()<< endl;
 	//cout << G->Vertices() << endl;
 	//cout << G->GetVertexList().First()->GetEndIncident() << endl;
-	G->InsertEdge(G->GetVertexList().First(), new Vertex("lol"), new Edge(100));
+	//G->InsertEdge(G->GetVertexList().First(), new Vertex("lol"), new Edge(100));
 	//cout << G->IncidentEdges(G->GetVertexList().First())->First()->GetNext()->GetValue()<< endl;
-	cout<< G->AreAdjacent(G->GetVertexList().First(), G->GetVertexList().Last())<<endl;
+	//cout<< G->AreAdjacent(G->GetVertexList().First(), G->GetVertexList().Last())<<endl;
 
 	G->Print();
 
