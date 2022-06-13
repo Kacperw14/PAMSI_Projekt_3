@@ -92,10 +92,14 @@ int main()
 
 	for (int i = 0; i < size; i++)	for (int j = 0; j < size; j++) s[i][j] = (char)' ';
 
-
 	Create(s, G, size, row, column);
-	G->Print();
 	cout << "koniec" << endl;
+
+	cout<< G->IncidentEdges(G->GetVertexList().First()).First()->GetValue()<<endl;
+	cout << G->operator[](2)->GetName() << endl;
+	cout << G->operator[](3)->GetName() << endl;
+	cout<< G->AreAdjacent(G->operator[](2), G->operator[](3))<<endl;
+	G->Print();
 	//cout << G->Vertices()<<endl;
 	//for (int i = 0; i < size; i++)
 	//{

@@ -23,8 +23,16 @@ public:
 
 	//Funkcje umozliwiajace dostep do atrybutow. Dostep tylko do odczytu!
 	const std::string& GetName() const { return name; };
-	Incident* GetIncident() const { return incident.front(); };
-
+	Incident* GetFirstIncident() const 
+	{
+		if (incident.empty())  return nullptr;
+		else return incident.front(); 
+	};
+	Incident* GetEndIncident() const
+	{
+		if (incident.empty())  return nullptr;
+		else return std::next(incident.back());
+	};
 	//Funkcje umozliwiajace zmiane atrybutow.
 	void SetName(const std::string& _name) { name = _name; };
 	void AddIncident(Incident* _incident) { incident.push_back(_incident); };          ////number!!!
