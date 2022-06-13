@@ -31,7 +31,37 @@ public:
 
 	//Metody usuwajace
 	void Remove(Node<T>* _node);
+	//void Remove(T* _node);
 	void ClearList();
+
+	Node<T>* AtIndex(const int& _index)
+	{
+		int number = 1;
+		for (Node<T>* i = First(); i != GetTrailer(); i = i->GetNext())
+		{
+			if (number++ == _index) return i;
+			//number++;
+		}
+		throw "Brak elementu o podanym indeksie";
+	}
+
+	int IndexOf(Node<T>* _node)
+	{
+		int number = 0;
+		//T* element;
+		for (Node<T>* i = First(); i != GetTrailer(); i = i->GetNext())
+		{
+			/*element = i;
+			std::cout <<"i" << i << std::endl;
+			std::cout <<"e" << (T*<< std::endl;
+			std::cout << _node << std::endl;*/
+			//std::cout << static_cast<Node<T>*>(_node) << std::endl;
+			
+			number++;
+			if (i == _node) return number;
+		}
+		throw "Brak elementu w liscie";
+	}
 	//
 
 	//Dodatkowe przydatne metody

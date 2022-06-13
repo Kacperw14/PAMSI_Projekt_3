@@ -67,6 +67,16 @@ void List<T>::Remove(Node<T>* _node)
 	else std::cout << "Funkcja \"Remove\": Nie mozna usunac nullptr, header ani trailer" << std::endl; //Informacja o nieprawidlowych dzialaniach
 }
 
+//template<typename T>
+//void List<T>::Remove(T* _element)
+//{
+//	std::cout << "lol";
+//	//int index = ;
+//	//Node<T>* _node = ;
+//	Remove(AtIndex(IndexOf(_element)));
+//}
+
+
 template<typename T>
 void List<T>::ClearList()
 {

@@ -1,35 +1,21 @@
-//#include <iostream>
 #pragma once
 #include "List.h"
 #include <string>
 #include <cmath>
-//#include "Incident.h"
-//#include "Vertex.h"
-//#include "Edge.h"
-
-
-//class Incident;
 
 class Graph
 {
 private:
 	List<Edge> edgeList;
 	List<Vertex> vertexList;
-	//List<Branch> vertexList;
-	//List<Incident> incidentList;
 
 public:
 	Graph() = default;
-	//Graph(Edge _) : Edge(), Vertex(), Incident() {};
 
 	void InsertEdge(Vertex* _beginning, Vertex* _end, Edge* _edge)
 	{
-		//bool isNotInTheListBeg = true;
-		//bool isNotInTheListEnd = true;
-
 		Incident* _begIncident = new Incident(_beginning->GetName(), _edge);
 		Incident* _endIncident = new Incident(_end->GetName(), _edge);
-
 
 		//incidentList.AddAtEnd(_begIncident);
 		_beginning->AddIncident(_begIncident);
@@ -48,7 +34,6 @@ public:
 		InsertVertex(_end);
 	}
 
-
 	Vertex* operator[] (int _number)
 	{
 		int n = 0;
@@ -58,15 +43,12 @@ public:
 			if (n++ == _number) return _start;
 		}
 		return nullptr;
-
 	};
 
 	void InsertVertex(Vertex* _vertex)
 	{
 		for (Node<Vertex>* _start = vertexList.First(); _start != vertexList.GetTrailer(); _start = _start->GetNext())
 		{
-			//std::cout << _start->GetName() << std::endl;
-			//if (_vertex->GetName().compare(_start->GetName()) == 0) isNotInTheList = false;
 			if (_start == _vertex) return;
 		}
 		vertexList.AddAtEnd(_vertex);
@@ -74,10 +56,10 @@ public:
 
 	List<Edge> GetEdgeList() const { return edgeList; };
 	List<Vertex> GetVertexList() const { return vertexList; };
-	//List<Incident> GetIncidentList() const { return incidentList; };
 
 	const int& Edges() { return edgeList.Size(); };
 	const int& Vertices() { return vertexList.Size(); };
+
 	List<Edge>* IncidentEdges(Vertex* _vertex)
 	{
 		List<Edge>* L = new List<Edge>();           //new?
@@ -111,6 +93,28 @@ public:
 		}
 		return false;
 	}
+
+	void RemoveVertex(Node<Vertex>* _vertex)
+	{
+		for (int i = 0; i < _vertex->IncidentsSize(); i++)
+		{
+			if (_vertex != _vertex->GetIncident(i)->GetEdge()->GetBeginning())
+			{
+				_vertex->GetIncident(i)->GetEdge()->SetBegInc(nullptr);
+				_vertex->GetIncident(i)->GetEdge()->SetBeginning(nullptr);
+
+				//_vertex->RemoveIncydent(i);
+			}
+			else
+			{
+				_vertex->GetIncident(i)->GetEdge()->SetEndInc(nullptr);
+				_vertex->GetIncident(i)->GetEdge()->SetEnd(nullptr);
+			}
+			//edgeList.Remove((_vertex->GetIncident(i)->GetEdge())); //////!!
+			//delete	_vertex->GetIncident(i)->GetEdge();
+		}
+		vertexList.Remove(_vertex);
+	};
 
 
 	void MinMax()
@@ -180,42 +184,6 @@ public:
 			std::cout << _start->GetEnd()->GetName() << " ";
 		}
 		std::cout << std::endl;
-
-		/*for (int i = 0; i < Vertices(); i++)
-		{
-			std::cout << this->operator[](i)->GetName() << " ";
-		}
-		std::cout << std::endl;
-		for (Node<Edge>* _start = edgeList.First(); _start != edgeList.GetTrailer(); _start = _start->GetNext())
-		{
-			std::cout << _start->GetValue() << " ";
-		}
-		std::cout << std::endl;*/
-		/*
-		for (Node<Incident>* _start = incidentList.First(); _start != incidentList.GetTrailer(); _start = _start->GetNext())
-		{
-			std::cout << _start->GetName() << " ";
-		}
-		std::cout << std::endl;*/
-
-		//for (int j = 0; j < Vertices(); j++)
-
-		/*
-		if (AreAdjacent(this->operator[](i), this->operator[](i + 1)))
-	{
-		std::cout << this->operator[](i)->GetName() << " ";
-	}
-}
-	std::cout << std::endl;
-for (int i = 0; i < Vertices(); i++)
-{
-
-	if (!AreAdjacent(this->operator[](i), this->operator[](i + 1)))
-	{
-		std::cout << this->operator[](i)->GetName() << " ";
-	}
-*/
-
 	}
 
 }; //class

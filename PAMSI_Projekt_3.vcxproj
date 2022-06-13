@@ -28,6 +28,7 @@
     <ClCompile Include="Sources\Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Headers\Algorithms.h" />
     <ClInclude Include="Headers\Edge.h" />
     <ClInclude Include="Headers\Graph.h" />
     <ClInclude Include="Headers\Incident.h" />
