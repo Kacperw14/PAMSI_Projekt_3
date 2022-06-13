@@ -43,26 +43,26 @@ void Create(string* s, Graph* _G, int _size, int _row, int _column) {
 			{
 
 				s[_row][_column] = 'x';
-				
+
 				_G->InsertEdge(_G->GetVertexList().Last(),
 					new Vertex(std::to_string(10 * (_row + 1) + _column + 2)), new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
 				_column++;
 
-				
+
 			}
 			else
 			{
 				if (_row < _size - 1)
 				{
 
-				
-				s[_row][_column] = 'x';
-				//cout << (10 * (_row + 1) + _column + 1) << endl;
-				_G->InsertEdge(_G->GetVertexList().Last(),
-					new Vertex(std::to_string(10 * (_row + 2) + 1)), new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
 
-				_column = 0;
-				_row++;
+					s[_row][_column] = 'x';
+					//cout << (10 * (_row + 1) + _column + 1) << endl;
+					_G->InsertEdge(_G->GetVertexList().Last(),
+						new Vertex(std::to_string(10 * (_row + 2) + 1)), new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
+
+					_column = 0;
+					_row++;
 
 				}
 				else
@@ -73,11 +73,11 @@ void Create(string* s, Graph* _G, int _size, int _row, int _column) {
 				}
 			}
 
-			
+
 
 
 		}
-		
+
 		//s[_row][_column] = 'x';
 		for (int i = 0; i < _size - 1; i++)
 		{
@@ -94,9 +94,26 @@ void Create(string* s, Graph* _G, int _size, int _row, int _column) {
 			cout << s[_size - 1][j] << " | ";
 		}
 		cout << s[_size - 1][_size - 1] << endl;// << " ";
+		cout << endl;// << " ";
 
 
 	}
+
+	for (int i = 0; i < _size; i++)	for (int j = 0; j < _size; j++) s[i][j] = (char)' ';
+	//system("CLS");
+		if (_column + 1 < _size)
+		{
+			Create(s, _G, _size, _row, _column + 1);
+			if (_row + 1 < _size)
+			{
+				_column = 0;
+				Create(s, _G, _size, _row + 1, _column);
+			}
+		}
+	//_row = 0;
+
+	//_row = 0;
+	//_column = 0;
 
 	return;
 }
