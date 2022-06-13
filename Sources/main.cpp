@@ -72,41 +72,6 @@ void Create(string* s, Graph* _G, int _size, int _row, int _column) {
 				_row++;
 				//s[_row][_column] = 'x';
 			}
-
-			//_row++;
-		//}
-
-		//_G->InsertEdge(new Vertex(std::to_string(10 * (_row)+_column + 1)),
-			//new Vertex(std::to_string(10 * (_size)+_column + 1)), new Edge(10 * (_size)+_column + 1));//_G->Power(s,_row,_column,_size));
-
-		//_G->InsertEdge(new Vertex(std::to_string(10 * _row + _column)),
-			//new Vertex(std::to_string(10*(_row+=1) + _column)), new Edge(i++));
-
-		//if(_row < _size) 
-		//
-		//Create(s, _G, _size, _row, ++_column);
-		//if(-1) Create(_G, _size, _row, _column+1);
-
-		//if () return;
-
-		//cout << _row << _column << endl;
-
-
-		/// <summary>
-
-		//if (_row < _size)
-		//{
-		//	if (_column < _size - 1) Create(s, _G, _size, _row, ++_column);
-		//	//else
-		////{
-		//	_column = 0;
-		//	_row++;
-		//	//Create(s, _G, _size, ++_row, _column);
-		////}
-		//	//_row = 0;
-		//	//system("CLS");
-		//}
-		//s = new string(_size, 0);
 	}
 
 	return;
@@ -127,7 +92,6 @@ int main()
 
 	for (int i = 0; i < size; i++)	for (int j = 0; j < size; j++) s[i][j] = (char)' ';
 
-	
 
 	Create(s, G, size, row, column);
 	G->Print();

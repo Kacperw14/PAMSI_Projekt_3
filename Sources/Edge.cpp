@@ -9,8 +9,8 @@ Edge::Edge(Vertex* _beginning, Vertex* _end, const int& _value)// : beginning(_b
 	value = _value;
 	begIncident = Ibeg;//beginning->GetIncident();
 	endIncident = Iend;//end->GetIncident();
-	beginning->SetIncident(begIncident);
-	end->SetIncident(endIncident);
+	beginning->AddIncident(begIncident);
+	end->AddIncident(endIncident);
 }
 
 const int& Edge::GetValue() const

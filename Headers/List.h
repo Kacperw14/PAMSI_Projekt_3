@@ -4,7 +4,7 @@
 //#include "Vertex.h"
 //Mozliwosc rozszerzenia struktury o nowe wezly dwukietrunkowe (template)
 
-template <typename T>
+template <class T>
 class List 
 {
 private:

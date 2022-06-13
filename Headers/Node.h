@@ -4,7 +4,6 @@
 #include"Edge.h"
 #include"Vertex.h"
 #include"Incident.h"
-#include"Branch.h"
 
 template <typename T>
 class Node : public T
