@@ -101,15 +101,18 @@ int main()
 	Vertex* V1 = new Vertex("1");
 	Vertex* V2 = new Vertex("2");
 	Vertex* V3 = new Vertex("3");
-	G.InsertEdge(V1, V2, new Edge(12));
-	G.InsertEdge(V1, V3, new Edge(13));
-	G.InsertEdge(V2, V3, new Edge(23));
+	G.InsertEdge(V1, V2, new Edge(10));
+	G.InsertEdge(V1, V3, new Edge(25));
+	G.InsertEdge(V1, V3, new Edge(30));
 
 
-	cout << G.Edges()<<endl;
+	//cout << G.Edges()<<endl;
+	//cout << G.MinEdge()<<endl;
+
 	G.Print();
-	A.Kruskal(G);// ->Print();
-	//cout << G.Edges()<< endl;
+	cout << endl;
+	A.Kruskal(G)->Print();
+	cout << endl;
 	G.Print();
 
 	//A.Kruskal(&G)->Print();

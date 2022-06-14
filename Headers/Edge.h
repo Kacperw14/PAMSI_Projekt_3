@@ -21,12 +21,12 @@ public:
 	Edge(Vertex* _beginning, Vertex* _end, const int& _value);
 	Edge(const int& _value) : value(_value), beginning(nullptr), end(nullptr), begIncident(nullptr), endIncident(nullptr) {};
 	//konstruktor kopiujacy
-	/*Edge(const Edge& _edge)
+	Edge(const Edge& _edge)
 	{
 		value = _edge.GetValue();
 		beginning = new Vertex(*_edge.GetBeginning());
 		end = new Vertex(*_edge.GetEnd());
-	};*/
+	};
 
 
 
