@@ -39,7 +39,7 @@ int List<T>::Size() const
 		int size = 0;
 		//Node<T>* head = header->GetNext();	//Nie liczymy header'a, jesli IsEmpty != true to header->GetNext() istnieje.
 		//while (head != trailer)
-		for (T* head = First(); head != trailer; head = head->GetNext())
+		for (T* i = First(); i != trailer; i = i->GetNext())
 		{
 			size++;
 		}
@@ -62,6 +62,7 @@ void List<T>::Remove(T* _node)
 {
 	if (_node != nullptr && _node != header && _node != trailer)
 	{
+		//std::cout << _node << std::endl;
 		_node->GetNext()->SetPrevious(_node->GetPrevious());	 //Aby nie doszlo do wyciekow pamieci ustalane sa nowe wezly.
 		_node->GetPrevious()->SetNext(_node->GetNext());
 		delete _node;                                            //Zwolnienie pamieci komputera.

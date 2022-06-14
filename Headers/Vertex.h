@@ -12,8 +12,6 @@ class Incident;  //definiuje klase aby preprocesor mogl zalaczyc plik Incident.h
 class Vertex : public Node<Vertex>
 {
 private:
-
-	//::vector<Vertex>* branch;
 	std::string name;
 	//std::vector<Incident*> incident;
 	std::vector<Incident*> incident;
@@ -30,11 +28,12 @@ public:
 	Incident* GetIncident(int _number) const
 	{
 		if (incident.empty())  throw "Empty";
-		for (int i = 0; i < incident.size(); i++)
-		{
-			//std::cout << incident.at(i)->GetName() << " ";
-			if (i == _number) return incident[i];
-		}
+		if(incident[_number] != nullptr) return incident[_number];
+		//for (size_t i = 0; i < incident.size(); i++)
+		//{
+		//	//std::cout << incident.at(i)->GetName() << " ";
+		//	if (i == _number) return incident[i];
+		//}
 		//return nullptr
 		throw "Zly indeks";
 	};
@@ -51,17 +50,17 @@ public:
 	//	throw "Zly indeks";
 	//}
 
-	void RemoveIncident(int _number)
-	{
-		//std::cout << "lol" << " ";
-		//RemoveIncident(incident.at(_number));
-		//if (incident.empty())  throw "Empty";
-		//for (auto i = incident.begin(); i != incident.end(); i++)
-		//{
-		//	//std::cout << incident.at(i)->GetName() << " ";
-		//	if (*i == GetIncident(_number))  incident.erase(i, std::next(i));
-		//}
-	}
+	//void RemoveIncident(int _number)
+	//{
+	//	//std::cout << "lol" << " ";
+	//	//RemoveIncident(incident.at(_number));
+	//	//if (incident.empty())  throw "Empty";
+	//	//for (auto i = incident.begin(); i != incident.end(); i++)
+	//	//{
+	//	//	//std::cout << incident.at(i)->GetName() << " ";
+	//	//	if (*i == GetIncident(_number))  incident.erase(i, std::next(i));
+	//	//}
+	//}
 
 	void RemoveIncident(Incident* _incident)
 	{
@@ -79,12 +78,6 @@ public:
 		//std::cout << "nie ma" << " ";
 	}
 
-	//void RemoveIncident(const Incident& _incident)
-	//{
-	//	//std::remove(incident.begin(), incident.end(), _incident);
-
-	//}
-
 	std::vector<Incident*> GetIncidentList() const
 	{
 		return incident;
@@ -100,16 +93,32 @@ public:
 		if (incident.empty())  throw "Empty";
 		else return incident.back(); //std::next(
 	};
+	void Swap(Vertex* _swap)
+	{
+		std::string s = name;
+		std::vector<Incident*> in = incident;
+		//name = _swap->GetName()
+		SetName(_swap->GetName());
+		_swap->SetName(s);
+
+		incident.clear();
+		while (_swap->IncidentsSize() > 0)
+		{
+			//std::cout << _swap->GetFirstIncident()->GetName()<< std::endl;
+			//std::cout << incident.front()->GetName()<< std::endl;
+			incident.push_back(_swap->GetEndIncident());
+			_swap->RemoveIncident(_swap->GetEndIncident());
+
+		}
+
+		while (in.size() > 0)
+		{
+			_swap->GetIncidentList().push_back(in.back());
+			in.pop_back();
+		}
+	}
 	//Funkcje umozliwiajace zmiane atrybutow.
 	void SetName(const std::string& _name) { name = _name; };
 	void AddIncident(Incident* _incident) { incident.push_back(_incident); };          ////number!!!
-	size_t IncidentsSize() const { return incident.size(); };
-/*void Incidents()
-	{
-		for (int i = 0; i < incident.size(); i++)
-		{
-			std::cout << incident.at(i)->GetName() << " ";
-		}
-		std::cout << std::endl;
-	}*/
+	int IncidentsSize() const { return incident.size(); };
 }; //class

@@ -31,13 +31,18 @@ public:
 
 	//Metody usuwajace
 	void Remove(T* _node);
-	//void Remove(T* _node);
 	void ClearList();
 
-	T* AtIndex(const int& _index)
+	//Dodatkowe przydatne metody
+	T* operator[](int _index)
 	{
-		int number = 1;
-		for (T* i = First(); i != GetTrailer(); i = i->GetNext())
+		return AtIndex(_index);
+	};
+
+	T* AtIndex(int _index)
+	{
+		int number = 0;
+		for (T* i = First(); i != trailer; i = i->GetNext())
 		{
 			if (number++ == _index) return i;
 			//number++;
@@ -62,19 +67,7 @@ public:
 		}
 		throw "Brak elementu w liscie";
 	}
-	//
-
-	//Dodatkowe przydatne metody
-	T* operator[](const int& _number)
-	{
-		int j = 0;
-		if (_number > Size()) throw "Index za duzy";
-		for (T* i = First(); i != GetTrailer(); i = i->GetNext())
-		{
-			if(j++ == _number) return i;
-		}
-		throw "Nie ma takiego indexu";//nullptr; 
-	};
+	
 	//
 
 	//Metody umozliwiajace dostep do atrybutow. Dostep tylko do odczytu!
