@@ -21,7 +21,12 @@ public:
 	Edge(Vertex* _beginning, Vertex* _end, const int& _value);
 	Edge(const int& _value) : value(_value), beginning(nullptr), end(nullptr), begIncident(nullptr), endIncident(nullptr) {};
 	//konstruktor kopiujacy
-	//Edge(const Edge& _edge) : beginning(_edge.GetBeginning()), end(_edge.GetEnd()), value(_edge.GetValue()) {};//previous(_edge.GetNext()), next(_edge.GetPrevious()) {}; 
+	/*Edge(const Edge& _edge)
+	{
+		value = _edge.GetValue();
+		beginning = new Vertex(*_edge.GetBeginning());
+		end = new Vertex(*_edge.GetEnd());
+	};*/
 
 
 
@@ -31,6 +36,19 @@ public:
 	 Vertex* GetEnd() const { return end; };
 	 Incident* GetBegInc() const { return begIncident; };
 	 Incident* GetEndInc() const { return endIncident; };
+
+	 inline Edge* MinEdge()
+	 {
+		 Edge* possition = this;
+		 while (possition->GetPrevious()->GetPrevious() != nullptr) possition = possition->GetPrevious();
+		 Edge* min = possition;
+		 for (Edge* i = possition; i->GetNext()!= nullptr; i = i->GetNext())
+		 {
+			 //std::cout << i->GetValue() << std::endl;
+			 if (min->GetValue() > i->GetValue()) min = i;
+		 }
+		 return min;
+	 }
 
 	//Funkcje umozliwiajace zmiane atrybutow.
 	void SetValue(const int& _value) { value = _value; };

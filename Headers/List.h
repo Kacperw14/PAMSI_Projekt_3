@@ -15,7 +15,16 @@ public:
 	//Konstruktory
 	List();
 	//Konstruktor kopiujacy
-	//List(const T& _lista) : header(_lista.header), trailer(_lista.trailer) {}; //??
+	//List(const List<T>& _lista)
+	//{
+	//	//T* node = nullptr;
+	//	for (T* i = First(); i != trailer; i = i->GetNext())
+	//	{
+	//		//node = new T(i);
+	//		_lista.AddAtEnd(*i);
+	//	}
+	//}
+	//: header(_lista.GetHeader()), trailer(_lista.GetTrailer()) {}; //??
 
 	//void operator+ (List<T>* _lista);
 	
@@ -28,7 +37,14 @@ public:
 	//Metody dodajace
 	void AddAtEnd(T* _node);
 	//
-
+	//void AddAtEnd(const T& _node)  //
+	//{
+	//	T* _tNode = new T(Last(), trailer);
+	//	//_node->SetNext(trailer);
+	//	//_node->SetPrevious(Last());
+	//	Last()->SetNext(_tNode);
+	//	trailer->SetPrevious(_tNode);
+	//}
 	//Metody usuwajace
 	void Remove(T* _node);
 	void ClearList();
@@ -68,6 +84,16 @@ public:
 		throw "Brak elementu w liscie";
 	}
 	//
+
+	/*Edge* MinEdge()
+	{
+		Edge* min = First();
+		for (Edge* i = First(); i != GetTrailer(); i = i->GetNext())
+		{
+			if (min->GetValue() > i->GetValue()) min = i;
+		}
+		return min;
+	}*/
 
 	//Metody umozliwiajace dostep do atrybutow. Dostep tylko do odczytu!
 	const T* GetHeader() const { return header; };

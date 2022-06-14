@@ -106,6 +106,10 @@ int main()
 	G.InsertEdge(V2, V3, new Edge(23));
 
 
+	cout << G.Edges()<<endl;
+	G.Print();
+	A.Kruskal(G);// ->Print();
+	//cout << G.Edges()<< endl;
 	G.Print();
 
 	//A.Kruskal(&G)->Print();

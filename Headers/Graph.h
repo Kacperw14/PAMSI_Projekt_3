@@ -12,6 +12,11 @@ private:
 public:
 	Graph() = default;
 
+	//Graph(const Graph& _graph) //: edgeList(_graph.GetEdgeList()), vertexList(_graph.GetVertexList()) {};
+	//{
+	//	edgeList = List<Edge>(_graph.GetEdgeList());
+	//	vertexList = List<Vertex>(_graph.GetVertexList());
+	//}
 	void InsertEdge(Vertex* _beginning, Vertex* _end, Edge* _edge)
 	{
 		//brak mozliwosci dolaczenia 
@@ -68,6 +73,7 @@ public:
 	}
 
 	List<Edge> GetEdgeList() const { return edgeList; };
+	//const List<Edge>& GetEdgeList() const { return edgeList; };
 	List<Vertex> GetVertexList() const { return vertexList; };
 
 	const int& Edges() { return edgeList.Size(); };

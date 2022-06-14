@@ -1,6 +1,6 @@
 #pragma once
-#include"Edge.h"
 #include <string>
+#include"Edge.h"
 
 class Edge;  //definiuje klase aby preprocesor mogl zalaczyc plik Edge.h
 
@@ -12,7 +12,15 @@ private:
 	Edge* edge;
 
 public:
-	Incident() : name("I"), edge() {};// = default;
+	Incident() : name("I"), edge(nullptr) {};// = default;
+
+	//Incident(const Incident& _incident)
+	//{
+	//	name = _incident.GetName();
+	//	//if(_incident.GetEdge() != nullptr) 
+	//	edge = new Edge(*_incident.GetEdge());
+	//}
+
 	//Incident(Edge* _edge) : name("I"), edge(_edge) {}; // ?
 	Incident(const std::string& _name) : name("I"+_name), edge() {}; // ?
 	Incident(const std::string& _name, Edge* _edge) : name("I" + _name), edge(_edge){};

@@ -19,6 +19,11 @@ private:
 public:
 
 	Vertex() = default; //?{ name = "0"; };
+	/*Vertex(const Vertex& _vertex)
+	{
+		name = _vertex.GetName(); 
+		incident = std::vector<Incident*>(_vertex.GetIncidentList());
+	};*/
 	Vertex(const std::string& _name) : name("V" + _name) {};//{ incident.push_back(new Incident(0)); };
 	//Vertex(incident)
 
@@ -120,5 +125,5 @@ public:
 	//Funkcje umozliwiajace zmiane atrybutow.
 	void SetName(const std::string& _name) { name = _name; };
 	void AddIncident(Incident* _incident) { incident.push_back(_incident); };          ////number!!!
-	size_t IncidentsSize() const { return incident.size(); };
+	int IncidentsSize() const { return incident.size(); };
 }; //class
