@@ -18,7 +18,7 @@ public:
 class Interface {
 private:
 
-	int size = 3;
+	int size;
 	char cell = ' ';
 	std::string* board;
 	int winStreak;
@@ -26,6 +26,8 @@ private:
 public:
 	void Initialize()
 	{
+		std::cout << "Podaj rozmiar" << std::endl;
+		std::cin >> size;
 		board = new std::string[size];
 		for (int i = 0; i < size; i++)	for (int j = 0; j < size; j++) board[i][j] = (char)' ';
 	}
@@ -56,5 +58,24 @@ public:
 		board[row][column] = cell;
 	}
 
+	void Move(char _sign) {
+
+		int row, column;
+		do
+		{
+			std::cin >> row;
+			std::cin >> column;
+			if (!std::cin.good())
+			{
+				std::cout << "Spruboj ponownie" << std::endl;
+				std::cin.clear();
+				//cin.unget();
+				std::cin.ignore(100, ' ');
+				//cout << "bad" << endl;
+				row = 1000;  //zamkniecie petli
+			}
+		} while (row >= size || row < 0 || column >= size || column < 0 || board[row][column] != ' ');
+		SetValues(row, column, _sign);
+	}
 
 }; //CLASS
