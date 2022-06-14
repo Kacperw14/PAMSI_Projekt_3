@@ -7,7 +7,8 @@ using namespace std;
 
 int main()
 {
-
+	Interface I;
+	I.Print();
 
 
 	return 0;
