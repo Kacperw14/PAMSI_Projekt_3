@@ -104,10 +104,8 @@ int main()
 	G.InsertEdge(V1, V2, new Edge(12));
 	G.InsertEdge(V1, V3, new Edge(13));
 	G.InsertEdge(V2, V3, new Edge(23));
-	G.ReplaceEnd(G.GetEdgeList()[0], V3);
-	//G.InsertEdge(V1, V2, new Edge(12));
-	//G.InsertEdge(V1, V2, new Edge(13));
-	//G.InsertEdge(V1, V2, new Edge(14));
+
+
 	G.Print();
 
 	//A.Kruskal(&G)->Print();

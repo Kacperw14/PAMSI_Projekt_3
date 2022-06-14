@@ -67,7 +67,6 @@ public:
 		}
 		throw "Brak elementu w liscie";
 	}
-	
 	//
 
 	//Metody umozliwiajace dostep do atrybutow. Dostep tylko do odczytu!

@@ -9,7 +9,11 @@ public:
 	{
 		Graph* graph = new Graph;
 
+		while (graph->Vertices() <= _G->Vertices())
+		{
 
+		}
+       
 		return graph;
 	};
 

@@ -14,6 +14,19 @@ public:
 
 	void InsertEdge(Vertex* _beginning, Vertex* _end, Edge* _edge)
 	{
+		//brak mozliwosci dolaczenia 
+		/*for (Vertex* i = vertexList.First(); i != vertexList.GetTrailer(); i = i->GetNext())
+		{
+			if (i == _beginning)
+			{
+				for (int j = 0; j < _beginning->IncidentsSize(); i++)
+				{
+					Opposite(i, IncidentEdges(_beginning)) == _end;
+				}
+			}
+		}*/
+		//if (isInTheListBeg && isInTheListEnd);
+
 		Incident* _begIncident = new Incident(_beginning->GetName(), _edge);
 		Incident* _endIncident = new Incident(_end->GetName(), _edge);
 
@@ -103,6 +116,16 @@ public:
 			}
 		}
 		return false;
+	}
+
+	Edge* MinEdge()
+	{
+		Edge* min = edgeList.First();
+		for (Edge* i = edgeList.First(); i != edgeList.GetTrailer(); i = i->GetNext())
+		{
+			if (min->GetValue() > i->GetValue()) min = i;
+		}
+		return min;
 	}
 
 	void RemoveEdge(Edge* _edge)

@@ -120,5 +120,5 @@ public:
 	//Funkcje umozliwiajace zmiane atrybutow.
 	void SetName(const std::string& _name) { name = _name; };
 	void AddIncident(Incident* _incident) { incident.push_back(_incident); };          ////number!!!
-	int IncidentsSize() const { return incident.size(); };
+	size_t IncidentsSize() const { return incident.size(); };
 }; //class
