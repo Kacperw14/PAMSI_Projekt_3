@@ -10,9 +10,16 @@ int main()
 	Interface I;
 	I.Initialize();
 	I.Print();
-	I.Move('x');
-	//I.SetValues(1,1,'x');
+	I.PlayerMove('x');
 	I.Print();
+	I.PlayerMove('x');
+	I.Print();
+	I.PlayerMove('x');
+	I.Print();
+	I.PlayerMove('x');
+	I.Print();
+	cout << I.Check();
+
 
 	return 0;
 } //main
