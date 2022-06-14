@@ -8,18 +8,9 @@ using namespace std;
 int main()
 {
 	Interface I;
+	cout << "Gra w kolko i krzyzyk!" << endl;
 	I.Initialize();
-	I.Print();
-	I.PlayerMove('x');
-	I.Print();
-	I.PlayerMove('x');
-	I.Print();
-	I.PlayerMove('x');
-	I.Print();
-	I.PlayerMove('x');
-	I.Print();
-	cout << I.Check();
-
+	I.Game();
 
 	return 0;
 } //main
