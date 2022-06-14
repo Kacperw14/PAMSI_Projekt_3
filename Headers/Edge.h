@@ -26,6 +26,10 @@ public:
 		value = _edge.GetValue();
 		beginning = new Vertex(*_edge.GetBeginning());
 		end = new Vertex(*_edge.GetEnd());
+		begIncident = new Incident(*_edge.GetBegInc());
+		endIncident = new Incident(*_edge.GetEndInc());
+	/*	beginning = _edge.GetBeginning();
+		end = _edge.GetEnd();*/
 	};
 
 
@@ -37,18 +41,18 @@ public:
 	 Incident* GetBegInc() const { return begIncident; };
 	 Incident* GetEndInc() const { return endIncident; };
 
-	 inline Edge* MinEdge()
+	/* Edge* MinEdge()
 	 {
 		 Edge* possition = this;
 		 while (possition->GetPrevious()->GetPrevious() != nullptr) possition = possition->GetPrevious();
 		 Edge* min = possition;
 		 for (Edge* i = possition; i->GetNext()!= nullptr; i = i->GetNext())
 		 {
-			 //std::cout << i->GetValue() << std::endl;
+			 std::cout << i->GetValue() << std::endl;
 			 if (min->GetValue() > i->GetValue()) min = i;
 		 }
 		 return min;
-	 }
+	 }*/
 
 	//Funkcje umozliwiajace zmiane atrybutow.
 	void SetValue(const int& _value) { value = _value; };

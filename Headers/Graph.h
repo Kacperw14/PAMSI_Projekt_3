@@ -52,16 +52,16 @@ public:
 		InsertVertex(_end);
 	}
 
-	Vertex* operator[] (int _number)
-	{
-		int n = 0;
-		if (_number > Vertices()) return nullptr;
-		for (Vertex* _start = vertexList.First(); _start != vertexList.GetTrailer(); _start = _start->GetNext())
-		{
-			if (n++ == _number) return _start;
-		}
-		return nullptr;
-	};
+	//Vertex* operator[] (int _number)
+	//{
+	//	int n = 0;
+	//	if (_number > Vertices()) return nullptr;
+	//	for (Vertex* _start = vertexList.First(); _start != vertexList.GetTrailer(); _start = _start->GetNext())
+	//	{
+	//		if (n++ == _number) return _start;
+	//	}
+	//	return nullptr;
+	//};
 
 	void InsertVertex(Vertex* _vertex)
 	{
@@ -76,8 +76,8 @@ public:
 	//const List<Edge>& GetEdgeList() const { return edgeList; };
 	List<Vertex> GetVertexList() const { return vertexList; };
 
-	const int& Edges() { return edgeList.Size(); };
-	const int& Vertices() { return vertexList.Size(); };
+	int Edges() { return edgeList.Size(); };
+	int Vertices() { return vertexList.Size(); };
 
 	Edge* IncidentEdges(Vertex* _vertex) const
 	{
@@ -126,7 +126,7 @@ public:
 
 	Edge* MinEdge()
 	{
-		Edge* min = edgeList.First();
+		Edge* min = edgeList.Last();
 		for (Edge* i = edgeList.First(); i != edgeList.GetTrailer(); i = i->GetNext())
 		{
 			if (min->GetValue() > i->GetValue()) min = i;

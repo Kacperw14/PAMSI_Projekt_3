@@ -7,57 +7,102 @@ public:
 
 	Graph* Kruskal(const Graph& _G) const
 	{
-		List<Edge> Ledge;
+		Graph* Ledge = new Graph();
+		Edge* E = nullptr;
 		for (Edge* i = _G.GetEdgeList().First(); i != _G.GetEdgeList().GetTrailer(); i = i->GetNext())
 		{
-			Ledge.AddAtEnd(new Edge(*i));
+			E = new Edge(*i);
+			/*Ledge->GetEdgeList().AddAtEnd(E);
+			Ledge->InsertVertex(i->GetBeginning());
+			Ledge->InsertVertex(i->GetEnd());*/
+			//Ledge->InsertVertex(E->GetBeginning());
+			//Ledge->InsertVertex(E->GetEnd());
+			Ledge->InsertEdge(i->GetBeginning(), i->GetEnd(), E);     ///!!!
 		}
+		//std::cout << Ledge->Vertices() << std::endl;
+		Ledge->Print();
 		Graph* Claster = new Graph();
-
-		///*for (Vertex* i = _G.GetVertexList().First(); i != _G.GetVertexList().GetTrailer(); i = i->GetNext())
-		//{
-		//	Claster->InsertVertex(new Vertex(*i));
-		//}*/
 
 		Graph* graph = new Graph();
 		Edge* min = nullptr;
 		////std::cout << Ledge.Size() << std::endl;
-		min = Ledge.First()->MinEdge();
-	
+
 		bool isIntheClasterBeg = false;
 		bool isIntheClasterEnd = false;
-		
-		
-		//while (graph->Vertices() <= _G->Vertices())
-		//{
-		//Claster->InsertEdge(min->GetBeginning(), min->GetEnd(), min);
-		
-		////for (Edge* i = Claster->GetEdgeList().First(); i != Claster->GetEdgeList().GetTrailer(); i = i->GetNext())
-		for (Vertex* i = Claster->GetVertexList().First(); i != Claster->GetVertexList().GetTrailer(); i = i->GetNext())
+
+		graph->InsertVertex(new Vertex(*Ledge->MinEdge()->GetBeginning()));
+		Claster->InsertVertex(Ledge->MinEdge()->GetBeginning());
+
+		while (graph->Vertices() <= 4)//_G.GetVertexList().Size()) //Ledge->Vertices())//
 		{
-			if (i == min->GetBeginning()) isIntheClasterBeg = true;	
-			if (i == min->GetEnd()) isIntheClasterEnd = true;
+			std::cout <<"elo" << graph->GetVertexList().Size() << std::endl;
+			isIntheClasterBeg = false;
+			isIntheClasterEnd = false;
+
+			min = Ledge->MinEdge();//Ledge.GetEdgeList().First()->MinEdge()
+			//Claster->InsertEdge(min->GetBeginning(), min->GetEnd(), min);
+			//Claster->Print();
+			/*std::cout << min->GetBeginning()->GetName() << std::endl;
+			std::cout << min->GetEnd()->GetName() << std::endl;*/
+			//std::cout << min->GetValue() << std::endl;
+
+			////for (Edge* i = Claster->GetEdgeList().First(); i != Claster->GetEdgeList().GetTrailer(); i = i->GetNext())
+			for (Vertex* i = Claster->GetVertexList().First(); i != Claster->GetVertexList().GetTrailer(); i = i->GetNext())
+			{
+				/*std::cout << std::endl;
+				std::cout << i->GetName() << std::endl;
+				std::cout << std::endl;*/
+
+				//std::cout << min->GetBeginning()->GetName() << std::endl;
+				//std::cout << min->GetEnd()->GetName() << std::endl;
+				if (i == min->GetBeginning()) isIntheClasterBeg = true;
+				if (i == min->GetEnd()) isIntheClasterEnd = true;
+
+				//if ((i->GetName().compare(min->GetBeginning()->GetName())) == 0) isIntheClasterBeg = true;
+				//if ((i->GetName().compare(min->GetEnd()->GetName())) == 0) isIntheClasterEnd = true;
+			}
+
+			//graph->InsertEdge(new Vertex(*min->GetBeginning()), new Vertex(*min->GetEnd()), new Edge(*min));
+			std::cout << isIntheClasterBeg << std::endl;
+			std::cout << isIntheClasterEnd << std::endl;
+			//&&
+			/*if (!isIntheClasterBeg && !isIntheClasterEnd)
+			{
+				std::cout << "lol 0" << std::endl;
+				graph->InsertEdge(new Vertex(*min->GetBeginning()), new Vertex(*min->GetEnd()), new Edge(*min));
+				Claster->InsertVertex(min->GetBeginning());
+				Claster->InsertVertex(min->GetEnd());
+			}
+			else
+			{*/
+			if (!isIntheClasterBeg)
+			{
+				std::cout << "lol 1" << std::endl;
+				//graph->InsertEdge(min->GetBeginning(), min->GetEnd()), min);
+				//graph->InsertEdge(new Vertex(*min->GetBeginning()), new Vertex(*min->GetEnd()), new Edge(*min));
+				graph->InsertEdge(graph->GetVertexList().Last(), new Vertex(*min->GetBeginning()), new Edge(*min));
+				Claster->InsertVertex(min->GetBeginning());
+				/*graph->InsertEdge(graph->GetVertexList().Last(), new Vertex(*min->GetEnd()), new Edge(*min));
+				Claster->InsertVertex(min->GetEnd());*/
+			}
+			if (!isIntheClasterEnd)
+			{
+				std::cout << "lol 2" << std::endl;
+				graph->InsertEdge(graph->GetVertexList().Last(), new Vertex(*min->GetEnd()), new Edge(*min));
+				Claster->InsertVertex(min->GetEnd());
+				/*graph->InsertEdge(graph->GetVertexList().Last(), new Vertex(*min->GetBeginning()), new Edge(*min));
+				Claster->InsertVertex(min->GetBeginning()); */
+			}
+			//}
+			graph->Print();
+			//std::cout << Ledge->Vertices() << std::endl;
+			Ledge->RemoveEdge(min);
+			//std::cout << Ledge->Vertices() << std::endl;
+			//min->SetValue(100);
+			//std::cout << Ledge.First()->MinEdge()->GetValue() << std::endl;
 		}
-		if (!isIntheClasterBeg && !isIntheClasterEnd)
-		{
-			graph->InsertEdge(new Vertex(*min->GetBeginning()), new Vertex(*min->GetEnd()), new Edge(*min));
-			//Claster->InsertEdge(new Vertex(*min->GetBeginning()), new Vertex(*min->GetEnd()), new Edge(*min));
-			Claster->InsertEdge(min->GetBeginning(), min->GetEnd(), min);
-		}
+		std::cout << "free" << std::endl;
+		return graph;
+	};
 
-				//break;
-			//else break;
-			//if (i == Ledge.First()->MinEdge()->GetBeginning())
-		//}
-		//std::cout << Claster->Vertices() << std::endl;
-
-		Ledge.Remove(Ledge.First()->MinEdge());
-
-			/*
-
-			}*/
-
-			return graph;
-		};
-
-	}; //CLASS
+}; //CLASS

@@ -22,7 +22,9 @@ public:
 	Vertex(const Vertex& _vertex)
 	{
 		name = _vertex.GetName(); 
-		incident = std::vector<Incident*>(_vertex.GetIncidentList());
+		incident = std::vector<Incident*>();//std::vector<Incident*>(_vertex.GetIncidentList());
+		incident = _vertex.GetIncidentList();
+	//incident = _vertex.GetIncidentList();
 	};
 	Vertex(const std::string& _name) : name("V" + _name) {};//{ incident.push_back(new Incident(0)); };
 	//Vertex(incident)

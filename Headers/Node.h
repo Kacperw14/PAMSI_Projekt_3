@@ -16,6 +16,12 @@ public:
 
 	//Konstruktory
 	Node() :previous(nullptr), next(nullptr) {}; //= default;//delete;
+	~Node()
+	{
+		GetNext()->SetPrevious(GetPrevious());
+		GetPrevious()->SetNext(GetNext());
+	}
+
 	//Node(const T& _current, const T& _previous, const T& _next);
 	//Node(T* _current, Node<T>* _previous, Node<T>* _next);
 	Node(T* _previous, T* _next);

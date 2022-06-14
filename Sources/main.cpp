@@ -101,10 +101,16 @@ int main()
 	Vertex* V1 = new Vertex("1");
 	Vertex* V2 = new Vertex("2");
 	Vertex* V3 = new Vertex("3");
-	G.InsertEdge(V1, V2, new Edge(10));
-	G.InsertEdge(V1, V3, new Edge(25));
-	G.InsertEdge(V1, V3, new Edge(30));
-
+	Vertex* V4 = new Vertex("4");
+	Vertex* V5 = new Vertex("5");
+	G.InsertEdge(V1, V2, new Edge(1));
+	G.InsertEdge(V1, V3, new Edge(6));
+	G.InsertEdge(V1, V4, new Edge(7));
+	G.InsertEdge(V1, V5, new Edge(5));
+	G.InsertEdge(V2, V3, new Edge(2));
+	G.InsertEdge(V3, V4, new Edge(3));
+	G.InsertEdge(V3, V5, new Edge(8));
+	G.InsertEdge(V4, V5, new Edge(4));
 
 	//cout << G.Edges()<<endl;
 	//cout << G.MinEdge()<<endl;
