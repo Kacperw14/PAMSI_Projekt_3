@@ -99,14 +99,26 @@ int main()
 	Graph G;
 	Algorithms A;
 	G.InsertEdge(new Vertex("1"), new Vertex("2"), new Edge(1));
-	G.InsertEdge(G.GetVertexList().Last(), new Vertex("3"), new Edge(2));
-	G.InsertEdge(G.GetVertexList().Last(), new Vertex("4"), new Edge(3));
-	G.InsertEdge(G.GetVertexList().Last()->GetPrevious(), new Vertex("5"), new Edge(4));
-	G.InsertEdge(G.GetVertexList().First(), new Vertex("6"), new Edge(5));
+	////G.InsertEdge(G.GetVertexList().Last(), new Vertex("3"), new Edge(2));
+	///*G.InsertEdge(G.GetVertexList().Last(), new Vertex("4"), new Edge(3));
+	//G.InsertEdge(G.GetVertexList().Last()->GetPrevious(), new Vertex("5"), new Edge(4));
+	//G.InsertEdge(G.GetVertexList().First(), new Vertex("6"), new Edge(5));*/
+	//
+	////G.GetVertexList().First()->RemoveIncident(G.GetVertexList().First()->GetFirstIncident());
+	////cout<< G.GetEdgeList().First()->GetBeginning()->GetFirstIncident()->GetName()<<endl;
+	//cout << G.GetEdgeList().First()->GetBeginning()->GetFirstIncident()<<endl;//->GetFirstIncident()->GetName()<<endl;
+	//cout << G.GetVertexList().First()->GetFirstIncident()<<endl;//->GetFirstIncident()->GetName()<<endl;
 
-	
-	//cout<<G.GetVertexList().First()->GetIncident(0)->GetEdge()->GetValue()<<endl; 
+	//cout<<G.GetVertexList().First()->GetIncident(0)->GetName()<<endl; 
+	//cout << G.Edges() << endl;
+	cout<<G.GetVertexList().First()->GetNext()->IncidentsSize()<<endl; 
+	cout << G.Edges() << endl;
+	G.RemoveEdge(G.GetEdgeList().First());
+	cout << G.Edges() << endl;
+	cout<<G.GetVertexList().First()->GetNext()->IncidentsSize()<<endl;
+	//cout<<G.GetVertexList().First()->GetIncident(0)->GetName()<<endl; 
 	//G.RemoveVertex(G.GetVertexList().AtIndex(2));
-	cout<<G.Vertices()<<endl;
+	//cout<<G.GetVertexList().First()->GetIncident(0)<<endl; 
+
 	//A.Kruskal(&G)->Print();
 } //main

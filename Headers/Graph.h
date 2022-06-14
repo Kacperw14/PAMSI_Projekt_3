@@ -38,7 +38,7 @@ public:
 	{
 		int n = 0;
 		if (_number > Vertices()) return nullptr;
-		for (Node<Vertex>* _start = vertexList.First(); _start != vertexList.GetTrailer(); _start = _start->GetNext())
+		for (Vertex* _start = vertexList.First(); _start != vertexList.GetTrailer(); _start = _start->GetNext())
 		{
 			if (n++ == _number) return _start;
 		}
@@ -47,7 +47,7 @@ public:
 
 	void InsertVertex(Vertex* _vertex)
 	{
-		for (Node<Vertex>* _start = vertexList.First(); _start != vertexList.GetTrailer(); _start = _start->GetNext())
+		for (Vertex* _start = vertexList.First(); _start != vertexList.GetTrailer(); _start = _start->GetNext())
 		{
 			if (_start == _vertex) return;
 		}
@@ -94,27 +94,41 @@ public:
 		return false;
 	}
 
-	void RemoveVertex(Node<Vertex>* _vertex)
+	void RemoveEdge(Edge* _edge)
 	{
-		for (int i = 0; i < _vertex->IncidentsSize(); i++)
-		{
-			if (_vertex != _vertex->GetIncident(i)->GetEdge()->GetBeginning())
-			{
-				_vertex->GetIncident(i)->GetEdge()->SetBegInc(nullptr);
-				_vertex->GetIncident(i)->GetEdge()->SetBeginning(nullptr);
+		//std::cout<<_edge->GetBeginning()->GetName()<<std::endl;
+		//std::cout<<_edge->GetEnd()->GetName()<<std::endl;
+		_edge->GetBeginning()->RemoveIncident(_edge->GetBegInc());
 
-				//_vertex->RemoveIncydent(i);
-			}
-			else
-			{
-				_vertex->GetIncident(i)->GetEdge()->SetEndInc(nullptr);
-				_vertex->GetIncident(i)->GetEdge()->SetEnd(nullptr);
-			}
-			//edgeList.Remove((_vertex->GetIncident(i)->GetEdge())); //////!!
-			//delete	_vertex->GetIncident(i)->GetEdge();
-		}
-		vertexList.Remove(_vertex);
-	};
+		_edge->GetEnd()->RemoveIncident(_edge->GetEndInc());
+
+		edgeList.Remove(_edge);
+	}
+	//void RemoveVertex(Node<Vertex>* _vertex)
+	//{
+	//	for (int i = 0; i < _vertex->IncidentsSize(); i++)
+	//	{
+	//		if (_vertex != _vertex->GetIncident(i)->GetEdge()->GetBeginning())
+	//		{
+	//			_vertex->GetIncident(i)->GetEdge()->SetBegInc(nullptr);
+	//			_vertex->GetIncident(i)->GetEdge()->SetBeginning(nullptr);
+
+	//			Opposite(_vertex, )
+	//			//_vertex->GetIncident(i)->GetEdge()->GetEnd()->RemoveIncydent(i);
+	//		}
+	//		else if(_vertex == _vertex->GetIncident(i)->GetEdge()->GetBeginning())
+	//		{
+	//			_vertex->GetIncident(i)->GetEdge()->SetEndInc(nullptr);
+	//			_vertex->GetIncident(i)->GetEdge()->SetEnd(nullptr);
+
+	//			//_vertex->GetIncident(i)->GetEdge()->GetBeginning()->RemoveIncydent(i);
+	//		}
+	//		//edgeList.Remove((_vertex->GetIncident(i)->GetEdge())); //////!! Destruktor
+	//		//delete	_vertex->GetIncident(i)->GetEdge();
+	//	}
+	//	vertexList.Remove(_vertex);
+	//	
+	//};
 
 
 	void MinMax()
@@ -175,7 +189,7 @@ public:
 
 	void Print()
 	{
-		for (Node<Edge>* _start = edgeList.First(); _start != edgeList.GetTrailer(); _start = _start->GetNext())
+		for (Edge* _start = edgeList.First(); _start != edgeList.GetTrailer(); _start = _start->GetNext())
 		{
 			std::cout << _start->GetBeginning()->GetName() << " ";
 			std::cout << "E" << _start->GetValue() << " ";

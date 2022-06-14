@@ -1,13 +1,15 @@
 #pragma once
 //#include "List.h"
 #include "Incident.h"
+#include "Node.h"
 #include <iostream>
 #include <string>
 #include <vector>
 
 class Incident;  //definiuje klase aby preprocesor mogl zalaczyc plik Incident.h
 
-class Vertex
+
+class Vertex : public Node<Vertex>
 {
 private:
 
@@ -49,15 +51,40 @@ public:
 	//	throw "Zly indeks";
 	//}
 
-	void RemoveIncydent(int _number)
+	void RemoveIncident(int _number)
+	{
+		//std::cout << "lol" << " ";
+		//RemoveIncident(incident.at(_number));
+		//if (incident.empty())  throw "Empty";
+		//for (auto i = incident.begin(); i != incident.end(); i++)
+		//{
+		//	//std::cout << incident.at(i)->GetName() << " ";
+		//	if (*i == GetIncident(_number))  incident.erase(i, std::next(i));
+		//}
+	}
+
+	void RemoveIncident(Incident* _incident)
 	{
 		if (incident.empty())  throw "Empty";
-		for (auto i = incident.begin(); i != incident.end(); i++)
+		for (std::vector<Incident*>::iterator i = incident.begin(); i != incident.end(); i++)
 		{
-			//std::cout << incident.at(i)->GetName() << " ";
-			if (*i == GetIncident(_number))  incident.erase(i, std::next(i));
+			if (*i == _incident)
+			{
+				//std::cout << *i<< " ";
+				//std::cout << "jest" << " ";
+				incident.erase(i, i+1);
+				return;
+			}
 		}
+		//std::cout << "nie ma" << " ";
 	}
+
+	//void RemoveIncident(const Incident& _incident)
+	//{
+	//	//std::remove(incident.begin(), incident.end(), _incident);
+
+	//}
+
 	std::vector<Incident*> GetIncidentList() const
 	{
 		return incident;

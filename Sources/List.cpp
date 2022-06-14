@@ -5,8 +5,8 @@
 template <typename T>
 List<T>::List()
 {
-	header = new Node<T>();
-	trailer = new Node<T>();//this, header, nullptr);
+	header = new T();
+	trailer = new T();//this, header, nullptr);
 	header->SetNext(trailer);
 	trailer->SetPrevious(header);
 }
@@ -39,7 +39,7 @@ int List<T>::Size() const
 		int size = 0;
 		//Node<T>* head = header->GetNext();	//Nie liczymy header'a, jesli IsEmpty != true to header->GetNext() istnieje.
 		//while (head != trailer)
-		for (Node<T>* head = header->GetNext(); head != trailer; head = head->GetNext())
+		for (T* head = First(); head != trailer; head = head->GetNext())
 		{
 			size++;
 		}
@@ -50,13 +50,15 @@ int List<T>::Size() const
 template <typename T>
 void List<T>::AddAtEnd(T* _node)  //
 {	
-	Node<T>* _tNode = new Node<T>(_node, Last(), trailer);
-	trailer->GetPrevious()->SetNext(_tNode);
-	trailer->SetPrevious(_tNode);
+	//T* _tNode = new T(Last(), trailer);
+	_node->SetNext(trailer);
+	_node->SetPrevious(Last());
+	Last()->SetNext(_node);
+	trailer->SetPrevious(_node);
 }
 
 template<typename T>
-void List<T>::Remove(Node<T>* _node)
+void List<T>::Remove(T* _node)
 {
 	if (_node != nullptr && _node != header && _node != trailer)
 	{
@@ -94,8 +96,8 @@ class List<Edge>;
 template
 class List<Vertex>;
 
-template
-class List<Incident>;
+//template
+//class List<Incident>;
 
 //template
 //class List<Branch>;

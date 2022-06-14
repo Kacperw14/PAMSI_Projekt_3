@@ -1,11 +1,13 @@
 #pragma once
 #include "Vertex.h"
 #include "Incident.h"
+#include "Node.h"
 
 class Incident;
 class Vertex;
+//class Edge;
 
-class Edge //: public Node
+class Edge : public Node<Edge>
 {
 protected:
 	int value;

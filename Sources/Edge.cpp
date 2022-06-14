@@ -1,7 +1,8 @@
-#include "..\Headers\Edge.h"
+#include "../Headers/Edge.h"
 
 Edge::Edge(Vertex* _beginning, Vertex* _end, const int& _value)// : beginning(_beginning), end(_end), value(_value) {};
 {
+	
 	Incident* Ibeg = new Incident(_beginning->GetName(), this);
 	Incident* Iend = new Incident(_end->GetName(), this);
 	beginning = _beginning;
@@ -9,8 +10,8 @@ Edge::Edge(Vertex* _beginning, Vertex* _end, const int& _value)// : beginning(_b
 	value = _value;
 	begIncident = Ibeg;//beginning->GetIncident();
 	endIncident = Iend;//end->GetIncident();
-	beginning->AddIncident(begIncident);
-	end->AddIncident(endIncident);
+	beginning->AddIncident(Ibeg);
+	end->AddIncident(Iend);
 }
 
 const int& Edge::GetValue() const
