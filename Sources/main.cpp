@@ -1,7 +1,6 @@
 ﻿#include <iostream>
 #include <cmath>
-#include "../Headers/Algorithms.h"
-//#include "../Headers/Graph.h"
+#include "../Headers/Graph.h"
 
 using namespace std; //////////////!!
 
@@ -17,17 +16,17 @@ using namespace std; //////////////!!
 	cout << (int)h1;
 	cin >> DDRA;
 	*/
-/*
+
 void Create(string* s, Graph* _G, int _size, int _row, int _column) {
-	while (s[_row][_column] != 'x')//(_row < _size-1 || _column < _size-1)
+	while (s[_row][_column] != 'x')
 	{
 		if (_row == 0 && _column == 0)
 		{
-			s[_row][_column] = 'x';
 
+			s[_row][_column] = 'x';
 			//_G->InsertVertex(new Vertex(std::to_string(10 * (_row + 1) + _column + 1)));
 			_G->InsertEdge(new Vertex(std::to_string(10 * (_row + 1) + _column + 1)),
-				new Vertex(std::to_string(10 * (_row + 1) + _column + 2)), new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
+				new Vertex(std::to_string(10 * (_row + 1) + _column + 2)), _G->Power(s, _row, _column, _size));//new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
 			_column++;
 		}
 		else
@@ -35,9 +34,8 @@ void Create(string* s, Graph* _G, int _size, int _row, int _column) {
 			if (_column < _size - 1)
 			{
 				s[_row][_column] = 'x';
-
 				_G->InsertEdge(_G->GetVertexList().Last(),
-					new Vertex(std::to_string(10 * (_row + 1) + _column + 2)), new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
+					new Vertex(std::to_string(10 * (_row + 1) + _column + 2)), _G->Power(s, _row, _column+1, _size));//new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
 				_column++;
 			}
 			else
@@ -47,7 +45,7 @@ void Create(string* s, Graph* _G, int _size, int _row, int _column) {
 					s[_row][_column] = 'x';
 					//cout << (10 * (_row + 1) + _column + 1) << endl;
 					_G->InsertEdge(_G->GetVertexList().Last(),
-						new Vertex(std::to_string(10 * (_row + 2) + 1)), new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
+						new Vertex(std::to_string(10 * (_row + 2) + 1)), _G->Power(s, _row+1, 0, _size));//new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
 
 					_column = 0;
 					_row++;
@@ -80,46 +78,120 @@ void Create(string* s, Graph* _G, int _size, int _row, int _column) {
 
 	for (int i = 0; i < _size; i++)	for (int j = 0; j < _size; j++) s[i][j] = (char)' ';
 	//system("CLS");
-		if (_column + 1 < _size)
+	if (_column + 1 < _size)
+	{
+		Create(s, _G, _size, _row, _column + 1);
+		if (_row + 1 < _size)
 		{
-			Create(s, _G, _size, _row, _column + 1);
-			if (_row + 1 < _size)
-			{
-				_column = 0;
-				Create(s, _G, _size, _row + 1, _column);
-			}
+			_column = 0;
+			Create(s, _G, _size, _row + 1, _column);
 		}
+	}
+	//_row = 0;
+
+	//_row = 0;
+	//_column = 0;
+
 	return;
 }
-*/
 
 int main()
 {
 
-	Graph G;
-	Algorithms A;
-	Vertex* V1 = new Vertex("1");
-	Vertex* V2 = new Vertex("2");
-	Vertex* V3 = new Vertex("3");
-	Vertex* V4 = new Vertex("4");
-	Vertex* V5 = new Vertex("5");
-	G.InsertEdge(V1, V2, new Edge(1));
-	G.InsertEdge(V1, V3, new Edge(6));
-	G.InsertEdge(V1, V4, new Edge(7));
-	G.InsertEdge(V1, V5, new Edge(5));
-	G.InsertEdge(V2, V3, new Edge(2));
-	G.InsertEdge(V3, V4, new Edge(3));
-	G.InsertEdge(V3, V5, new Edge(8));
-	G.InsertEdge(V4, V5, new Edge(4));
+	Graph* G = new Graph();
+	int row = 0;
+	int column = 0;
+	int n = 0, iter = 0;
+	int size = 3; //////////////!!!
 
-	//cout << G.Edges()<<endl;
-	//cout << G.MinEdge()<<endl;
+	//do cin >> size;
+	//while (size < 3);
+	string* s = new string[size];
 
-	G.Print();
-	cout << endl;
-	A.Kruskal(G)->Print();
-	cout << endl;
-	G.Print();
+	for (int i = 0; i < size; i++)	for (int j = 0; j < size; j++) s[i][j] = (char)' ';
 
-	//A.Kruskal(&G)->Print();
+	Create(s, G, size, row, column);
+	cout << "koniec" << endl;
+
+	//cout << G->GetVertexList().First()->GetFirstIncident()->GetEdge()->GetValue() << endl;
+	//cout << G->GetVertexList().First()->GetNext()->GetNext()->GetFirstIncident()->GetEdge()->GetValue()<< endl;
+	//cout << G->Vertices() << endl;
+	//cout << G->GetVertexList().First()->GetEndIncident() << endl;
+	//G->InsertEdge(G->GetVertexList().First(), new Vertex("lol"), new Edge(100));
+	//cout << G->IncidentEdges(G->GetVertexList().First())->First()->GetNext()->GetValue()<< endl;
+	//cout<< G->AreAdjacent(G->GetVertexList().First(), G->GetVertexList().Last())<<endl;
+
+	G->Print();
+
+	for (int i = 0; i < size - 1; i++)
+	{
+		cout << "_";
+		for (int j = 0; j < size - 1; j++)
+		{
+			cout << s[i][j] << "_|_";
+		}
+		cout << s[i][size - 1] << "_" << endl;
+	}
+	cout << " ";
+	for (int j = 0; j < size - 1; j++)
+	{
+		cout << s[size - 1][j] << " | ";
+	}
+	cout << s[size - 1][size - 1] << endl;// << " ";
+
+	for (int i = 0; i < pow(size, 2); i++)
+	{
+		do
+		{
+			cin >> row;
+			cin >> column;
+			if (!cin.good())
+			{
+				cin.clear();
+				//cin.unget();
+				cin.ignore(100, ' ');
+				//cout << "bad" << endl;
+				row = 1000;  //zamkniecie petli
+			}
+		} while (row >= size || row < 0 || column >= size || column < 0 || s[row][column] != ' ');
+
+		//--row;    //uzytkownik wybiera pola od 1 do size
+		//--column;
+
+
+
+		if (n++ % 2) s[row][column] = 'x';
+		else s[row][column] = 'x';             //o!!!!
+		system("CLS");
+
+		for (int i = 0; i < size - 1; i++)
+		{
+			cout << "_";
+			for (int j = 0; j < size - 1; j++)
+			{
+				cout << s[i][j] << "_|_";
+			}
+			cout << s[i][size - 1] << "_" << endl;
+		}
+		cout << " ";
+		for (int j = 0; j < size - 1; j++)
+		{
+			cout << s[size - 1][j] << " | ";
+		}
+		cout << s[size - 1][size - 1] << endl << " ";
+
+
+		Graph* G1 = new Graph();
+		//G1->Power(s, row, column, size)-;
+		cout << endl << endl << G1->Power(s, row, column, size)->GetValue() << endl;
+	}
+
+
+
 } //main
+
+
+		/*cout <<
+			"_" << s[0][0] << "_|_" << s[0][1] << "_|_" << s[0][2] << "_" << endl <<
+			"_" << s[1][0] << "_|_" << s[1][1] << "_|_" << s[1][2] << "_" << endl <<
+			" " << s[2][0] << " | " << s[2][1] << " | " << s[2][2] << " " << endl;*/

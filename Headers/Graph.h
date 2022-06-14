@@ -179,20 +179,20 @@ public:
 		//std::cout << _size << std::endl;
 		//--_size;
 
-		if (_size > 2) //
+		if (_size > 1) //
 		{
-			int** flag = new int* [_size];
-			for (int i = 0; i < _size; i++)
-			{
-				flag[i] = new int;//[_board->size()];
-				for (int j = 0; j < _size; j++)
-				{
-					//flag[i] = new int;
-					flag[i][j] = 0;
-					if (_board[i][j] == 'x') flag[i][j] = 1;
-					//std::cout << flag[i][j] << std::endl;
-				}
-			}
+			//int** flag = new int* [_size];
+			//for (int i = 0; i < _size; i++)
+			//{
+			//	flag[i] = new int;//[_board->size()];
+			//	for (int j = 0; j < _size; j++)
+			//	{
+			//		//flag[i] = new int;
+			//		flag[i][j] = 0;
+			//		if (_board[i][j] == 'x') flag[i][j] = 1;
+			//		//std::cout << flag[i][j] << std::endl;
+			//	}
+			//}
 
 			for (int i = -1; i < 2; i++)
 			{
@@ -204,20 +204,20 @@ public:
 						if ((_row + i) >= 0 && (_row + i) < _size && (_column + j) >= 0 && (_column + j) < _size)
 						{
 							//std::cout << std::endl << i << " " << j << " " << flag[_row + i][_column + j] << std::endl;
-							if (flag[_row + i][_column + j])
+							if (_board[_row + i][_column + j] == 'x')
 							{
 								if (_row + (2 * i) >= 0 && _row + (2 * i) < _size && _column + (2 * j) >= 0 && _column + (2 * j) < _size)
 								{
-									if (flag[_row + 2 * i][_column + 2 * j] == 1) power += 10;
+									if (_board[_row + 2 * i][_column + 2 * j] == 'x') power += 10;
 									else power += 1;
 								}
-								else if (flag[_row + i][_column + j] == 1) power += 1;
+								else if (_board[_row + i][_column + j] == 'x') power += 1;
 							}
 						}
 					}
 				}
 			}
-			delete[] flag;
+			//delete[] flag;
 			//flag[0];
 		}
 		return new Edge(power);

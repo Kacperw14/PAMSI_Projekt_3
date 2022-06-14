@@ -5,10 +5,12 @@ class Algorithms {
 
 public:
 
-	Graph* Kruskal(const Graph& _G) const
+	Graph* Kruskal(Graph _G) const
 	{
 		Graph* Ledge = new Graph();
 		Edge* E = nullptr;
+		int size = _G.Vertices();//_G.GetVertexList().Size();
+		std::cout <<size<< std::endl;
 		for (Edge* i = _G.GetEdgeList().First(); i != _G.GetEdgeList().GetTrailer(); i = i->GetNext())
 		{
 			E = new Edge(*i);
@@ -33,7 +35,7 @@ public:
 		graph->InsertVertex(new Vertex(*Ledge->MinEdge()->GetBeginning()));
 		Claster->InsertVertex(Ledge->MinEdge()->GetBeginning());
 
-		while (graph->Vertices() <= 4)//_G.GetVertexList().Size()) //Ledge->Vertices())//
+		while (graph->Vertices() < size)//_G.GetVertexList().Size()) //Ledge->Vertices())//
 		{
 			std::cout <<"elo" << graph->GetVertexList().Size() << std::endl;
 			isIntheClasterBeg = false;
@@ -97,6 +99,7 @@ public:
 			graph->Print();
 			//std::cout << Ledge->Vertices() << std::endl;
 			Ledge->RemoveEdge(min);
+			//Ledge->GetEdgeList().Remove(min); //????
 			//std::cout << Ledge->Vertices() << std::endl;
 			//min->SetValue(100);
 			//std::cout << Ledge.First()->MinEdge()->GetValue() << std::endl;
@@ -104,5 +107,69 @@ public:
 		std::cout << "free" << std::endl;
 		return graph;
 	};
+
+
+	//Graph* Prim(Graph _G) const
+	//{
+	//	Graph* Ledge = new Graph();
+	//	//Edge* E = nullptr;
+	///*	for (Edge* i = _G.GetEdgeList().First(); i != _G.GetEdgeList().GetTrailer(); i = i->GetNext())
+	//	{
+	//		Ledge->InsertEdge(i->GetBeginning(), i->GetEnd(), new Edge(*i));     ///!!!
+	//	}*/
+	//	Graph* Claster = new Graph();
+	//	Graph* graph = new Graph();
+	//	Edge* min = nullptr;
+
+	//	Claster->InsertVertex(new Vertex(*_G.GetVertexList().First()));
+
+	//	for (int i = 0; i < Claster->GetVertexList().First()->IncidentsSize(); i++)
+	//	{
+	//		Ledge->GetEdgeList().AddAtEnd(Claster->GetVertexList().First()->GetIncident(i)->GetEdge());
+	//	}
+
+
+	//	bool isIntheClasterBeg = false;
+	//	bool isIntheClasterEnd = false;
+
+	//	graph->InsertVertex(new Vertex(*Ledge->MinEdge()->GetBeginning()));
+	//	Claster->InsertVertex(Ledge->MinEdge()->GetBeginning());
+
+	//	while (Ledge->Edges() > 0)
+	//	{
+	//		std::cout << "elo" << graph->GetVertexList().Size() << std::endl;
+	//		isIntheClasterBeg = false;
+	//		isIntheClasterEnd = false;
+
+	//		min = Ledge->MinEdge();
+	//
+	//		for (Vertex* i = Claster->GetVertexList().First(); i != Claster->GetVertexList().GetTrailer(); i = i->GetNext())
+	//		{
+	//			if (i == min->GetBeginning()) isIntheClasterBeg = true;
+	//			if (i == min->GetEnd()) isIntheClasterEnd = true;
+	//		}
+	//		std::cout << isIntheClasterBeg << std::endl;
+	//		std::cout << isIntheClasterEnd << std::endl;
+
+	//		if (!isIntheClasterBeg)
+	//		{
+	//			std::cout << "lol 1" << std::endl;
+	//			graph->InsertEdge(graph->GetVertexList().Last(), new Vertex(*min->GetBeginning()), new Edge(*min));
+	//			Claster->InsertVertex(min->GetBeginning());
+	//		}
+	//		if (!isIntheClasterEnd)
+	//		{
+	//			std::cout << "lol 2" << std::endl;
+	//			graph->InsertEdge(graph->GetVertexList().Last(), new Vertex(*min->GetEnd()), new Edge(*min));
+	//			Claster->InsertVertex(min->GetEnd());
+	//		}
+
+	//		graph->Print();
+	//		Ledge->RemoveEdge(min);
+
+	//	}
+	//	std::cout << "free" << std::endl;
+	//	return graph;
+	//};
 
 }; //CLASS
