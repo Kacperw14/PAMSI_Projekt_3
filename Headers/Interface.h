@@ -8,5 +8,5 @@ private:
     int Xindex, Yindex;
 public:
     AI() = default;
-    AI(int Score) : score(Score) {}
+    AI(int _score) : currentScore(_score) {}
 };
