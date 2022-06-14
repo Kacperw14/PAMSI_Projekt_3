@@ -19,19 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Headers\Algorithms.h" />
-    <ClInclude Include="Headers\Edge.h" />
-    <ClInclude Include="Headers\Graph.h" />
-    <ClInclude Include="Headers\Incident.h" />
-    <ClInclude Include="Headers\List.h" />
-    <ClInclude Include="Headers\Node.h" />
-    <ClInclude Include="Headers\Vertex.h" />
+    <ClCompile Include="Sources\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\Edge.cpp" />
-    <ClCompile Include="Sources\List.cpp" />
-    <ClCompile Include="Sources\main.cpp" />
-    <ClCompile Include="Sources\Node.cpp" />
+    <ClInclude Include="Headers\Interface.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
