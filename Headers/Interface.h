@@ -3,32 +3,37 @@
 #include<string> 
 #include<iostream> 
 
-class AI 
+class AI
 {
 private:
-    int currentScore;
-    char AIplayer;
-    int Xindex, Yindex;
+	int currentScore;
+	char AIplayer;
+	int Xindex, Yindex;
 public:
-    AI() = default;
-    AI(int _score) : currentScore(_score) {}
+	AI() = default;
+	AI(int _score) : currentScore(_score) {}
 };
 
 
 class Interface {
-    int size = 3;
-    char cell = ' ';
-	std::string* board; 
-    int winStreak;
+private:
+
+	int size = 3;
+	char cell = ' ';
+	std::string* board;
+	int winStreak;
 
 public:
-
-
-	void Print()
+	void Initialize()
 	{
 		board = new std::string[size];
 		for (int i = 0; i < size; i++)	for (int j = 0; j < size; j++) board[i][j] = (char)' ';
+	}
 
+	int GetSize() const { return size; };
+
+	void Print()
+	{
 		for (int i = 0; i < size - 1; i++)
 		{
 			std::cout << "_";
@@ -45,4 +50,11 @@ public:
 		}
 		std::cout << board[size - 1][size - 1] << std::endl;// << " ";
 	}
-};
+
+	void SetValues(int row, int column, char _cell) {
+		cell = _cell;
+		board[row][column] = cell;
+	}
+
+
+}; //CLASS
