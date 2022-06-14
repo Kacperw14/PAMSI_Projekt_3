@@ -126,7 +126,17 @@ public:
 
 	void Replace(Vertex* _first, Vertex* _second)
 	{
+		_first->Swap(_second);
+	}
 
+	void ReplaceBeginning(Edge* _edge, Vertex* _vertex)
+	{
+		_edge->GetBeginning()->Swap(_vertex);
+	}
+
+	void ReplaceEnd(Edge* _edge, Vertex* _vertex)
+	{
+		_edge->GetEnd()->Swap(_vertex);
 	}
 
 	void MinMax()
