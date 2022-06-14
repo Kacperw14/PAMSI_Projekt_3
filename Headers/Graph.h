@@ -52,17 +52,6 @@ public:
 		InsertVertex(_end);
 	}
 
-	//Vertex* operator[] (int _number)
-	//{
-	//	int n = 0;
-	//	if (_number > Vertices()) return nullptr;
-	//	for (Vertex* _start = vertexList.First(); _start != vertexList.GetTrailer(); _start = _start->GetNext())
-	//	{
-	//		if (n++ == _number) return _start;
-	//	}
-	//	return nullptr;
-	//};
-
 	void InsertVertex(Vertex* _vertex)
 	{
 		for (Vertex* _start = vertexList.First(); _start != vertexList.GetTrailer(); _start = _start->GetNext())
@@ -168,32 +157,99 @@ public:
 		_edge->GetEnd()->Swap(_vertex);
 	}
 
-	void MinMax()
+	int MinMaxWithAlphaBeta(std::string* s, int _size, int _row, int _column)
 	{
+		Graph graph;
+		//Create(s, &graph, _size, _row, _column);
+		Create(s, this, _size, _row, _column);
 
+		//edgeList.First()
+
+		return 1;
+	}
+
+	void Create(std::string* s, Graph* _G, int _size, int _row, int _column) {
+		while (s[_row][_column] != 'x')
+		{
+			if (_row == 0 && _column == 0)
+			{
+
+				s[_row][_column] = 'x';
+				//_G->InsertVertex(new Vertex(std::to_string(10 * (_row + 1) + _column + 1)));
+				_G->InsertEdge(new Vertex(std::to_string(10 * (_row + 1) + _column + 1)),
+					new Vertex(std::to_string(10 * (_row + 1) + _column + 2)), _G->Power(s, _row, _column, _size));//new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
+				
+				_column++;
+			}
+			else
+			{
+				if (_column < _size - 1)
+				{
+					s[_row][_column] = 'x';
+					_G->InsertEdge(_G->GetVertexList().Last(),
+						new Vertex(std::to_string(10 * (_row + 1) + _column + 2)), _G->Power(s, _row, _column + 1, _size));//new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
+					_column++;
+				}
+				else
+				{
+					if (_row < _size - 1)
+					{
+						s[_row][_column] = 'x';
+						//cout << (10 * (_row + 1) + _column + 1) << endl;
+						_G->InsertEdge(_G->GetVertexList().Last(),
+							new Vertex(std::to_string(10 * (_row + 2) + 1)), _G->Power(s, _row + 1, 0, _size));//new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
+
+						_column = 0;
+						_row++;
+					}
+					else
+					{
+						s[_row][_column] = 'x';
+						_column = 0;
+						_row = 0;
+					}
+				}
+			}
+				for (int i = 0; i < _size - 1; i++)
+				{
+					std::cout << "_";
+					for (int j = 0; j < _size - 1; j++)
+					{
+						std::cout << s[i][j] << "_|_";
+					}
+					std::cout << s[i][_size - 1] << "_" << std::endl;
+				}
+				std::cout << " ";
+				for (int j = 0; j < _size - 1; j++)
+				{
+					std::cout << s[_size - 1][j] << " | ";
+				}
+				std::cout << s[_size - 1][_size - 1] << std::endl;// << " ";
+				std::cout << std::endl;// << " ";
+
+		}
+		for (int i = 0; i < _size; i++)	for (int j = 0; j < _size; j++) s[i][j] = (char)' ';
+		//system("CLS");
+		_row = 0;
+		_column = 0;
+		while(_column + 1 < _size && _row + 1 < _size)
+		{
+			Create(s, _G, _size, _row, _column+1);
+		}
+		//_row = 0;
+
+		//_row = 0;
+		//_column = 0;
+
+		return;
 	}
 
 	inline static Edge* Power(std::string* _board, int _row, int _column, int _size)      //bez flagi; Srodek nie daje 10
 	{
 		int power = 0;
-		//std::cout << _size << std::endl;
-		//--_size;
 
 		if (_size > 1) //
 		{
-			//int** flag = new int* [_size];
-			//for (int i = 0; i < _size; i++)
-			//{
-			//	flag[i] = new int;//[_board->size()];
-			//	for (int j = 0; j < _size; j++)
-			//	{
-			//		//flag[i] = new int;
-			//		flag[i][j] = 0;
-			//		if (_board[i][j] == 'x') flag[i][j] = 1;
-			//		//std::cout << flag[i][j] << std::endl;
-			//	}
-			//}
-
 			for (int i = -1; i < 2; i++)
 			{
 				for (int j = -1; j < 2; j++)
@@ -217,8 +273,6 @@ public:
 					}
 				}
 			}
-			//delete[] flag;
-			//flag[0];
 		}
 		return new Edge(power);
 	}

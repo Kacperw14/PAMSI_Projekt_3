@@ -17,83 +17,7 @@ using namespace std; //////////////!!
 	cin >> DDRA;
 	*/
 
-void Create(string* s, Graph* _G, int _size, int _row, int _column) {
-	while (s[_row][_column] != 'x')
-	{
-		if (_row == 0 && _column == 0)
-		{
 
-			s[_row][_column] = 'x';
-			//_G->InsertVertex(new Vertex(std::to_string(10 * (_row + 1) + _column + 1)));
-			_G->InsertEdge(new Vertex(std::to_string(10 * (_row + 1) + _column + 1)),
-				new Vertex(std::to_string(10 * (_row + 1) + _column + 2)), _G->Power(s, _row, _column, _size));//new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
-			_column++;
-		}
-		else
-		{
-			if (_column < _size - 1)
-			{
-				s[_row][_column] = 'x';
-				_G->InsertEdge(_G->GetVertexList().Last(),
-					new Vertex(std::to_string(10 * (_row + 1) + _column + 2)), _G->Power(s, _row, _column+1, _size));//new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
-				_column++;
-			}
-			else
-			{
-				if (_row < _size - 1)
-				{
-					s[_row][_column] = 'x';
-					//cout << (10 * (_row + 1) + _column + 1) << endl;
-					_G->InsertEdge(_G->GetVertexList().Last(),
-						new Vertex(std::to_string(10 * (_row + 2) + 1)), _G->Power(s, _row+1, 0, _size));//new Edge(10 * (_row + 1) + _column + 1));//_G->Power(s,_row,_column,_size));
-
-					_column = 0;
-					_row++;
-				}
-				else
-				{
-					s[_row][_column] = 'x';
-					_column = 0;
-					_row = 0;
-				}
-			}
-		}
-		for (int i = 0; i < _size - 1; i++)
-		{
-			cout << "_";
-			for (int j = 0; j < _size - 1; j++)
-			{
-				cout << s[i][j] << "_|_";
-			}
-			cout << s[i][_size - 1] << "_" << endl;
-		}
-		cout << " ";
-		for (int j = 0; j < _size - 1; j++)
-		{
-			cout << s[_size - 1][j] << " | ";
-		}
-		cout << s[_size - 1][_size - 1] << endl;// << " ";
-		cout << endl;// << " ";
-	}
-
-	for (int i = 0; i < _size; i++)	for (int j = 0; j < _size; j++) s[i][j] = (char)' ';
-	//system("CLS");
-	if (_column + 1 < _size)
-	{
-		Create(s, _G, _size, _row, _column + 1);
-		if (_row + 1 < _size)
-		{
-			_column = 0;
-			Create(s, _G, _size, _row + 1, _column);
-		}
-	}
-	//_row = 0;
-
-	//_row = 0;
-	//_column = 0;
-
-	return;
-}
 
 int main()
 {
@@ -110,7 +34,8 @@ int main()
 
 	for (int i = 0; i < size; i++)	for (int j = 0; j < size; j++) s[i][j] = (char)' ';
 
-	Create(s, G, size, row, column);
+	//G->Create(s, G, size, row, column);
+	G->MinMaxWithAlphaBeta(s, size, row, column);
 	cout << "koniec" << endl;
 
 	//cout << G->GetVertexList().First()->GetFirstIncident()->GetEdge()->GetValue() << endl;
@@ -189,9 +114,3 @@ int main()
 
 
 } //main
-
-
-		/*cout <<
-			"_" << s[0][0] << "_|_" << s[0][1] << "_|_" << s[0][2] << "_" << endl <<
-			"_" << s[1][0] << "_|_" << s[1][1] << "_|_" << s[1][2] << "_" << endl <<
-			" " << s[2][0] << " | " << s[2][1] << " | " << s[2][2] << " " << endl;*/
